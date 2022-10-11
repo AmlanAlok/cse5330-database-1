@@ -65,29 +65,43 @@ def preprocess_confirmed_cases_data(data, cursor):
 
     state_row, county_row = data[0], data[1]
 
-    db_data = []
+    # db_data = []
 
-    # for state_idx in range(1, len(state_row)):
-    for state_idx in range(1, 3):
-        state = state_row[state_idx]
+    for state_county_idx in range(1, len(state_row)):
+    # for state_county_idx in range(1, 3):
+        state = state_row[state_county_idx]
+        county = county_row[state_county_idx]
+
         # for county_idx in range(1, len(county_row)):
-        for county_idx in range(1, 3):
+        print('State = ', state, ' County = ', county)
+        # for county_idx in range(1, 3):
             # print(state, county)
-            county = county_row[county_idx]
+
+        present = check_state_county(state, county, cursor)
+
+        if present == 1:
+            # up to down
             for i in range(2, len(data)):
-                record = data[i]
-                date = record[0]
 
-                # for j in range(1, len(record)):
-                for j in range(1, 3):
-                    count = record[j]
-                    db_record = [state, county, date, count]
-                    print(db_record)
-                    db_data.append([state, county, date, count])
-                    confirmed_cases_query = 'insert into confirmed_cases values(%s, %s, %s, %s)'
-                    cursor.execute(confirmed_cases_query, db_record)
+                date_raw = data[i][0]
+                date_parts = date_raw.split('/')
+                date = date_parts[2] + '-' + date_parts[0] + '-' + date_parts[1]
 
-    return db_data
+                count = data[i][state_county_idx]
+                db_record = [state, county, date, count]
+                # print(db_record)
+                # db_data.append([state, county, date, count])
+                confirmed_cases_query = 'insert into confirmed_cases values(%s, %s, %s, %s)'
+                cursor.execute(confirmed_cases_query, db_record)
+
+    return 'Done---------'
+
+
+def check_state_county(state, county, cursor):
+    sql_query = "select count(*) from county where county = '" + county + "' and state = '" + state + "'"
+    cursor.execute(sql_query)
+    is_present = cursor.fetchone()
+    return is_present[0]
 
 
 def insert_state(data, cursor):
@@ -149,10 +163,15 @@ def db_1():
         connection = pymysql.connect(host=hostname, user=username, password=password, database=database, port=3306)
         cursor = connection.cursor()
 
-        # insert_state(state_data, cursor)
-        # insert_county(county_data, cursor)
-        # insert_vaccination(vaccination_data, cursor)
-        preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
+        insert_state(state_data, cursor)
+        insert_county(county_data, cursor)
+        print('---')
+        # present = check_state_county('Wyoming', 'Niobrara', cursor)
+        # print(present)
+
+        insert_vaccination(vaccination_data, cursor)
+        cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
+        print(cc)
 
         connection.commit()
         connection.close()
