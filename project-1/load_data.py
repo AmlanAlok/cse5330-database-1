@@ -61,6 +61,35 @@ def preprocess_county_data(data):
     return data
 
 
+def preprocess_confirmed_cases_data(data, cursor):
+
+    state_row, county_row = data[0], data[1]
+
+    db_data = []
+
+    # for state_idx in range(1, len(state_row)):
+    for state_idx in range(1, 3):
+        state = state_row[state_idx]
+        # for county_idx in range(1, len(county_row)):
+        for county_idx in range(1, 3):
+            # print(state, county)
+            county = county_row[county_idx]
+            for i in range(2, len(data)):
+                record = data[i]
+                date = record[0]
+
+                # for j in range(1, len(record)):
+                for j in range(1, 3):
+                    count = record[j]
+                    db_record = [state, county, date, count]
+                    print(db_record)
+                    db_data.append([state, county, date, count])
+                    confirmed_cases_query = 'insert into confirmed_cases values(%s, %s, %s, %s)'
+                    cursor.execute(confirmed_cases_query, db_record)
+
+    return db_data
+
+
 def insert_state(data, cursor):
     for i in range(1, len(data)):
         record = data[i]
@@ -83,7 +112,7 @@ def insert_vaccination(data, cursor):
 
 
 def db_1():
-    print('Start DB connection')
+
 
     hostname = 'localhost'
     username = 'root'
@@ -110,13 +139,20 @@ def db_1():
     vaccination_csv = 'dataset/005_Project1_Data/US_Vaccination.csv'
     vaccination_data = load_csv_data(vaccination_csv)
 
+    confirmed_cases_csv = 'dataset/005_Project1_Data/Us_confirmed_cases.csv'
+    # confirmed_cases_data = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv))
+
+    print('checkpoint')
+
     try:
+        print('Start DB connection')
         connection = pymysql.connect(host=hostname, user=username, password=password, database=database, port=3306)
         cursor = connection.cursor()
 
-        insert_state(state_data, cursor)
-        insert_county(county_data, cursor)
-        insert_vaccination(vaccination_data, cursor)
+        # insert_state(state_data, cursor)
+        # insert_county(county_data, cursor)
+        # insert_vaccination(vaccination_data, cursor)
+        preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
 
         connection.commit()
         connection.close()
