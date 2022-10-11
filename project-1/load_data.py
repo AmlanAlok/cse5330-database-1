@@ -39,18 +39,31 @@ def db_omega():
 
 
 def load_csv_data(filepath):
-
     with open(filepath) as file:
         data = list(csv.reader(file))
-        # print(data)
+    return data
+
+
+def preprocess_state_data(data):
+    for x in data:
+        x[7] = 0 if x[7] == 'No' else 1
+        x[8] = 0 if x[8] == '' else x[8].replace(',', '')
+        x[9] = 0 if x[9] == '' else x[9].replace(',', '')
     return data
 
 
 def insert_state(data, cursor):
     for i in range(1, len(data)):
-        row = data[i]
+        record = data[i]
         state_insert_query = 'insert into state values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
-        cursor.execute(state_insert_query, row)
+        cursor.execute(state_insert_query, record)
+
+
+def insert_county(data, cursor):
+    for i in range(1, len(data)):
+        record = data[i]
+        state_insert_query = 'insert into county values(%s, %s, %s, %s, %s)'
+        cursor.execute(state_insert_query, record)
 
 
 def db_1():
@@ -61,8 +74,8 @@ def db_1():
     password = ''
     database = 'us_covid_19_db'
 
-    connection = pymysql.connect(host=hostname, user=username, password=password, database=database)
-    cursor = connection.cursor()
+    # connection = pymysql.connect(host=hostname, user=username, password=password, database=database)
+    # cursor = connection.cursor()
 
     # sql_query = 'select version()'
     #
@@ -72,22 +85,17 @@ def db_1():
     #     print('Version = ', data)
 
     state_csv = 'dataset/005_Project1_Data/US_state.csv'
+    state_data = preprocess_state_data(load_csv_data(state_csv))
 
-    # load_csv_data(state_csv)
+    county_csv = 'dataset/005_Project1_Data/Us_County.csv'
+    county_data = load_csv_data(county_csv)
 
     try:
-
-        data = load_csv_data(state_csv)
-        for x in data:
-            x[7] = 0 if x[7] == 'No' else 1
-            x[8] = 0 if x[8] == '' else x[8].replace(',', '')
-            x[9] = 0 if x[9] == '' else x[9].replace(',', '')
-        print('x')
-
         connection = pymysql.connect(host=hostname, user=username, password=password, database=database, port=3306)
         cursor = connection.cursor()
 
-        insert_state(data, cursor)
+        # insert_state(state_data, cursor)
+        insert_county(county_data, cursor)
 
         connection.commit()
         connection.close()
