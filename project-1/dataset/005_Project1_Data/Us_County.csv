@@ -99,7 +99,6 @@ Alaska,Valdez-Cordova,9202,61.47502768,-144.7126799
 Alaska,Wrangell,2502,56.3202004,-132.0583731
 Alaska,Yakutat,579,59.8909808,-140.3601451
 Alaska,Yukon-Koyukuk,5230,65.50815459,-151.3907387
-American Samoa,,55641,-14.271,-170.132
 Arizona,Apache,71887,35.39465006,-109.4892383
 Arizona,Cochise,125922,31.87934684,-109.7516088
 Arizona,Coconino,143476,35.83883429,-111.7707178
@@ -335,10 +334,6 @@ Delaware,New Castle,558753,39.57992638,-75.64054974
 Delaware,Out of DE,0,0,0
 Delaware,Sussex,234225,38.66143781,-75.39031349
 Delaware,Unassigned,0,0,0
-Diamond Princess,,0,0,0
-District of Columbia,District of Columbia,705749,38.90417773,-77.01655992
-District of Columbia,Out of DC,0,0,0
-District of Columbia,Unassigned,0,0,0
 Florida,Alachua,269043,29.67866525,-82.35928158
 Florida,Baker,29210,30.33060121,-82.28467476
 Florida,Bay,174705,30.26548745,-85.62122584
@@ -569,8 +564,6 @@ Georgia,Wilcox,8635,31.97496928,-83.43438555
 Georgia,Wilkes,9777,33.78290391,-82.74286107
 Georgia,Wilkinson,8954,32.80291082,-83.17140684
 Georgia,Worth,20247,31.55162306,-83.85090513
-Grand Princess,,0,0,0
-Guam,,164229,13.4443,144.7937
 Hawaii,Hawaii,201513,19.60121157,-155.5210167
 Hawaii,Honolulu,974563,21.45803166,-157.9712182
 Hawaii,Kalawao,86,21.17882515,-156.9583592
@@ -2120,7 +2113,6 @@ North Dakota,Walsh,10641,48.36876964,-97.72574783
 North Dakota,Ward,67641,48.22390169,-101.5436763
 North Dakota,Wells,3834,47.58614526,-99.65904998
 North Dakota,Williams,37589,48.34522353,-103.4793387
-Northern Mariana Islands,,55144,15.0979,145.6739
 Ohio,Adams,27698,38.84541072,-83.4718964
 Ohio,Allen,102351,40.77285242,-84.10802343
 Ohio,Ashland,53484,40.84772277,-82.27280781
@@ -3006,7 +2998,6 @@ Vermont,Unassigned,0,0,0
 Vermont,Washington,58409,44.27343241,-72.61604978
 Vermont,Windham,42222,42.986982,-72.71268875
 Vermont,Windsor,55062,43.58010937,-72.58595157
-Virgin Islands,,107268,18.3358,-64.8963
 Virginia,Accomack,32316,37.76707161,-75.63234615
 Virginia,Albemarle,109330,38.02080697,-78.55481085
 Virginia,Alexandria,159428,38.814003,-77.08183073
@@ -3339,3 +3330,6 @@ Wyoming,Uinta,20226,41.2878183,-110.5475782
 Wyoming,Unassigned,0,0,0
 Wyoming,Washakie,7805,43.90451606,-107.680187
 Wyoming,Weston,6927,43.83961191,-104.5674881
+District of Columbia,District of Columbia,705749,38.90417773,-77.01655992
+District of Columbia,Out of DC,0,0,0
+District of Columbia,Unassigned,0,0,0
