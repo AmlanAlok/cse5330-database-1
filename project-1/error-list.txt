@@ -7,7 +7,17 @@ Exception ->  (2003, "Can't connect to MySQL server on 'acadmysqldb001p.uta.edu'
 State
 ------
 
+
 County
 -------
 Exception ->  (1264, "Out of range value for column 'longitude' at row 1")
 Exception ->  (1062, "Duplicate entry 'Unassigned' for key 'county.PRIMARY'")
+Exception ->  (1452, 'Cannot add or update a child row: a foreign key constraint fails (`us_covid_19_db`.`county`, CONSTRAINT `county_state_fk` FOREIGN KEY (`state`) REFERENCES `state` (`state`))')
+American Samoa,,55641,-14.271,-170.132
+Diamond Princess
+District of Columbia
+Grand Princess
+Guam
+Northern Mariana Islands
+Puerto Rico
+Virgin Islands
