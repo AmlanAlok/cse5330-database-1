@@ -57,9 +57,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`confirmed_cases` (
   `state` VARCHAR(50) NOT NULL,
   `county` VARCHAR(50) NOT NULL,
-  `test_date` DATE NULL,
+  `test_date` DATE NOT NULL,
   `positive_count` INT NULL,
-  PRIMARY KEY (`state`, `county`),
+  PRIMARY KEY (`state`, `county`, `test_date`),
   INDEX `confirmed_cases_county_fk_idx` (`county` ASC),
   CONSTRAINT `confirmed_cases_state_fk`
     FOREIGN KEY (`state`)
