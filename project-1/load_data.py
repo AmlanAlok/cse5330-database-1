@@ -52,6 +52,15 @@ def preprocess_state_data(data):
     return data
 
 
+def preprocess_county_data(data):
+    c = 1
+    for x in data:
+        if x[1] == 'Unassigned':
+            x[1] += str(c)
+            c+=1
+    return data
+
+
 def insert_state(data, cursor):
     for i in range(1, len(data)):
         record = data[i]
@@ -63,6 +72,13 @@ def insert_county(data, cursor):
     for i in range(1, len(data)):
         record = data[i]
         state_insert_query = 'insert into county values(%s, %s, %s, %s, %s)'
+        cursor.execute(state_insert_query, record)
+
+
+def insert_vaccination(data, cursor):
+    for i in range(1, len(data)):
+        record = data[i]
+        state_insert_query = 'insert into vaccinations values(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
         cursor.execute(state_insert_query, record)
 
 
@@ -88,14 +104,19 @@ def db_1():
     state_data = preprocess_state_data(load_csv_data(state_csv))
 
     county_csv = 'dataset/005_Project1_Data/Us_County.csv'
+    # county_data = preprocess_county_data(load_csv_data(county_csv))
     county_data = load_csv_data(county_csv)
+
+    vaccination_csv = 'dataset/005_Project1_Data/US_Vaccination.csv'
+    vaccination_data = load_csv_data(vaccination_csv)
 
     try:
         connection = pymysql.connect(host=hostname, user=username, password=password, database=database, port=3306)
         cursor = connection.cursor()
 
-        # insert_state(state_data, cursor)
+        insert_state(state_data, cursor)
         insert_county(county_data, cursor)
+        insert_vaccination(vaccination_data, cursor)
 
         connection.commit()
         connection.close()
