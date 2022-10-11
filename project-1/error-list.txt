@@ -1,0 +1,13 @@
+
+DB Connection
+--------------
+Exception ->  (2003, "Can't connect to MySQL server on 'academicmysql.mysql.database.azure.com' ([Errno 8] nodename nor servname provided, or not known)")
+Exception ->  (2003, "Can't connect to MySQL server on 'acadmysqldb001p.uta.edu' ([Errno 8] nodename nor servname provided, or not known)")
+
+State
+------
+
+County
+-------
+Exception ->  (1264, "Out of range value for column 'longitude' at row 1")
+Exception ->  (1062, "Duplicate entry 'Unassigned' for key 'county.PRIMARY'")
