@@ -21,3 +21,10 @@ Guam
 Northern Mariana Islands
 Puerto Rico
 Virgin Islands
+
+Exception ->  (1062, "Duplicate entry 'Calhoun' for key 'county.PRIMARY'")
+
+
+13:13:06	CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`county` (   `state` VARCHAR(50) NULL,   `county` VARCHAR(45) NOT NULL,   `population` INT NULL,   `latitude` DECIMAL(10,8) NULL,   `longitude` DECIMAL(10,8) NULL,   PRIMARY KEY (`county`,`state`),   INDEX `county_state_fk_idx` (`state` ASC),   CONSTRAINT `county_state_fk`     FOREIGN KEY (`state`)     REFERENCES `us_covid_19_db`.`state` (`state`)     ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB	Error Code: 1171. All parts of a PRIMARY KEY must be NOT NULL; if you need NULL in a key, use UNIQUE instead	0.0016 sec
+
+added 51,Puerto Rico,PR,1890,Cheyenne,1869,21.1,Yes,"59,466","91,738" in state.csv
