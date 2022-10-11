@@ -28,3 +28,12 @@ Exception ->  (1062, "Duplicate entry 'Calhoun' for key 'county.PRIMARY'")
 13:13:06	CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`county` (   `state` VARCHAR(50) NULL,   `county` VARCHAR(45) NOT NULL,   `population` INT NULL,   `latitude` DECIMAL(10,8) NULL,   `longitude` DECIMAL(10,8) NULL,   PRIMARY KEY (`county`,`state`),   INDEX `county_state_fk_idx` (`state` ASC),   CONSTRAINT `county_state_fk`     FOREIGN KEY (`state`)     REFERENCES `us_covid_19_db`.`state` (`state`)     ON DELETE NO ACTION     ON UPDATE NO ACTION) ENGINE = InnoDB	Error Code: 1171. All parts of a PRIMARY KEY must be NOT NULL; if you need NULL in a key, use UNIQUE instead	0.0016 sec
 
 added 51,Puerto Rico,PR,1890,Cheyenne,1869,21.1,Yes,"59,466","91,738" in state.csv
+
+State =  Iowa  County =  O'Brien
+Exception ->  (1064, "You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Brien' and state = 'Iowa'' at line 1")
+
+Solution = Double the apostrophe to escape the issue
+
+State =  Iowa  County =  O'Brien
+Exception ->  (1452, 'Cannot add or update a child row: a foreign key constraint fails (`us_covid_19_db`.`confirmed_cases`, CONSTRAINT `confirmed_cases_county_fk` FOREIGN KEY (`county`) REFERENCES `county` (`county`))')
+END

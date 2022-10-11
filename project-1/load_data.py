@@ -77,10 +77,14 @@ def preprocess_confirmed_cases_data(data, cursor):
         # for county_idx in range(1, 3):
             # print(state, county)
 
-        present = check_state_county(state, county, cursor)
+        county_clean = county.replace("'", "''")
+
+        present = check_state_county(state, county_clean, cursor)
 
         if present == 1:
             # up to down
+            print('State = ', state, ' County = ', county)
+
             for i in range(2, len(data)):
 
                 date_raw = data[i][0]
