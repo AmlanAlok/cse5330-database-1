@@ -191,6 +191,8 @@ def db_1():
     confirmed_cases_csv = 'dataset/005_Project1_Data/Us_confirmed_cases.csv'
     # confirmed_cases_data = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv))
 
+    d_csv = 'dataset/005_Project1_Data/Us_deaths.csv'
+
     print('checkpoint')
 
     try:
@@ -202,7 +204,7 @@ def db_1():
         insert_county(county_data, cursor)
         insert_vaccination(vaccination_data, cursor)
 
-        dc = preprocess_deaths_data(load_csv_data(confirmed_cases_csv), cursor)
+        dc = preprocess_deaths_data(load_csv_data(d_csv), cursor)
         print(dc)
         cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
         print(cc)
