@@ -62,7 +62,7 @@ def preprocess_county_data(data):
 
 
 def preprocess_confirmed_cases_data(data, cursor):
-
+    print("Loading CC's---------------------------------------------------------")
     state_row, county_row = data[0], data[1]
 
     # db_data = []
@@ -73,7 +73,7 @@ def preprocess_confirmed_cases_data(data, cursor):
         county = county_row[state_county_idx]
 
         # for county_idx in range(1, len(county_row)):
-        print('State = ', state, ' County = ', county)
+        # print('State = ', state, ' County = ', county)
         # for county_idx in range(1, 3):
             # print(state, county)
 
@@ -97,6 +97,37 @@ def preprocess_confirmed_cases_data(data, cursor):
                 # db_data.append([state, county, date, count])
                 confirmed_cases_query = 'insert into confirmed_cases values(%s, %s, %s, %s)'
                 cursor.execute(confirmed_cases_query, db_record)
+
+    return 'Done---------'
+
+
+def preprocess_deaths_data(data, cursor):
+    print("Loading D's---------------------------------------------------------")
+    state_row, county_row = data[0], data[1]
+
+    for state_county_idx in range(1, len(state_row)):
+        state = state_row[state_county_idx]
+        county = county_row[state_county_idx]
+
+        county_clean = county.replace("'", "''")
+
+        present = check_state_county(state, county_clean, cursor)
+
+        if present == 1:
+            # up to down
+            print('State = ', state, ' County = ', county)
+
+            for i in range(2, len(data)):
+                date_raw = data[i][0]
+                date_parts = date_raw.split('/')
+                date = date_parts[2] + '-' + date_parts[0] + '-' + date_parts[1]
+
+                d_count = data[i][state_county_idx]
+                db_record = [state, county, date, d_count]
+                # print(db_record)
+                # db_data.append([state, county, date, count])
+                d_query = 'insert into deaths values(%s, %s, %s, %s)'
+                cursor.execute(d_query, db_record)
 
     return 'Done---------'
 
@@ -169,13 +200,13 @@ def db_1():
 
         insert_state(state_data, cursor)
         insert_county(county_data, cursor)
-        print('---')
-        # present = check_state_county('Wyoming', 'Niobrara', cursor)
-        # print(present)
-
         insert_vaccination(vaccination_data, cursor)
+
+        dc = preprocess_deaths_data(load_csv_data(confirmed_cases_csv), cursor)
+        print(dc)
         cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
         print(cc)
+
 
         connection.commit()
         connection.close()
