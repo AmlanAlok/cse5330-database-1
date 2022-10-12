@@ -80,9 +80,9 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`deaths` (
   `state` VARCHAR(50) NOT NULL,
   `county` VARCHAR(50) NOT NULL,
-  `report_date` DATE NULL,
+  `report_date` DATE NOT NULL,
   `death_count` INT NULL,
-  PRIMARY KEY (`state`, `county`),
+  PRIMARY KEY (`state`, `county`, `report_date`),
   INDEX `deaths_county_fk_idx` (`county` ASC),
   CONSTRAINT `deaths_state_fk`
     FOREIGN KEY (`state`)
