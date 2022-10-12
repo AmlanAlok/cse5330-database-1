@@ -209,7 +209,6 @@ def db_1():
         cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
         print(cc)
 
-
         connection.commit()
         connection.close()
     except Exception as e:
