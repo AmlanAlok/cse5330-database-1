@@ -39,7 +39,7 @@ order by people_with_two_plus_doses_per_100k desc;
 select c.*
 from vaccinations v
 join county c on c.state = v.state
-where c.state = 'Texas' and c.population > (0.05)*v.people_with_one_plus_doses;
+where c.state = 'Texas' and c.population >= (0.05)*v.people_with_one_plus_doses;
 
 -- 3.8	Which one county has largest population yet to be vaccinated, considering 75% of population 
 		-- to be vaccinated to achieve herd immunity.
