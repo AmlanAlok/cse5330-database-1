@@ -139,6 +139,13 @@ def check_state_county(state, county, cursor):
     return is_present[0]
 
 
+def check_state(state, cursor):
+    sql_query = "select count(*) from state where state = '" + state + "'"
+    cursor.execute(sql_query)
+    is_present = cursor.fetchone()
+    return is_present[0]
+
+
 def insert_state(data, cursor):
     for i in range(1, len(data)):
         record = data[i]
@@ -149,15 +156,25 @@ def insert_state(data, cursor):
 def insert_county(data, cursor):
     for i in range(1, len(data)):
         record = data[i]
-        state_insert_query = 'insert into county values(%s, %s, %s, %s, %s)'
-        cursor.execute(state_insert_query, record)
+        state_name = record[0]
+
+        present = check_state(state_name, cursor)
+
+        if present == 1:
+            state_insert_query = 'insert into county values(%s, %s, %s, %s, %s)'
+            cursor.execute(state_insert_query, record)
 
 
 def insert_vaccination(data, cursor):
     for i in range(1, len(data)):
         record = data[i]
-        state_insert_query = 'insert into vaccinations values(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
-        cursor.execute(state_insert_query, record)
+        state_name = record[0]
+
+        present = check_state(state_name, cursor)
+
+        if present == 1:
+            state_insert_query = 'insert into vaccinations values(%s, %s, %s, %s, %s, %s, %s, %s, %s)'
+            cursor.execute(state_insert_query, record)
 
 
 def db_1():
@@ -200,14 +217,19 @@ def db_1():
         connection = pymysql.connect(host=hostname, user=username, password=password, database=database, port=3306)
         cursor = connection.cursor()
 
-        insert_state(state_data, cursor)
-        insert_county(county_data, cursor)
-        insert_vaccination(vaccination_data, cursor)
+        # insert_state(state_data, cursor)
+        print('State data inserted')
+        # insert_county(county_data, cursor)
+        print('County data inserted')
+        # insert_vaccination(vaccination_data, cursor)
+        print('Vaccination data inserted')
 
         dc = preprocess_deaths_data(load_csv_data(d_csv), cursor)
         print(dc)
+        print('D data inserted')
         cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
         print(cc)
+        print('Confirmed Cases data inserted')
 
         connection.commit()
         connection.close()
