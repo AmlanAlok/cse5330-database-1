@@ -14,22 +14,22 @@ def db_omega():
 
     state_csv = 'dataset/005_Project1_Data/US_state.csv'
 
-    load_csv_data(state_csv)
+    # load_csv_data(state_csv)
 
     try:
         connection = pymysql.connect(host=hostname, user=username, password=password, database=database, port=3306)
         cursor = connection.cursor()
 
-        data = load_csv_data(state_csv)
-        for i in range(1, len(data)):
-            row = data[i]
-            state_insert_query = 'insert into state values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
-            cursor.execute(state_insert_query, row)
-            # print(row)
-        # sql_query = 'select version()'
-        # cursor.execute(sql_query)
-        # data = cursor.fetchone()
-        # print('Version = ', data)
+        # data = load_csv_data(state_csv)
+        # for i in range(1, len(data)):
+        #     row = data[i]
+        #     state_insert_query = 'insert into state values(%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'
+        #     cursor.execute(state_insert_query, row)
+        #     # print(row)
+        sql_query = 'select version()'
+        cursor.execute(sql_query)
+        data = cursor.fetchone()
+        print('Version = ', data)
 
         connection.close()
     except Exception as e:
@@ -101,7 +101,7 @@ def preprocess_confirmed_cases_data(data, cursor):
     return 'Done---------'
 
 
-def preprocess_deaths_data(data, cursor):
+def preprocess_deaths_data(data, cursor, connection):
     print("Loading D's---------------------------------------------------------")
     state_row, county_row = data[0], data[1]
 
@@ -115,7 +115,7 @@ def preprocess_deaths_data(data, cursor):
 
         if present == 1:
             # up to down
-            print('State = ', state, ' County = ', county)
+            print('State = ', state, ' County = ', county, ' state_county_idx =', state_county_idx)
 
             for i in range(2, len(data)):
                 date_raw = data[i][0]
@@ -128,6 +128,8 @@ def preprocess_deaths_data(data, cursor):
                 # db_data.append([state, county, date, count])
                 d_query = 'insert into deaths values(%s, %s, %s, %s)'
                 cursor.execute(d_query, db_record)
+
+            connection.commit()
 
     return 'Done---------'
 
@@ -179,11 +181,15 @@ def insert_vaccination(data, cursor):
 
 def db_1():
 
+    hostname = '10.208.63.68'
+    database = 'axa5861'
+    username = 'axa5861'
+    password = 'ArlingtonTexas'
 
-    hostname = 'localhost'
-    username = 'root'
-    password = ''
-    database = 'us_covid_19_db'
+    # hostname = 'localhost'
+    # username = 'root'
+    # password = ''
+    # database = 'us_covid_19_db'
 
     # connection = pymysql.connect(host=hostname, user=username, password=password, database=database)
     # cursor = connection.cursor()
@@ -218,20 +224,27 @@ def db_1():
         cursor = connection.cursor()
 
         # insert_state(state_data, cursor)
-        print('State data inserted')
-        # insert_county(county_data, cursor)
-        print('County data inserted')
-        # insert_vaccination(vaccination_data, cursor)
-        print('Vaccination data inserted')
+        # print('State data inserted')
 
-        dc = preprocess_deaths_data(load_csv_data(d_csv), cursor)
+        # print('County data started')
+        # insert_county(county_data, cursor)
+        # print('County data inserted')
+
+        # print('Vaccination data started')
+        # insert_vaccination(vaccination_data, cursor)
+        # print('Vaccination data inserted')
+
+        print('D data started')
+        dc = preprocess_deaths_data(load_csv_data(d_csv), cursor, connection)
         print(dc)
         print('D data inserted')
-        cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
-        print(cc)
-        print('Confirmed Cases data inserted')
 
-        connection.commit()
+        # print('Confirmed Cases data started')
+        # cc = preprocess_confirmed_cases_data(load_csv_data(confirmed_cases_csv), cursor)
+        # print(cc)
+        # print('Confirmed Cases data inserted')
+
+        # connection.commit()
         connection.close()
     except Exception as e:
         print('Exception -> ', e)
