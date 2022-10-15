@@ -1,8 +1,7 @@
 
-CREATE SCHEMA IF NOT EXISTS `us_covid_19_db` DEFAULT CHARACTER SET utf8 ;
-USE `us_covid_19_db` ;
+USE `axa5861` ;
 
-CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`state` (
+CREATE TABLE IF NOT EXISTS `axa5861`.`state` (
   `state_id` INT NULL,
   `state` VARCHAR(50) NOT NULL,
   `abbreviation` CHAR(2) NULL,
@@ -15,7 +14,7 @@ CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`state` (
   `metro_population` INT NULL,
   PRIMARY KEY (`state`));
 
-CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`county` (
+CREATE TABLE IF NOT EXISTS `axa5861`.`county` (
   `state` VARCHAR(50) NOT NULL,
   `county` VARCHAR(45) NOT NULL,
   `population` INT NULL,
@@ -25,11 +24,11 @@ CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`county` (
   INDEX `county_state_fk_idx` (`state` ASC),
   CONSTRAINT `county_state_fk`
     FOREIGN KEY (`state`)
-    REFERENCES `us_covid_19_db`.`state` (`state`)
+    REFERENCES `axa5861`.`state` (`state`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`confirmed_cases` (
+CREATE TABLE IF NOT EXISTS `axa5861`.`confirmed_cases` (
   `state` VARCHAR(50) NOT NULL,
   `county` VARCHAR(50) NOT NULL,
   `test_date` DATE NOT NULL,
@@ -38,16 +37,16 @@ CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`confirmed_cases` (
   INDEX `confirmed_cases_county_fk_idx` (`county` ASC),
   CONSTRAINT `confirmed_cases_state_fk`
     FOREIGN KEY (`state`)
-    REFERENCES `us_covid_19_db`.`state` (`state`)
+    REFERENCES `axa5861`.`state` (`state`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `confirmed_cases_county_fk`
     FOREIGN KEY (`county`)
-    REFERENCES `us_covid_19_db`.`county` (`county`)
+    REFERENCES `axa5861`.`county` (`county`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`deaths` (
+CREATE TABLE IF NOT EXISTS `axa5861`.`deaths` (
   `state` VARCHAR(50) NOT NULL,
   `county` VARCHAR(50) NOT NULL,
   `report_date` DATE NOT NULL,
@@ -56,16 +55,16 @@ CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`deaths` (
   INDEX `deaths_county_fk_idx` (`county` ASC),
   CONSTRAINT `deaths_state_fk`
     FOREIGN KEY (`state`)
-    REFERENCES `us_covid_19_db`.`state` (`state`)
+    REFERENCES `axa5861`.`state` (`state`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `deaths_county_fk`
     FOREIGN KEY (`county`)
-    REFERENCES `us_covid_19_db`.`county` (`county`)
+    REFERENCES `axa5861`.`county` (`county`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`vaccinations` (
+CREATE TABLE IF NOT EXISTS `axa5861`.`vaccinations` (
   `state` VARCHAR(50) NOT NULL,
   `total_distributed` INT NULL,
   `total_administered` INT NULL,
@@ -78,6 +77,6 @@ CREATE TABLE IF NOT EXISTS `us_covid_19_db`.`vaccinations` (
   PRIMARY KEY (`state`),
   CONSTRAINT `vaccinations_state_fk`
     FOREIGN KEY (`state`)
-    REFERENCES `us_covid_19_db`.`state` (`state`)
+    REFERENCES `axa5861`.`state` (`state`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
