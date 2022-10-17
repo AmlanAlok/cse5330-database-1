@@ -1,0 +1,284 @@
+mysql> use axa5861;
+Database changed
+mysql> 
+mysql> select c.county
+    -> from vaccinations v
+    -> join county c on c.state = v.state
+    -> where c.state = 'Texas' and v.people_with_one_plus_doses_per_100k*(c.population/100000) >= (0.05)*c.population;
++---------------+
+| county        |
++---------------+
+| Anderson      |
+| Andrews       |
+| Angelina      |
+| Aransas       |
+| Archer        |
+| Armstrong     |
+| Atascosa      |
+| Austin        |
+| Bailey        |
+| Bandera       |
+| Bastrop       |
+| Baylor        |
+| Bee           |
+| Bell          |
+| Bexar         |
+| Blanco        |
+| Borden        |
+| Bosque        |
+| Bowie         |
+| Brazoria      |
+| Brazos        |
+| Brewster      |
+| Briscoe       |
+| Brooks        |
+| Brown         |
+| Burleson      |
+| Burnet        |
+| Caldwell      |
+| Calhoun       |
+| Callahan      |
+| Cameron       |
+| Camp          |
+| Carson        |
+| Cass          |
+| Castro        |
+| Chambers      |
+| Cherokee      |
+| Childress     |
+| Clay          |
+| Cochran       |
+| Coke          |
+| Coleman       |
+| Collin        |
+| Collingsworth |
+| Colorado      |
+| Comal         |
+| Comanche      |
+| Concho        |
+| Cooke         |
+| Coryell       |
+| Cottle        |
+| Crane         |
+| Crockett      |
+| Crosby        |
+| Culberson     |
+| Dallam        |
+| Dallas        |
+| Dawson        |
+| Deaf Smith    |
+| Delta         |
+| Denton        |
+| DeWitt        |
+| Dickens       |
+| Dimmit        |
+| Donley        |
+| Duval         |
+| Eastland      |
+| Ector         |
+| Edwards       |
+| El Paso       |
+| Ellis         |
+| Erath         |
+| Falls         |
+| Fannin        |
+| Fayette       |
+| Fisher        |
+| Floyd         |
+| Foard         |
+| Fort Bend     |
+| Franklin      |
+| Freestone     |
+| Frio          |
+| Gaines        |
+| Galveston     |
+| Garza         |
+| Gillespie     |
+| Glasscock     |
+| Goliad        |
+| Gonzales      |
+| Gray          |
+| Grayson       |
+| Gregg         |
+| Grimes        |
+| Guadalupe     |
+| Hale          |
+| Hall          |
+| Hamilton      |
+| Hansford      |
+| Hardeman      |
+| Hardin        |
+| Harris        |
+| Harrison      |
+| Hartley       |
+| Haskell       |
+| Hays          |
+| Hemphill      |
+| Henderson     |
+| Hidalgo       |
+| Hill          |
+| Hockley       |
+| Hood          |
+| Hopkins       |
+| Houston       |
+| Howard        |
+| Hudspeth      |
+| Hunt          |
+| Hutchinson    |
+| Irion         |
+| Jack          |
+| Jackson       |
+| Jasper        |
+| Jeff Davis    |
+| Jefferson     |
+| Jim Hogg      |
+| Jim Wells     |
+| Johnson       |
+| Jones         |
+| Karnes        |
+| Kaufman       |
+| Kendall       |
+| Kenedy        |
+| Kent          |
+| Kerr          |
+| Kimble        |
+| King          |
+| Kinney        |
+| Kleberg       |
+| Knox          |
+| La Salle      |
+| Lamar         |
+| Lamb          |
+| Lampasas      |
+| Lavaca        |
+| Lee           |
+| Leon          |
+| Liberty       |
+| Limestone     |
+| Lipscomb      |
+| Live Oak      |
+| Llano         |
+| Loving        |
+| Lubbock       |
+| Lynn          |
+| Madison       |
+| Marion        |
+| Martin        |
+| Mason         |
+| Matagorda     |
+| Maverick      |
+| McCulloch     |
+| McLennan      |
+| McMullen      |
+| Medina        |
+| Menard        |
+| Midland       |
+| Milam         |
+| Mills         |
+| Mitchell      |
+| Montague      |
+| Montgomery    |
+| Moore         |
+| Morris        |
+| Motley        |
+| Nacogdoches   |
+| Navarro       |
+| Newton        |
+| Nolan         |
+| Nueces        |
+| Ochiltree     |
+| Oldham        |
+| Orange        |
+| Out of TX     |
+| Palo Pinto    |
+| Panola        |
+| Parker        |
+| Parmer        |
+| Pecos         |
+| Polk          |
+| Potter        |
+| Presidio      |
+| Rains         |
+| Randall       |
+| Reagan        |
+| Real          |
+| Red River     |
+| Reeves        |
+| Refugio       |
+| Roberts       |
+| Robertson     |
+| Rockwall      |
+| Runnels       |
+| Rusk          |
+| Sabine        |
+| San Augustine |
+| San Jacinto   |
+| San Patricio  |
+| San Saba      |
+| Schleicher    |
+| Scurry        |
+| Shackelford   |
+| Shelby        |
+| Sherman       |
+| Smith         |
+| Somervell     |
+| Starr         |
+| Stephens      |
+| Sterling      |
+| Stonewall     |
+| Sutton        |
+| Swisher       |
+| Tarrant       |
+| Taylor        |
+| Terrell       |
+| Terry         |
+| Throckmorton  |
+| Titus         |
+| Tom Green     |
+| Travis        |
+| Trinity       |
+| Tyler         |
+| Unassigned    |
+| Upshur        |
+| Upton         |
+| Uvalde        |
+| Val Verde     |
+| Van Zandt     |
+| Victoria      |
+| Walker        |
+| Waller        |
+| Ward          |
+| Washington    |
+| Webb          |
+| Wharton       |
+| Wheeler       |
+| Wichita       |
+| Wilbarger     |
+| Willacy       |
+| Williamson    |
+| Wilson        |
+| Winkler       |
+| Wise          |
+| Wood          |
+| Yoakum        |
+| Young         |
+| Zapata        |
+| Zavala        |
++---------------+
+256 rows in set (0.02 sec)
+
+mysql> select c.county, max((c.population-v.people_with_one_plus_doses_per_100k*(c.population/100000))) as unvaccinated
+    -> from vaccinations v
+    -> join county c on c.state = v.state
+    -> where c.state = 'Texas' 
+    -> group by c.county
+    -> order by unvaccinated desc
+    -> limit 1;
++--------+--------------+
+| county | unvaccinated |
++--------+--------------+
+| Harris | 4374154.1330 |
++--------+--------------+
+1 row in set (0.02 sec)
+
+mysql> exit

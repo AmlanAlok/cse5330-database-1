@@ -1,0 +1,2037 @@
+mysql> use axa5861;
+Database changed
+mysql> select state
+    -> from state 
+    -> group by state 
+    -> order by max(land_area) desc
+    -> limit 1;
++--------+
+| state  |
++--------+
+| Alaska |
++--------+
+1 row in set (0.02 sec)
+
+mysql> select c.county, c.state, c.population, cc.positive_count, cc.test_date
+    -> from county c
+    -> join confirmed_cases cc on c.state = cc.state and c.county = cc.county
+    -> order by (cc.positive_count/ c.population)*1000 desc
+    -> limit 1000;
++-------------------------------------+----------------+------------+----------------+------------+
+| county                              | state          | population | positive_count | test_date  |
++-------------------------------------+----------------+------------+----------------+------------+
+| Childress                           | Texas          |       7306 |            599 | 2020-11-07 |
+| Trousdale                           | Tennessee      |      11284 |            897 | 2020-05-01 |
+| Pershing                            | Nevada         |       6725 |            486 | 2020-12-29 |
+| Forest                              | Pennsylvania   |       7247 |            514 | 2021-01-21 |
+| Kearny                              | Kansas         |       3838 |            258 | 2020-11-23 |
+| Union                               | Georgia        |      24511 |           1447 | 2020-11-03 |
+| Wayne                               | Tennessee      |      16673 |            967 | 2020-08-31 |
+| Lake                                | Tennessee      |       7016 |            351 | 2020-06-02 |
+| Washington                          | Texas          |      35882 |           1535 | 2021-02-01 |
+| Madison                             | Texas          |      14284 |            608 | 2021-02-01 |
+| Caldwell                            | Texas          |      43664 |           1836 | 2021-02-01 |
+| Lincoln                             | Colorado       |       5701 |            235 | 2020-12-02 |
+| Hill                                | Texas          |      36649 |           1498 | 2021-02-01 |
+| Grimes                              | Texas          |      28880 |           1164 | 2021-02-01 |
+| Robertson                           | Texas          |      17074 |            685 | 2021-02-01 |
+| Freestone                           | Texas          |      19717 |            736 | 2021-02-01 |
+| Collingsworth                       | Texas          |       2920 |            107 | 2020-12-09 |
+| Lafayette                           | Florida        |       8422 |            308 | 2020-08-14 |
+| Burleson                            | Texas          |      18443 |            665 | 2021-02-01 |
+| Kalawao                             | Hawaii         |         86 |              3 | 2020-10-30 |
+| Decatur                             | Georgia        |      26404 |            900 | 2020-11-07 |
+| Limestone                           | Texas          |      23437 |            789 | 2021-02-01 |
+| Falls                               | Texas          |      17297 |            574 | 2021-02-01 |
+| Sawyer                              | Wisconsin      |      16558 |            545 | 2020-09-16 |
+| Lafayette                           | Florida        |       8422 |            276 | 2020-08-13 |
+| Jones                               | Texas          |      20083 |            653 | 2020-11-11 |
+| Coryell                             | Texas          |      75951 |           2432 | 2021-02-01 |
+| Issaquena                           | Mississippi    |       1327 |             42 | 2020-08-21 |
+| Mills                               | Texas          |       4873 |            144 | 2021-02-01 |
+| Lampasas                            | Texas          |      21428 |            628 | 2021-02-01 |
+| Bent                                | Colorado       |       5577 |            163 | 2020-12-10 |
+| Leon                                | Texas          |      17404 |            507 | 2021-02-01 |
+| Crowley                             | Colorado       |       6061 |            176 | 2020-11-13 |
+| La Salle                            | Texas          |       7520 |            218 | 2020-07-18 |
+| Norton                              | Kansas         |       5361 |            155 | 2020-11-06 |
+| Trousdale                           | Tennessee      |      11284 |            324 | 2020-05-02 |
+| Lake                                | Tennessee      |       7016 |            201 | 2020-05-13 |
+| Pershing                            | Nevada         |       6725 |            191 | 2020-12-10 |
+| Burnet                              | Texas          |      48155 |           1357 | 2021-02-01 |
+| Bastrop                             | Texas          |      88723 |           2459 | 2021-02-01 |
+| Bowman                              | North Dakota   |       3024 |             81 | 2020-12-09 |
+| Crockett                            | Texas          |       3464 |             92 | 2020-11-27 |
+| Norton                              | Kansas         |       5361 |            142 | 2020-10-19 |
+| Madison                             | Texas          |      14284 |            368 | 2020-07-27 |
+| Crane                               | Texas          |       4797 |            117 | 2020-11-01 |
+| Jones                               | Iowa           |      20681 |            498 | 2020-11-05 |
+| Lee                                 | Kentucky       |       7403 |            177 | 2020-11-14 |
+| Dewey                               | South Dakota   |       5892 |            136 | 2020-12-03 |
+| Bosque                              | Texas          |      18685 |            423 | 2021-02-01 |
+| Bledsoe                             | Tennessee      |      15064 |            340 | 2020-04-23 |
+| Marshall                            | Kansas         |       9707 |            217 | 2020-12-11 |
+| Lee                                 | Arkansas       |       8857 |            197 | 2020-06-12 |
+| Tyler                               | Texas          |      21672 |            480 | 2021-01-08 |
+| Pleasants                           | West Virginia  |       7460 |            165 | 2020-12-25 |
+| Pierce                              | Georgia        |      19465 |            429 | 2020-11-03 |
+| Jasper                              | Texas          |      35529 |            781 | 2021-01-08 |
+| Buena Vista                         | Iowa           |      19620 |            430 | 2020-05-27 |
+| Jerauld                             | South Dakota   |       2013 |             44 | 2020-10-07 |
+| Crowley                             | Colorado       |       6061 |            132 | 2020-11-20 |
+| Val Verde                           | Texas          |      49025 |           1053 | 2021-01-16 |
+| Gray                                | Texas          |      21886 |            470 | 2020-11-11 |
+| San Saba                            | Texas          |       6055 |            129 | 2021-02-01 |
+| Lee                                 | Texas          |      17239 |            367 | 2021-02-01 |
+| Lincoln                             | Colorado       |       5701 |            120 | 2020-12-03 |
+| Powell                              | Montana        |       6890 |            142 | 2020-11-24 |
+| Glasscock                           | Texas          |       1409 |             29 | 2020-12-25 |
+| Alfalfa                             | Oklahoma       |       5702 |            117 | 2020-12-15 |
+| San Saba                            | Texas          |       6055 |            124 | 2020-10-31 |
+| Henderson                           | Texas          |      82737 |           1679 | 2021-01-13 |
+| Bon Homme                           | South Dakota   |       6901 |            140 | 2020-10-25 |
+| Bon Homme                           | South Dakota   |       6901 |            140 | 2020-10-26 |
+| McPherson                           | Nebraska       |        494 |             10 | 2020-05-06 |
+| Blanco                              | Texas          |      11931 |            237 | 2021-02-01 |
+| Toole                               | Montana        |       4736 |             94 | 2020-11-03 |
+| Forest                              | Pennsylvania   |       7247 |            143 | 2021-01-18 |
+| Forest                              | Pennsylvania   |       7247 |            141 | 2021-01-13 |
+| Rush                                | Kansas         |       3036 |             59 | 2020-12-02 |
+| Howard                              | Texas          |      36664 |            709 | 2020-11-01 |
+| Woodward                            | Oklahoma       |      20211 |            389 | 2020-09-21 |
+| Bent                                | Colorado       |       5577 |            106 | 2020-12-04 |
+| Bon Homme                           | South Dakota   |       6901 |            131 | 2020-10-23 |
+| Lafayette                           | Florida        |       8422 |            159 | 2020-08-15 |
+| Reeves                              | Texas          |      15976 |            299 | 2020-11-01 |
+| Lee                                 | Arkansas       |       8857 |            164 | 2020-06-13 |
+| Taylor                              | Texas          |     138034 |           2554 | 2020-11-01 |
+| Fayette                             | Texas          |      25346 |            466 | 2021-02-01 |
+| Elliott                             | Kentucky       |       7517 |            137 | 2020-10-25 |
+| Anderson                            | Texas          |      57735 |           1051 | 2020-09-21 |
+| Crane                               | Texas          |       4797 |             86 | 2020-11-27 |
+| Norton                              | Kansas         |       5361 |             96 | 2020-10-28 |
+| Bent                                | Colorado       |       5577 |             99 | 2020-12-17 |
+| Crawford                            | Wisconsin      |      16131 |            286 | 2020-11-25 |
+| Alfalfa                             | Oklahoma       |       5702 |            101 | 2020-12-07 |
+| Braxton                             | West Virginia  |      13957 |            246 | 2021-01-03 |
+| McIntosh                            | North Dakota   |       2497 |             44 | 2020-12-09 |
+| Upson                               | Georgia        |      26320 |            462 | 2020-11-03 |
+| Crowley                             | Colorado       |       6061 |            106 | 2020-11-12 |
+| Newton                              | Texas          |      13595 |            237 | 2021-01-08 |
+| Ware                                | Georgia        |      35734 |            614 | 2020-11-03 |
+| Norton                              | Kansas         |       5361 |             92 | 2020-10-30 |
+| Baylor                              | Texas          |       3509 |             60 | 2020-11-01 |
+| Edwards                             | Texas          |       1932 |             33 | 2020-09-21 |
+| Calhoun                             | Iowa           |       9668 |            163 | 2020-11-07 |
+| Terrell                             | Texas          |        776 |             13 | 2021-01-07 |
+| Weston                              | Wyoming        |       6927 |            116 | 2021-01-12 |
+| Okfuskee                            | Oklahoma       |      11993 |            199 | 2020-10-23 |
+| Cottle                              | Texas          |       1398 |             23 | 2020-11-01 |
+| Morgan                              | Kentucky       |      13309 |            217 | 2021-01-09 |
+| Sabine                              | Texas          |      10542 |            171 | 2021-01-08 |
+| Eddy                                | North Dakota   |       2287 |             37 | 2020-11-07 |
+| Llano                               | Texas          |      21795 |            350 | 2021-02-01 |
+| Bent                                | Colorado       |       5577 |             89 | 2021-01-01 |
+| La Salle                            | Texas          |       7520 |            120 | 2021-01-16 |
+| Bon Homme                           | South Dakota   |       6901 |            109 | 2020-10-27 |
+| Bent                                | Colorado       |       5577 |             88 | 2020-12-25 |
+| Clearwater                          | Idaho          |       8756 |            138 | 2020-11-23 |
+| Crane                               | Texas          |       4797 |             75 | 2021-01-06 |
+| Edgar                               | Illinois       |      17161 |            267 | 2020-11-06 |
+| Bledsoe                             | Tennessee      |      15064 |            234 | 2020-04-24 |
+| Anderson                            | Texas          |      57735 |            888 | 2020-06-17 |
+| Reagan                              | Texas          |       3849 |             59 | 2020-11-27 |
+| Dakota                              | Nebraska       |      20026 |            306 | 2020-05-08 |
+| Dodge                               | Georgia        |      20605 |            314 | 2020-11-03 |
+| Crane                               | Texas          |       4797 |             73 | 2020-11-17 |
+| Johnson                             | Nebraska       |       5071 |             77 | 2020-11-13 |
+| Lassen                              | California     |      30573 |            463 | 2020-12-15 |
+| Chicot                              | Arkansas       |      10118 |            152 | 2020-07-29 |
+| Floyd                               | Texas          |       5712 |             85 | 2020-11-01 |
+| Frio                                | Texas          |      20306 |            299 | 2020-09-21 |
+| Brewster                            | Texas          |       9203 |            135 | 2020-11-27 |
+| Rooks                               | Kansas         |       4920 |             72 | 2021-01-01 |
+| Chicot                              | Arkansas       |      10118 |            148 | 2020-08-05 |
+| Morgan                              | Kentucky       |      13309 |            194 | 2021-01-07 |
+| Real                                | Texas          |       3452 |             50 | 2020-07-23 |
+| Lake                                | Tennessee      |       7016 |            101 | 2020-05-14 |
+| Lincoln                             | Arkansas       |      13024 |            187 | 2020-04-22 |
+| Crowley                             | Colorado       |       6061 |             87 | 2020-11-14 |
+| Concho                              | Texas          |       2726 |             39 | 2020-09-22 |
+| Dakota                              | Nebraska       |      20026 |            286 | 2020-05-01 |
+| Oldham                              | Texas          |       2112 |             30 | 2020-12-24 |
+| Lincoln                             | Arkansas       |      13024 |            185 | 2020-04-23 |
+| Wells                               | North Dakota   |       3834 |             54 | 2020-12-09 |
+| Bon Homme                           | South Dakota   |       6901 |             97 | 2020-10-17 |
+| Crowley                             | Colorado       |       6061 |             85 | 2020-11-19 |
+| Upton                               | Texas          |       3657 |             51 | 2020-11-01 |
+| Chicot                              | Arkansas       |      10118 |            141 | 2020-08-14 |
+| Hodgeman                            | Kansas         |       1794 |             25 | 2020-11-05 |
+| Crockett                            | Texas          |       3464 |             48 | 2020-11-01 |
+| Scurry                              | Texas          |      16703 |            231 | 2020-07-11 |
+| Glasscock                           | Texas          |       1409 |             19 | 2020-11-01 |
+| Deaf Smith                          | Texas          |      18546 |            250 | 2020-12-03 |
+| Williams                            | North Dakota   |      37589 |            505 | 2020-12-09 |
+| Lee                                 | Kentucky       |       7403 |             98 | 2020-11-20 |
+| Lincoln                             | Colorado       |       5701 |             75 | 2020-12-10 |
+| Pickaway                            | Ohio           |      58457 |            769 | 2020-04-20 |
+| Alfalfa                             | Oklahoma       |       5702 |             75 | 2020-12-14 |
+| Weston                              | Wyoming        |       6927 |             91 | 2020-11-06 |
+| Aurora                              | South Dakota   |       2751 |             36 | 2020-10-07 |
+| Marion                              | Ohio           |      65093 |            851 | 2020-04-19 |
+| Livingston                          | Missouri       |      15227 |            199 | 2020-09-04 |
+| Norton                              | Kansas         |       5361 |             70 | 2020-10-09 |
+| Woodward                            | Oklahoma       |      20211 |            263 | 2020-09-20 |
+| Craig                               | Oklahoma       |      14142 |            184 | 2020-09-14 |
+| Prairie                             | Montana        |       1077 |             14 | 2020-12-04 |
+| Lee                                 | Kentucky       |       7403 |             96 | 2020-11-09 |
+| Ellsworth                           | Kansas         |       6102 |             79 | 2020-11-01 |
+| Lassen                              | California     |      30573 |            393 | 2020-12-28 |
+| Hopkins                             | Texas          |      37084 |            475 | 2020-11-01 |
+| Alfalfa                             | Oklahoma       |       5702 |             73 | 2020-11-17 |
+| Foster                              | North Dakota   |       3210 |             41 | 2020-11-19 |
+| Lassen                              | California     |      30573 |            390 | 2020-12-07 |
+| Presidio                            | Texas          |       6704 |             85 | 2020-11-28 |
+| Lassen                              | California     |      30573 |            387 | 2020-11-30 |
+| Faulk                               | South Dakota   |       2299 |             29 | 2020-10-07 |
+| Shackelford                         | Texas          |       3265 |             41 | 2020-11-01 |
+| LaSalle                             | Louisiana      |      14892 |            187 | 2020-11-16 |
+| Lavaca                              | Texas          |      20154 |            252 | 2020-09-21 |
+| Norton                              | Kansas         |       5361 |             67 | 2020-10-23 |
+| Stanton                             | Kansas         |       2006 |             25 | 2020-09-10 |
+| Barbour                             | West Virginia  |      16441 |            204 | 2021-01-09 |
+| Morton                              | Kansas         |       2587 |             32 | 2020-11-19 |
+| Deaf Smith                          | Texas          |      18546 |            228 | 2020-11-01 |
+| Pike                                | Georgia        |      18962 |            233 | 2020-11-03 |
+| Borden                              | Texas          |        654 |              8 | 2020-12-09 |
+| Richland                            | Montana        |      10803 |            131 | 2020-12-02 |
+| Foard                               | Texas          |       1155 |             14 | 2020-11-03 |
+| Coke                                | Texas          |       3387 |             41 | 2020-11-01 |
+| Prairie                             | Montana        |       1077 |             13 | 2020-11-29 |
+| Issaquena                           | Mississippi    |       1327 |             16 | 2020-08-20 |
+| Jones                               | Texas          |      20083 |            242 | 2020-11-07 |
+| Crowley                             | Colorado       |       6061 |             73 | 2020-11-28 |
+| Carter                              | Montana        |       1252 |             15 | 2020-10-15 |
+| San Patricio                        | Texas          |      66730 |            793 | 2020-12-19 |
+| Crowley                             | Colorado       |       6061 |             72 | 2020-11-26 |
+| Crockett                            | Texas          |       3464 |             41 | 2020-11-17 |
+| Pecos                               | Texas          |      15823 |            187 | 2020-12-29 |
+| Upton                               | Texas          |       3657 |             43 | 2020-11-27 |
+| Willacy                             | Texas          |      21358 |            251 | 2020-09-04 |
+| Gray                                | Kansas         |       5988 |             70 | 2020-11-18 |
+| Milam                               | Texas          |      24823 |            290 | 2021-01-20 |
+| Cass                                | Indiana        |      37689 |            439 | 2020-04-27 |
+| Ellsworth                           | Kansas         |       6102 |             71 | 2020-11-27 |
+| Karnes                              | Texas          |      15601 |            181 | 2020-09-21 |
+| Clarke                              | Alabama        |      23622 |            273 | 2020-12-12 |
+| Morgan                              | Kentucky       |      13309 |            153 | 2021-01-08 |
+| Esmeralda                           | Nevada         |        873 |             10 | 2020-12-09 |
+| Morgan                              | Kentucky       |      13309 |            152 | 2021-01-10 |
+| Morrill                             | Nebraska       |       4642 |             53 | 2020-11-26 |
+| Toole                               | Montana        |       4736 |             54 | 2020-10-12 |
+| Lamb                                | Texas          |      12893 |            147 | 2020-11-01 |
+| Edwards                             | Texas          |       1932 |             22 | 2020-12-02 |
+| Scotts Bluff                        | Nebraska       |      35618 |            403 | 2020-11-06 |
+| Hansford                            | Texas          |       5399 |             61 | 2020-11-01 |
+| Lincoln                             | Arkansas       |      13024 |            147 | 2020-04-20 |
+| Tallapoosa                          | Alabama        |      40367 |            455 | 2021-01-22 |
+| Foard                               | Texas          |       1155 |             13 | 2021-01-12 |
+| Gonzales                            | Texas          |      20837 |            234 | 2020-09-21 |
+| Hamilton                            | Texas          |       8461 |             95 | 2021-02-01 |
+| Pawnee                              | Kansas         |       6414 |             72 | 2020-08-24 |
+| Upton                               | Texas          |       3657 |             41 | 2021-01-26 |
+| Webster                             | Nebraska       |       3487 |             39 | 2020-11-25 |
+| Carter                              | Montana        |       1252 |             14 | 2020-10-22 |
+| Rooks                               | Kansas         |       4920 |             55 | 2020-11-23 |
+| Comanche                            | Kansas         |       1700 |             19 | 2020-12-11 |
+| Ellsworth                           | Kansas         |       6102 |             68 | 2020-11-23 |
+| Prairie                             | Montana        |       1077 |             12 | 2020-11-18 |
+| Brantley                            | Georgia        |      19109 |            212 | 2020-11-03 |
+| Crowley                             | Colorado       |       6061 |             67 | 2020-12-18 |
+| Jones                               | Texas          |      20083 |            222 | 2020-05-28 |
+| Webb                                | Texas          |     276652 |           3057 | 2021-01-14 |
+| King                                | Texas          |        272 |              3 | 2020-12-01 |
+| Montour                             | Pennsylvania   |      18230 |            201 | 2020-12-05 |
+| Atascosa                            | Texas          |      51153 |            563 | 2020-12-15 |
+| Hardeman                            | Texas          |       3933 |             43 | 2020-12-17 |
+| Lafayette                           | Florida        |       8422 |             92 | 2020-08-19 |
+| Cheyenne                            | Kansas         |       2657 |             29 | 2020-09-20 |
+| Washington                          | Kansas         |       5406 |             59 | 2020-11-13 |
+| Kinney                              | Texas          |       3667 |             40 | 2021-01-07 |
+| Garden                              | Nebraska       |       1837 |             20 | 2020-10-30 |
+| Mitchell                            | Kansas         |       5979 |             65 | 2021-01-04 |
+| Dewey                               | South Dakota   |       5892 |             64 | 2020-11-25 |
+| Lee                                 | Arkansas       |       8857 |             95 | 2020-07-01 |
+| Donley                              | Texas          |       3278 |             35 | 2021-01-01 |
+| Dimmit                              | Texas          |      10124 |            108 | 2021-01-30 |
+| Morrison                            | Minnesota      |      33386 |            355 | 2020-11-19 |
+| Culberson                           | Texas          |       2171 |             23 | 2020-10-30 |
+| Karnes                              | Texas          |      15601 |            165 | 2020-08-06 |
+| Chase                               | Kansas         |       2648 |             28 | 2020-12-16 |
+| Chase                               | Kansas         |       2648 |             28 | 2020-08-03 |
+| Navarro                             | Texas          |      50113 |            529 | 2020-11-01 |
+| Wallace                             | Kansas         |       1518 |             16 | 2020-10-27 |
+| Lamar                               | Texas          |      49859 |            522 | 2021-01-10 |
+| Morton                              | Kansas         |       2587 |             27 | 2020-11-26 |
+| Lane                                | Kansas         |       1535 |             16 | 2020-12-08 |
+| Irion                               | Texas          |       1536 |             16 | 2020-11-27 |
+| Mineral                             | Colorado       |        769 |              8 | 2020-11-24 |
+| Crowley                             | Colorado       |       6061 |             63 | 2020-11-21 |
+| Yakutat                             | Alaska         |        579 |              6 | 2020-08-29 |
+| Carroll                             | Mississippi    |       9947 |            103 | 2020-10-15 |
+| Briscoe                             | Texas          |       1546 |             16 | 2020-11-13 |
+| Terrell                             | Texas          |        776 |              8 | 2020-11-27 |
+| Powell                              | Montana        |       6890 |             71 | 2020-11-06 |
+| Presidio                            | Texas          |       6704 |             69 | 2020-11-25 |
+| Decatur                             | Kansas         |       2827 |             29 | 2020-10-29 |
+| Montour                             | Pennsylvania   |      18230 |            187 | 2020-12-23 |
+| White Pine                          | Nevada         |       9580 |             98 | 2020-11-28 |
+| Crowley                             | Colorado       |       6061 |             62 | 2020-11-27 |
+| Jones                               | Texas          |      20083 |            205 | 2020-06-02 |
+| Atascosa                            | Texas          |      51153 |            522 | 2020-09-21 |
+| Jasper                              | Illinois       |       9610 |             98 | 2020-11-06 |
+| Dewey                               | South Dakota   |       5892 |             60 | 2020-12-04 |
+| Bleckley                            | Georgia        |      12873 |            131 | 2020-11-03 |
+| Kearny                              | Kansas         |       3838 |             39 | 2020-11-16 |
+| Toole                               | Montana        |       4736 |             48 | 2020-11-10 |
+| Reagan                              | Texas          |       3849 |             39 | 2020-11-01 |
+| Lee                                 | Kentucky       |       7403 |             75 | 2020-11-21 |
+| Muhlenberg                          | Kentucky       |      30622 |            310 | 2020-05-05 |
+| Kiowa                               | Kansas         |       2475 |             25 | 2020-12-30 |
+| Russell                             | Kansas         |       6856 |             69 | 2020-11-20 |
+| Taylor                              | Florida        |      21569 |            217 | 2020-08-05 |
+| Martin                              | Texas          |       5771 |             58 | 2020-11-01 |
+| Jasper                              | Texas          |      35529 |            357 | 2020-11-01 |
+| Harding                             | South Dakota   |       1298 |             13 | 2020-10-18 |
+| Lake                                | Tennessee      |       7016 |             70 | 2020-06-03 |
+| Stanton                             | Kansas         |       2006 |             20 | 2020-08-15 |
+| Foster                              | North Dakota   |       3210 |             32 | 2020-11-14 |
+| Madison                             | Louisiana      |      10951 |            109 | 2020-08-26 |
+| Kenedy                              | Texas          |        404 |              4 | 2020-10-24 |
+| Brewster                            | Texas          |       9203 |             91 | 2020-11-17 |
+| Elliott                             | Kentucky       |       7517 |             74 | 2020-10-24 |
+| Liberty                             | Florida        |       8354 |             82 | 2020-05-08 |
+| Ziebach                             | South Dakota   |       2756 |             27 | 2020-11-30 |
+| Hall                                | Texas          |       2964 |             29 | 2021-01-12 |
+| Schuyler                            | Illinois       |       6768 |             66 | 2020-12-08 |
+| Harper                              | Kansas         |       5436 |             53 | 2020-08-24 |
+| Coke                                | Texas          |       3387 |             33 | 2020-11-27 |
+| Cherokee                            | Texas          |      52646 |            512 | 2020-11-01 |
+| Dewey                               | South Dakota   |       5892 |             57 | 2020-10-30 |
+| Schleicher                          | Texas          |       2793 |             27 | 2020-11-17 |
+| Pawnee                              | Kansas         |       6414 |             62 | 2020-12-07 |
+| Pawnee                              | Kansas         |       6414 |             62 | 2020-09-08 |
+| Forest                              | Pennsylvania   |       7247 |             70 | 2021-01-29 |
+| Hot Spring                          | Arkansas       |      33771 |            326 | 2020-07-11 |
+| Wayne                               | Tennessee      |      16673 |            160 | 2020-09-01 |
+| Haskell                             | Kansas         |       3968 |             38 | 2020-09-04 |
+| Carson City                         | Nevada         |      55916 |            535 | 2020-11-25 |
+| Sheridan                            | Kansas         |       2521 |             24 | 2020-10-29 |
+| Guadalupe                           | Texas          |     166847 |           1587 | 2020-09-21 |
+| Sharkey                             | Mississippi    |       4321 |             41 | 2020-08-01 |
+| Dimmit                              | Texas          |      10124 |             96 | 2021-01-05 |
+| Lincoln                             | Arkansas       |      13024 |            123 | 2020-08-28 |
+| Wichita                             | Kansas         |       2119 |             20 | 2020-11-20 |
+| Ford                                | Illinois       |      12961 |            122 | 2020-11-06 |
+| Crowley                             | Colorado       |       6061 |             57 | 2020-12-03 |
+| St. Francis                         | Arkansas       |      24994 |            235 | 2020-05-21 |
+| Providence                          | Rhode Island   |     638931 |           6007 | 2020-12-09 |
+| Graham                              | Arizona        |      38837 |            365 | 2021-01-08 |
+| Gray                                | Kansas         |       5988 |             56 | 2020-12-18 |
+| Swisher                             | Texas          |       7397 |             69 | 2020-11-01 |
+| Lee                                 | Kentucky       |       7403 |             69 | 2020-11-19 |
+| Bethel                              | Alaska         |      18386 |            171 | 2020-12-31 |
+| Cottle                              | Texas          |       1398 |             13 | 2021-01-05 |
+| Sterling                            | Texas          |       1291 |             12 | 2020-11-25 |
+| Wheeler                             | Georgia        |       7855 |             73 | 2020-09-11 |
+| Aleutians East                      | Alaska         |       3337 |             31 | 2021-02-02 |
+| Lee                                 | Texas          |      17239 |            160 | 2020-11-01 |
+| Suwannee                            | Florida        |      44417 |            412 | 2020-08-12 |
+| Bon Homme                           | South Dakota   |       6901 |             64 | 2020-11-03 |
+| Reeves                              | Texas          |      15976 |            148 | 2020-11-27 |
+| Brown                               | Texas          |      37864 |            350 | 2020-11-01 |
+| Lincoln                             | Arkansas       |      13024 |            120 | 2020-09-04 |
+| Somervell                           | Texas          |       9128 |             84 | 2020-12-02 |
+| Kent                                | Texas          |        762 |              7 | 2020-12-17 |
+| Ellsworth                           | Kansas         |       6102 |             56 | 2020-12-09 |
+| Wheeler                             | Georgia        |       7855 |             72 | 2020-09-10 |
+| Johnson                             | Tennessee      |      17788 |            163 | 2020-10-07 |
+| Geary                               | Kansas         |      31670 |            290 | 2021-01-13 |
+| Coke                                | Texas          |       3387 |             31 | 2020-12-13 |
+| Bent                                | Colorado       |       5577 |             51 | 2020-12-13 |
+| Hyde                                | North Carolina |       4937 |             45 | 2021-01-15 |
+| Montour                             | Pennsylvania   |      18230 |            166 | 2020-12-10 |
+| Toole                               | Montana        |       4736 |             43 | 2020-10-11 |
+| Crowley                             | Colorado       |       6061 |             55 | 2020-11-15 |
+| Okfuskee                            | Oklahoma       |      11993 |            108 | 2020-11-24 |
+| Potter                              | Texas          |     117415 |           1057 | 2020-09-29 |
+| Montour                             | Pennsylvania   |      18230 |            164 | 2020-12-26 |
+| Edgefield                           | South Carolina |      27260 |            245 | 2020-09-22 |
+| Sioux                               | North Dakota   |       4230 |             38 | 2020-11-26 |
+| Erath                               | Texas          |      42698 |            383 | 2020-11-01 |
+| Stephens                            | Texas          |       9366 |             84 | 2020-11-25 |
+| Morgan                              | Kentucky       |      13309 |            119 | 2021-01-13 |
+| Seward                              | Kansas         |      21428 |            191 | 2020-11-26 |
+| LaMoure                             | North Dakota   |       4046 |             36 | 2020-12-09 |
+| Rush                                | Kansas         |       3036 |             27 | 2020-11-25 |
+| Bristol                             | Rhode Island   |      48479 |            431 | 2021-01-06 |
+| Johnson                             | Nebraska       |       5071 |             45 | 2020-12-15 |
+| Maverick                            | Texas          |      58722 |            521 | 2020-08-22 |
+| Stephens                            | Texas          |       9366 |             83 | 2020-08-15 |
+| Providence                          | Rhode Island   |     638931 |           5658 | 2020-12-16 |
+| Hardin                              | Texas          |      57602 |            509 | 2020-11-01 |
+| Comanche                            | Kansas         |       1700 |             15 | 2020-11-25 |
+| Smith                               | Texas          |     232751 |           2052 | 2020-11-01 |
+| Concho                              | Texas          |       2726 |             24 | 2020-11-17 |
+| Presidio                            | Texas          |       6704 |             59 | 2021-01-26 |
+| Jasper                              | Georgia        |      14219 |            125 | 2020-11-03 |
+| Fallon                              | Montana        |       2846 |             25 | 2020-11-12 |
+| East Feliciana                      | Louisiana      |      19135 |            168 | 2020-11-16 |
+| East Feliciana                      | Louisiana      |      19135 |            168 | 2020-08-27 |
+| Wilbarger                           | Texas          |      12769 |            112 | 2021-01-15 |
+| Culberson                           | Texas          |       2171 |             19 | 2020-11-28 |
+| Glascock                            | Georgia        |       2971 |             26 | 2020-12-16 |
+| Clay                                | Kansas         |       8002 |             70 | 2020-11-18 |
+| Crowley                             | Colorado       |       6061 |             53 | 2020-11-03 |
+| Calhoun                             | Texas          |      21290 |            186 | 2020-09-21 |
+| Gove                                | Kansas         |       2636 |             23 | 2020-09-30 |
+| Crosby                              | Texas          |       5737 |             50 | 2020-11-01 |
+| Hyde                                | North Carolina |       4937 |             43 | 2020-12-26 |
+| Gratiot                             | Michigan       |      40711 |            354 | 2020-11-20 |
+| Greenwood                           | Kansas         |       5982 |             52 | 2020-12-28 |
+| Humboldt                            | Nevada         |      16831 |            146 | 2020-12-04 |
+| Houston                             | Texas          |      22968 |            199 | 2020-08-25 |
+| Crockett                            | Texas          |       3464 |             30 | 2020-07-16 |
+| Kusilvak                            | Alaska         |       8314 |             72 | 2020-12-31 |
+| Dewey                               | South Dakota   |       5892 |             51 | 2020-11-30 |
+| Logan                               | North Dakota   |       1850 |             16 | 2020-12-09 |
+| Perkins                             | Nebraska       |       2891 |             25 | 2020-11-10 |
+| Hardeman                            | Texas          |       3933 |             34 | 2021-01-12 |
+| Woods                               | Oklahoma       |       8793 |             76 | 2020-12-05 |
+| Morgan                              | Kentucky       |      13309 |            115 | 2021-01-14 |
+| Burke                               | Georgia        |      22383 |            193 | 2020-11-03 |
+| Treasure                            | Montana        |        696 |              6 | 2020-10-23 |
+| Bristol                             | Rhode Island   |      48479 |            417 | 2021-01-13 |
+| Lincoln                             | Colorado       |       5701 |             49 | 2021-01-23 |
+| McDonald                            | Missouri       |      22837 |            196 | 2020-06-21 |
+| Lee                                 | Arkansas       |       8857 |             76 | 2020-08-16 |
+| Ellis                               | Oklahoma       |       3859 |             33 | 2020-11-28 |
+| Richland                            | Louisiana      |      20122 |            172 | 2020-11-16 |
+| Marion                              | Ohio           |      65093 |            555 | 2020-04-18 |
+| Ellsworth                           | Kansas         |       6102 |             52 | 2020-10-29 |
+| Ellsworth                           | Kansas         |       6102 |             52 | 2020-12-04 |
+| Sterling                            | Texas          |       1291 |             11 | 2020-11-27 |
+| Howell                              | Missouri       |      40117 |            341 | 2020-12-12 |
+| Echols                              | Georgia        |       4006 |             34 | 2020-05-26 |
+| Osborne                             | Kansas         |       3421 |             29 | 2020-12-16 |
+| Sherman                             | Kansas         |       5917 |             50 | 2020-10-08 |
+| Concho                              | Texas          |       2726 |             23 | 2020-09-19 |
+| Kusilvak                            | Alaska         |       8314 |             70 | 2021-01-02 |
+| Republic                            | Kansas         |       4636 |             39 | 2020-12-10 |
+| Randolph                            | Georgia        |       6778 |             57 | 2020-04-07 |
+| Norton                              | Kansas         |       5361 |             45 | 2020-10-21 |
+| Norton                              | Kansas         |       5361 |             45 | 2020-11-02 |
+| Hudspeth                            | Texas          |       4886 |             41 | 2021-01-26 |
+| Scurry                              | Texas          |      16703 |            140 | 2021-01-05 |
+| Calhoun                             | Iowa           |       9668 |             81 | 2020-11-14 |
+| Brown                               | Illinois       |       6578 |             55 | 2021-01-09 |
+| Clarke                              | Georgia        |     128331 |           1073 | 2020-11-03 |
+| Roosevelt                           | Montana        |      11004 |             92 | 2020-10-10 |
+| Prairie                             | Montana        |       1077 |              9 | 2020-10-03 |
+| Gray                                | Kansas         |       5988 |             50 | 2020-11-30 |
+| Luce                                | Michigan       |       6229 |             52 | 2020-11-04 |
+| Ziebach                             | South Dakota   |       2756 |             23 | 2020-08-07 |
+| Lassen                              | California     |      30573 |            255 | 2020-12-21 |
+| Franklin                            | Florida        |      12125 |            101 | 2020-08-07 |
+| Parmer                              | Texas          |       9605 |             80 | 2020-11-01 |
+| Tallahatchie                        | Mississippi    |      13809 |            115 | 2020-08-07 |
+| Hitchcock                           | Nebraska       |       2762 |             23 | 2021-01-15 |
+| Morgan                              | Georgia        |      19276 |            160 | 2020-11-03 |
+| Kusilvak                            | Alaska         |       8314 |             69 | 2020-10-22 |
+| Culberson                           | Texas          |       2171 |             18 | 2020-11-20 |
+| Southampton                         | Virginia       |      17631 |            146 | 2020-09-22 |
+| Zavala                              | Texas          |      11840 |             98 | 2021-01-05 |
+| Staunton                            | Virginia       |      24932 |            206 | 2020-11-30 |
+| Wibaux                              | Montana        |        969 |              8 | 2020-11-17 |
+| Wibaux                              | Montana        |        969 |              8 | 2020-10-03 |
+| Bent                                | Colorado       |       5577 |             46 | 2020-12-18 |
+| Midland                             | Texas          |     176832 |           1458 | 2020-12-16 |
+| Cass                                | Texas          |      30026 |            247 | 2020-11-01 |
+| Stephens                            | Texas          |       9366 |             77 | 2020-11-01 |
+| Gratiot                             | Michigan       |      40711 |            334 | 2020-12-03 |
+| Jackson                             | Arkansas       |      16719 |            137 | 2020-12-10 |
+| Knox                                | Texas          |       3664 |             30 | 2020-12-03 |
+| Gilmer                              | West Virginia  |       7823 |             64 | 2021-02-03 |
+| Pleasants                           | West Virginia  |       7460 |             61 | 2021-01-08 |
+| Bristol Bay plus Lake and Peninsula | Alaska         |       1592 |             13 | 2020-06-25 |
+| Freestone                           | Texas          |      19717 |            161 | 2020-08-24 |
+| East Carroll                        | Louisiana      |       6861 |             56 | 2020-12-03 |
+| Sabine                              | Texas          |      10542 |             86 | 2020-11-01 |
+| Camas                               | Idaho          |       1106 |              9 | 2020-09-16 |
+| Ochiltree                           | Texas          |       9836 |             80 | 2020-11-16 |
+| Ochiltree                           | Texas          |       9836 |             80 | 2020-11-14 |
+| Rooks                               | Kansas         |       4920 |             40 | 2020-11-16 |
+| Logan                               | Colorado       |      22409 |            182 | 2020-04-25 |
+| Greeley                             | Kansas         |       1232 |             10 | 2020-11-18 |
+| Campbell                            | Wyoming        |      46341 |            376 | 2020-12-18 |
+| Real                                | Texas          |       3452 |             28 | 2020-12-23 |
+| Real                                | Texas          |       3452 |             28 | 2021-01-05 |
+| Pawnee                              | Kansas         |       6414 |             52 | 2020-08-14 |
+| Lincoln                             | Nevada         |       5183 |             42 | 2020-11-14 |
+| Crisp                               | Georgia        |      22372 |            181 | 2020-11-03 |
+| Terry                               | Texas          |      12337 |             99 | 2021-01-07 |
+| Humboldt                            | Nevada         |      16831 |            135 | 2020-12-14 |
+| Anderson                            | Texas          |      57735 |            463 | 2021-01-05 |
+| Nemaha                              | Kansas         |      10231 |             82 | 2020-11-13 |
+| Jersey                              | Illinois       |      21773 |            174 | 2020-11-06 |
+| Dakota                              | Nebraska       |      20026 |            160 | 2020-04-23 |
+| Echols                              | Georgia        |       4006 |             32 | 2020-05-20 |
+| Carter                              | Montana        |       1252 |             10 | 2020-10-28 |
+| Powell                              | Montana        |       6890 |             55 | 2020-11-14 |
+| Lake                                | Tennessee      |       7016 |             56 | 2021-01-02 |
+| Bland                               | Virginia       |       6280 |             50 | 2020-12-08 |
+| Big Horn                            | Montana        |      13319 |            106 | 2020-10-24 |
+| Mason                               | Texas          |       4274 |             34 | 2020-11-17 |
+| Golden Valley                       | North Dakota   |       1761 |             14 | 2021-01-14 |
+| Garfield                            | Montana        |       1258 |             10 | 2020-11-12 |
+| Bethel                              | Alaska         |      18386 |            146 | 2021-01-03 |
+| Childress                           | Texas          |       7306 |             58 | 2020-12-05 |
+| Meade                               | Kansas         |       4033 |             32 | 2020-11-18 |
+| Las Animas                          | Colorado       |      14506 |            115 | 2021-01-02 |
+| Comanche                            | Texas          |      13635 |            108 | 2020-12-08 |
+| Wallace                             | Kansas         |       1518 |             12 | 2020-11-01 |
+| East Feliciana                      | Louisiana      |      19135 |            151 | 2020-09-13 |
+| Bent                                | Colorado       |       5577 |             44 | 2020-12-05 |
+| Eddy                                | North Dakota   |       2287 |             18 | 2020-12-29 |
+| Ellsworth                           | Kansas         |       6102 |             48 | 2020-10-08 |
+| Hemphill                            | Texas          |       3819 |             30 | 2021-01-22 |
+| Hale                                | Texas          |      33406 |            262 | 2020-11-25 |
+| Norton                              | Kansas         |       5361 |             42 | 2020-11-09 |
+| Webster                             | Iowa           |      35904 |            281 | 2020-08-27 |
+| Lane                                | Kansas         |       1535 |             12 | 2020-11-20 |
+| Irion                               | Texas          |       1536 |             12 | 2020-11-01 |
+| Dickey                              | North Dakota   |       4872 |             38 | 2020-10-01 |
+| Chattahoochee                       | Georgia        |      10907 |             85 | 2020-09-02 |
+| Las Animas                          | Colorado       |      14506 |            113 | 2021-01-08 |
+| Moore                               | Texas          |      20940 |            163 | 2020-11-01 |
+| Hudspeth                            | Texas          |       4886 |             38 | 2020-11-27 |
+| Waushara                            | Wisconsin      |      24443 |            190 | 2020-11-03 |
+| Sheboygan                           | Wisconsin      |     115340 |            896 | 2020-09-17 |
+| Clearwater                          | Idaho          |       8756 |             68 | 2020-12-07 |
+| Hall                                | Texas          |       2964 |             23 | 2020-12-05 |
+| McPherson                           | Kansas         |      28542 |            221 | 2020-12-18 |
+| Phillips                            | Colorado       |       4265 |             33 | 2020-12-29 |
+| Terrell                             | Texas          |        776 |              6 | 2020-11-25 |
+| Terrell                             | Texas          |        776 |              6 | 2020-12-15 |
+| Taylor                              | Georgia        |       8020 |             62 | 2020-11-03 |
+| Lincoln                             | Colorado       |       5701 |             44 | 2020-12-04 |
+| Alfalfa                             | Oklahoma       |       5702 |             44 | 2020-12-08 |
+| Aiken                               | South Carolina |     170872 |           1318 | 2020-09-22 |
+| Hartley                             | Texas          |       5576 |             43 | 2020-12-04 |
+| Ellsworth                           | Kansas         |       6102 |             47 | 2020-10-27 |
+| Miller                              | Georgia        |       5718 |             44 | 2020-11-03 |
+| Lassen                              | California     |      30573 |            235 | 2020-11-23 |
+| Norton                              | Kansas         |       5361 |             41 | 2020-10-12 |
+| Richmond                            | Virginia       |       9023 |             69 | 2021-01-08 |
+| Buffalo                             | South Dakota   |       1962 |             15 | 2020-10-25 |
+| Chase                               | Nebraska       |       3924 |             30 | 2020-10-10 |
+| Pawnee                              | Kansas         |       6414 |             49 | 2020-09-29 |
+| Midland                             | Texas          |     176832 |           1349 | 2021-01-25 |
+| Montour                             | Pennsylvania   |      18230 |            139 | 2020-12-03 |
+| Houston                             | Texas          |      22968 |            175 | 2020-11-01 |
+| Garfield                            | Nebraska       |       1969 |             15 | 2020-11-18 |
+| Howard                              | Texas          |      36664 |            279 | 2020-11-17 |
+| Kimble                              | Texas          |       4337 |             33 | 2020-11-27 |
+| Mills                               | Texas          |       4873 |             37 | 2021-01-16 |
+| Hayes                               | Nebraska       |        922 |              7 | 2020-10-16 |
+| Gove                                | Kansas         |       2636 |             20 | 2020-09-28 |
+| Howard                              | Texas          |      36664 |            278 | 2020-11-27 |
+| Jefferson                           | Florida        |      14246 |            108 | 2020-08-01 |
+| Pacific                             | Washington     |      22471 |            170 | 2020-12-13 |
+| Carroll                             | Georgia        |     119992 |            905 | 2020-11-03 |
+| Sheridan                            | Kansas         |       2521 |             19 | 2020-10-13 |
+| Bent                                | Colorado       |       5577 |             42 | 2021-01-07 |
+| Wilcox                              | Georgia        |       8635 |             65 | 2020-11-03 |
+| Greenwood                           | Kansas         |       5982 |             45 | 2020-12-08 |
+| Wilcox                              | Alabama        |      10373 |             78 | 2020-12-12 |
+| Zavala                              | Texas          |      11840 |             89 | 2021-01-21 |
+| Falls                               | Texas          |      17297 |            130 | 2020-10-05 |
+| Val Verde                           | Texas          |      49025 |            368 | 2020-12-01 |
+| Stanislaus                          | California     |     550660 |           4133 | 2021-01-02 |
+| Kent                                | Rhode Island   |     164292 |           1233 | 2020-12-09 |
+| Runnels                             | Texas          |      10264 |             77 | 2020-11-01 |
+| Colfax                              | Nebraska       |      10709 |             80 | 2020-05-04 |
+| Kleberg                             | Texas          |      30680 |            229 | 2020-09-04 |
+| Maverick                            | Texas          |      58722 |            438 | 2021-01-29 |
+| Dakota                              | Nebraska       |      20026 |            149 | 2020-04-28 |
+| Eddy                                | North Dakota   |       2287 |             17 | 2020-10-23 |
+| Prairie                             | Montana        |       1077 |              8 | 2020-12-01 |
+| Kenedy                              | Texas          |        404 |              3 | 2021-01-08 |
+| Kenedy                              | Texas          |        404 |              3 | 2021-01-05 |
+| Kenedy                              | Texas          |        404 |              3 | 2020-11-04 |
+| Gregg                               | Texas          |     123945 |            919 | 2020-11-01 |
+| Perry                               | Illinois       |      20916 |            155 | 2020-12-20 |
+| Baylor                              | Texas          |       3509 |             26 | 2021-01-12 |
+| Stonewall                           | Texas          |       1350 |             10 | 2020-11-01 |
+| Emmons                              | North Dakota   |       3241 |             24 | 2020-09-19 |
+| Polk                                | Texas          |      51353 |            380 | 2020-11-01 |
+| Quitman                             | Georgia        |       2299 |             17 | 2020-11-03 |
+| Rock                                | Nebraska       |       1357 |             10 | 2020-09-11 |
+| East Feliciana                      | Louisiana      |      19135 |            141 | 2020-08-24 |
+| Alfalfa                             | Oklahoma       |       5702 |             42 | 2020-11-24 |
+| Kinney                              | Texas          |       3667 |             27 | 2021-01-05 |
+| King                                | Texas          |        272 |              2 | 2021-01-08 |
+| Jones                               | Iowa           |      20681 |            152 | 2020-11-12 |
+| Morton                              | Kansas         |       2587 |             19 | 2020-11-13 |
+| Corson                              | South Dakota   |       4086 |             30 | 2020-10-29 |
+| Hooker                              | Nebraska       |        682 |              5 | 2020-11-10 |
+| Providence                          | Rhode Island   |     638931 |           4680 | 2021-01-13 |
+| Donley                              | Texas          |       3278 |             24 | 2020-11-01 |
+| McDowell                            | West Virginia  |      17624 |            129 | 2020-11-16 |
+| Colquitt                            | Georgia        |      45600 |            333 | 2020-11-03 |
+| Montour                             | Pennsylvania   |      18230 |            133 | 2021-01-11 |
+| Nelson                              | North Dakota   |       2879 |             21 | 2020-11-14 |
+| Aleutians West                      | Alaska         |       5634 |             41 | 2020-07-20 |
+| Ziebach                             | South Dakota   |       2756 |             20 | 2020-12-03 |
+| Telfair                             | Georgia        |      15860 |            115 | 2020-11-03 |
+| Rush                                | Kansas         |       3036 |             22 | 2020-11-23 |
+| Dickens                             | Texas          |       2211 |             16 | 2020-11-01 |
+| Lee                                 | Arkansas       |       8857 |             64 | 2020-06-14 |
+| Wibaux                              | Montana        |        969 |              7 | 2020-12-12 |
+| Johnson                             | Wyoming        |       8445 |             61 | 2020-12-19 |
+| Shelby                              | Texas          |      25274 |            182 | 2020-11-01 |
+| Clearwater                          | Idaho          |       8756 |             63 | 2020-11-16 |
+| Lincoln                             | Colorado       |       5701 |             41 | 2020-12-17 |
+| Green Lake                          | Wisconsin      |      18913 |            136 | 2020-10-19 |
+| Cass                                | Indiana        |      37689 |            271 | 2020-04-26 |
+| Clark                               | Illinois       |      15441 |            111 | 2020-11-06 |
+| Carter                              | Montana        |       1252 |              9 | 2020-11-14 |
+| Taylor                              | Florida        |      21569 |            155 | 2020-08-04 |
+| Clay                                | Kentucky       |      19901 |            143 | 2021-01-09 |
+| Cavalier                            | North Dakota   |       3762 |             27 | 2020-11-21 |
+| Washakie                            | Wyoming        |       7805 |             56 | 2020-11-25 |
+| Pawnee                              | Kansas         |       6414 |             46 | 2020-09-23 |
+| Schleicher                          | Texas          |       2793 |             20 | 2020-11-01 |
+| Kimball                             | Nebraska       |       3632 |             26 | 2020-12-08 |
+| Matagorda                           | Texas          |      36643 |            262 | 2021-01-15 |
+| Edwards                             | Kansas         |       2798 |             20 | 2020-11-18 |
+| Trego                               | Kansas         |       2803 |             20 | 2021-01-04 |
+| Montour                             | Pennsylvania   |      18230 |            130 | 2021-01-17 |
+| Wilbarger                           | Texas          |      12769 |             91 | 2020-12-29 |
+| Madison                             | Louisiana      |      10951 |             78 | 2020-06-06 |
+| Morris                              | Kansas         |       5620 |             40 | 2020-12-17 |
+| Moore                               | Texas          |      20940 |            149 | 2020-06-02 |
+| Dimmit                              | Texas          |      10124 |             72 | 2021-01-13 |
+| Knox                                | Texas          |       3664 |             26 | 2020-07-24 |
+| Crowley                             | Colorado       |       6061 |             43 | 2020-12-11 |
+| Newton                              | Arkansas       |       7753 |             55 | 2020-07-24 |
+| Richmond                            | Virginia       |       9023 |             64 | 2020-12-23 |
+| Alpine                              | California     |       1129 |              8 | 2020-11-02 |
+| Hall                                | Texas          |       2964 |             21 | 2021-01-13 |
+| Phillips                            | Kansas         |       5234 |             37 | 2020-11-25 |
+| Crawford                            | Pennsylvania   |      84629 |            598 | 2020-12-11 |
+| Comanche                            | Kansas         |       1700 |             12 | 2020-12-28 |
+| Val Verde                           | Texas          |      49025 |            346 | 2021-01-21 |
+| Wheatland                           | Montana        |       2126 |             15 | 2020-10-13 |
+| Falls                               | Texas          |      17297 |            122 | 2020-10-06 |
+| Pierce                              | North Dakota   |       3975 |             28 | 2020-11-16 |
+| Pierce                              | North Dakota   |       3975 |             28 | 2020-11-21 |
+| Izard                               | Arkansas       |      13629 |             96 | 2020-11-06 |
+| San Augustine                       | Texas          |       8237 |             58 | 2020-11-01 |
+| Upshur                              | Texas          |      41753 |            294 | 2020-11-01 |
+| Menominee                           | Wisconsin      |       4556 |             32 | 2020-11-14 |
+| Montour                             | Pennsylvania   |      18230 |            128 | 2020-12-13 |
+| Clark                               | Kansas         |       1994 |             14 | 2020-11-25 |
+| East Feliciana                      | Louisiana      |      19135 |            134 | 2020-09-03 |
+| East Carroll                        | Louisiana      |       6861 |             48 | 2020-06-20 |
+| Bent                                | Colorado       |       5577 |             39 | 2020-12-03 |
+| Providence                          | Rhode Island   |     638931 |           4468 | 2020-11-25 |
+| Walker                              | Texas          |      72971 |            510 | 2020-05-31 |
+| Newton                              | Texas          |      13595 |             95 | 2020-11-01 |
+| Laurens                             | Georgia        |      47546 |            332 | 2020-11-03 |
+| Meagher                             | Montana        |       1862 |             13 | 2020-09-17 |
+| Angelina                            | Texas          |      86715 |            605 | 2020-11-01 |
+| Bristol                             | Rhode Island   |      48479 |            338 | 2020-12-30 |
+| Toole                               | Montana        |       4736 |             33 | 2020-11-08 |
+| Potter                              | South Dakota   |       2153 |             15 | 2020-11-01 |
+| Clearwater                          | Idaho          |       8756 |             61 | 2021-01-15 |
+| Jones                               | Iowa           |      20681 |            144 | 2020-11-17 |
+| Faulk                               | South Dakota   |       2299 |             16 | 2020-10-21 |
+| Schuyler                            | Illinois       |       6768 |             47 | 2020-12-03 |
+| Coweta                              | Georgia        |     148509 |           1030 | 2020-11-03 |
+| Martin                              | Texas          |       5771 |             40 | 2020-11-27 |
+| Thomas                              | Nebraska       |        722 |              5 | 2020-11-06 |
+| Ward                                | Texas          |      11998 |             83 | 2020-11-01 |
+| Hyde                                | South Dakota   |       1301 |              9 | 2020-11-14 |
+| Rush                                | Kansas         |       3036 |             21 | 2020-11-27 |
+| Dimmit                              | Texas          |      10124 |             70 | 2021-01-21 |
+| Yakutat                             | Alaska         |        579 |              4 | 2021-01-06 |
+| Castro                              | Texas          |       7530 |             52 | 2020-11-01 |
+| Republic                            | Kansas         |       4636 |             32 | 2020-11-20 |
+| Lowndes                             | Georgia        |     117406 |            810 | 2020-11-03 |
+| Madison                             | Nebraska       |      35099 |            242 | 2020-11-16 |
+| Aleutians East                      | Alaska         |       3337 |             23 | 2021-01-22 |
+| Gillespie                           | Texas          |      26988 |            186 | 2020-12-02 |
+| Kimball                             | Nebraska       |       3632 |             25 | 2020-11-16 |
+| Jeff Davis                          | Georgia        |      15115 |            104 | 2020-11-03 |
+| Chattahoochee                       | Georgia        |      10907 |             75 | 2021-01-23 |
+| Renville                            | North Dakota   |       2327 |             16 | 2020-11-22 |
+| Kiowa                               | Kansas         |       2475 |             17 | 2020-11-11 |
+| Kiowa                               | Kansas         |       2475 |             17 | 2020-12-28 |
+| San Juan                            | Colorado       |        728 |              5 | 2021-01-23 |
+| Clarke                              | Alabama        |      23622 |            162 | 2020-08-07 |
+| Bailey                              | Texas          |       7000 |             48 | 2020-11-01 |
+| Caldwell                            | Louisiana      |       9918 |             68 | 2020-11-16 |
+| Schley                              | Georgia        |       5257 |             36 | 2020-11-03 |
+| Mercer                              | North Dakota   |       8187 |             56 | 2020-10-23 |
+| Upton                               | Texas          |       3657 |             25 | 2020-12-13 |
+| Val Verde                           | Texas          |      49025 |            335 | 2020-12-29 |
+| Stanislaus                          | California     |     550660 |           3762 | 2020-12-26 |
+| Jackson                             | Wisconsin      |      20643 |            141 | 2020-12-05 |
+| Phillips                            | Montana        |       3954 |             27 | 2020-08-11 |
+| Dimmit                              | Texas          |      10124 |             69 | 2021-01-20 |
+| Hemphill                            | Texas          |       3819 |             26 | 2021-01-06 |
+| Hardin                              | Illinois       |       3821 |             26 | 2021-01-11 |
+| St. Francis                         | Arkansas       |      24994 |            170 | 2020-05-10 |
+| Logan                               | Kansas         |       2794 |             19 | 2020-10-27 |
+| Marshall                            | Kansas         |       9707 |             66 | 2021-02-01 |
+| Rockwall                            | Texas          |     104915 |            712 | 2021-01-05 |
+| Juneau                              | Wisconsin      |      26687 |            181 | 2020-11-07 |
+| La Salle                            | Texas          |       7520 |             51 | 2021-01-01 |
+| Wabaunsee                           | Kansas         |       6931 |             47 | 2020-11-16 |
+| Greene                              | Mississippi    |      13586 |             92 | 2020-12-09 |
+| Chautauqua                          | Kansas         |       3250 |             22 | 2020-12-30 |
+| Crowley                             | Colorado       |       6061 |             41 | 2021-01-15 |
+| Baker                               | Florida        |      29210 |            197 | 2020-08-08 |
+| East Feliciana                      | Louisiana      |      19135 |            129 | 2020-09-06 |
+| Brewster                            | Texas          |       9203 |             62 | 2020-11-29 |
+| Atkinson                            | Georgia        |       8165 |             55 | 2020-11-03 |
+| Edwards                             | Texas          |       1932 |             13 | 2020-11-25 |
+| Edwards                             | Texas          |       1932 |             13 | 2020-12-16 |
+| Edwards                             | Texas          |       1932 |             13 | 2020-12-12 |
+| Labette                             | Kansas         |      19618 |            132 | 2020-12-30 |
+| Oconee                              | Georgia        |      40280 |            271 | 2020-11-03 |
+| Dallam                              | Texas          |       7287 |             49 | 2021-01-27 |
+| Barnes                              | North Dakota   |      10415 |             70 | 2020-11-19 |
+| Cloud                               | Kansas         |       8786 |             59 | 2020-11-08 |
+| Haralson                            | Georgia        |      29792 |            200 | 2020-11-03 |
+| DeWitt                              | Texas          |      20160 |            135 | 2020-07-22 |
+| Liberty                             | Texas          |      88219 |            590 | 2020-11-01 |
+| Logan                               | Nebraska       |        748 |              5 | 2020-11-23 |
+| Fallon                              | Montana        |       2846 |             19 | 2020-11-20 |
+| Stonewall                           | Texas          |       1350 |              9 | 2021-01-07 |
+| Throckmorton                        | Texas          |       1501 |             10 | 2020-11-01 |
+| Kent                                | Rhode Island   |     164292 |           1094 | 2020-12-16 |
+| Pickaway                            | Ohio           |      58457 |            389 | 2020-04-21 |
+| Medina                              | Texas          |      51584 |            343 | 2020-11-01 |
+| Stewart                             | Georgia        |       6621 |             44 | 2020-11-03 |
+| Sheboygan                           | Wisconsin      |     115340 |            766 | 2020-10-19 |
+| Logan                               | Illinois       |      28618 |            190 | 2020-12-11 |
+| Jackson                             | Arkansas       |      16719 |            111 | 2020-12-19 |
+| Live Oak                            | Texas          |      12207 |             81 | 2020-07-30 |
+| Bent                                | Colorado       |       5577 |             37 | 2020-12-23 |
+| Greene                              | Illinois       |      12969 |             86 | 2020-11-06 |
+| Bacon                               | Georgia        |      11164 |             74 | 2020-11-03 |
+| Stutsman                            | North Dakota   |      20704 |            137 | 2020-11-18 |
+| Providence                          | Rhode Island   |     638931 |           4226 | 2020-12-02 |
+| Wichita                             | Kansas         |       2119 |             14 | 2020-11-23 |
+| Concho                              | Texas          |       2726 |             18 | 2020-11-01 |
+| Cloud                               | Kansas         |       8786 |             58 | 2020-11-23 |
+| Anderson                            | Texas          |      57735 |            381 | 2020-07-09 |
+| Gillespie                           | Texas          |      26988 |            178 | 2021-01-05 |
+| Chambers                            | Texas          |      43837 |            289 | 2021-01-06 |
+| Glades                              | Florida        |      13811 |             91 | 2020-07-25 |
+| Wallace                             | Kansas         |       1518 |             10 | 2020-11-05 |
+| Okfuskee                            | Oklahoma       |      11993 |             79 | 2020-11-17 |
+| Walsh                               | North Dakota   |      10641 |             70 | 2020-11-04 |
+| Craig                               | Oklahoma       |      14142 |             93 | 2020-09-20 |
+| Morton                              | Kansas         |       2587 |             17 | 2020-12-04 |
+| Childress                           | Texas          |       7306 |             48 | 2020-12-08 |
+| Kent                                | Texas          |        762 |              5 | 2020-11-13 |
+| Kent                                | Texas          |        762 |              5 | 2020-11-24 |
+| Eddy                                | North Dakota   |       2287 |             15 | 2020-11-05 |
+| Somerset                            | Maryland       |      25616 |            168 | 2020-12-08 |
+| Hale                                | Texas          |      33406 |            219 | 2020-11-12 |
+| Pawnee                              | Kansas         |       6414 |             42 | 2020-11-20 |
+| Pawnee                              | Kansas         |       6414 |             42 | 2020-12-02 |
+| Val Verde                           | Texas          |      49025 |            321 | 2021-01-05 |
+| Toole                               | Montana        |       4736 |             31 | 2020-09-28 |
+| Kinney                              | Texas          |       3667 |             24 | 2021-01-13 |
+| Kinney                              | Texas          |       3667 |             24 | 2021-01-21 |
+| Foster                              | North Dakota   |       3210 |             21 | 2020-11-26 |
+| Foster                              | North Dakota   |       3210 |             21 | 2020-11-22 |
+| Bullitt                             | Kentucky       |      81676 |            534 | 2021-01-23 |
+| Perry                               | Missouri       |      19136 |            125 | 2020-11-14 |
+| Van Buren                           | Iowa           |       7044 |             46 | 2020-08-27 |
+| Franklin                            | Florida        |      12125 |             79 | 2020-08-06 |
+| Daniels                             | Montana        |       1690 |             11 | 2020-11-18 |
+| Johnson                             | Nebraska       |       5071 |             33 | 2020-12-28 |
+| Pawnee                              | Nebraska       |       2613 |             17 | 2020-12-09 |
+| Zavala                              | Texas          |      11840 |             77 | 2021-01-30 |
+| Prairie                             | Montana        |       1077 |              7 | 2020-11-13 |
+| Orange                              | Texas          |      83396 |            541 | 2020-11-01 |
+| Woods                               | Oklahoma       |       8793 |             57 | 2020-11-24 |
+| Hyde                                | North Carolina |       4937 |             32 | 2021-01-02 |
+| Woodward                            | Oklahoma       |      20211 |            131 | 2020-09-19 |
+| Stanton                             | Kansas         |       2006 |             13 | 2020-11-25 |
+| Troup                               | Georgia        |      69922 |            453 | 2020-11-03 |
+| Comanche                            | Kansas         |       1700 |             11 | 2020-12-09 |
+| Comanche                            | Kansas         |       1700 |             11 | 2020-11-30 |
+| Somervell                           | Texas          |       9128 |             59 | 2020-11-01 |
+| Jackson                             | Arkansas       |      16719 |            108 | 2020-12-06 |
+| Bent                                | Colorado       |       5577 |             36 | 2020-11-26 |
+| Waupaca                             | Wisconsin      |      50990 |            329 | 2020-10-19 |
+| Gove                                | Kansas         |       2636 |             17 | 2020-10-29 |
+| Renville                            | North Dakota   |       2327 |             15 | 2020-11-20 |
+| Renville                            | North Dakota   |       2327 |             15 | 2020-11-26 |
+| Terrell                             | Texas          |        776 |              5 | 2021-01-26 |
+| Terrell                             | Texas          |        776 |              5 | 2020-12-21 |
+| Trego                               | Kansas         |       2803 |             18 | 2020-11-16 |
+| Montour                             | Pennsylvania   |      18230 |            117 | 2020-12-04 |
+| Lincoln                             | Kansas         |       2962 |             19 | 2020-12-18 |
+| Presidio                            | Texas          |       6704 |             43 | 2020-12-15 |
+| Lake                                | Tennessee      |       7016 |             45 | 2021-01-30 |
+| Hall                                | Texas          |       2964 |             19 | 2021-01-05 |
+| Sanborn                             | South Dakota   |       2344 |             15 | 2020-11-07 |
+| Towner                              | North Dakota   |       2189 |             14 | 2020-10-12 |
+| Carter                              | Montana        |       1252 |              8 | 2020-12-02 |
+| Glasscock                           | Texas          |       1409 |              9 | 2020-11-18 |
+| Glasscock                           | Texas          |       1409 |              9 | 2021-01-26 |
+| Callahan                            | Texas          |      13943 |             89 | 2020-11-01 |
+| Trousdale                           | Tennessee      |      11284 |             72 | 2020-04-29 |
+| Nobles                              | Minnesota      |      21629 |            138 | 2020-04-29 |
+| Decatur                             | Kansas         |       2827 |             18 | 2020-11-01 |
+| Garfield                            | Montana        |       1258 |              8 | 2020-10-22 |
+| Garfield                            | Montana        |       1258 |              8 | 2020-07-15 |
+| Hardeman                            | Texas          |       3933 |             25 | 2020-11-01 |
+| Clarke                              | Alabama        |      23622 |            150 | 2020-08-09 |
+| Sheridan                            | Kansas         |       2521 |             16 | 2020-10-15 |
+| Sheridan                            | Kansas         |       2521 |             16 | 2020-11-13 |
+| Sheridan                            | Montana        |       3309 |             21 | 2020-11-07 |
+| Gray                                | Kansas         |       5988 |             38 | 2020-11-10 |
+| Stewart                             | Georgia        |       6621 |             42 | 2020-07-03 |
+| Louisa                              | Iowa           |      11035 |             70 | 2020-04-14 |
+| Kit Carson                          | Colorado       |       7097 |             45 | 2020-11-05 |
+| Providence                          | Rhode Island   |     638931 |           4051 | 2020-12-23 |
+| Jackson                             | Arkansas       |      16719 |            106 | 2020-11-19 |
+| Carter                              | Oklahoma       |      48111 |            305 | 2021-01-08 |
+| Barnes                              | North Dakota   |      10415 |             66 | 2020-11-14 |
+| Kimball                             | Nebraska       |       3632 |             23 | 2020-12-10 |
+| Fallon                              | Montana        |       2846 |             18 | 2020-11-19 |
+| Miner                               | South Dakota   |       2216 |             14 | 2020-10-07 |
+| Richmond                            | Virginia       |       9023 |             57 | 2020-05-17 |
+| Doniphan                            | Kansas         |       7600 |             48 | 2020-11-27 |
+| Henry                               | Iowa           |      19954 |            126 | 2020-12-10 |
+| Floyd                               | Texas          |       5712 |             36 | 2021-01-01 |
+| Hamilton                            | Kansas         |       2539 |             16 | 2020-11-16 |
+| Mono                                | California     |      14444 |             91 | 2020-11-11 |
+| Cameron                             | Pennsylvania   |       4447 |             28 | 2020-12-16 |
+| Lincoln                             | Arkansas       |      13024 |             82 | 2020-09-18 |
+| Lafayette                           | Florida        |       8422 |             53 | 2020-08-16 |
+| De Baca                             | New Mexico     |       1748 |             11 | 2020-12-06 |
+| Dewey                               | South Dakota   |       5892 |             37 | 2021-01-02 |
+| Carson City                         | Nevada         |      55916 |            351 | 2020-11-16 |
+| Griggs                              | North Dakota   |       2231 |             14 | 2020-11-07 |
+| Kent                                | Rhode Island   |     164292 |           1028 | 2020-11-25 |
+| Cascade                             | Montana        |      81366 |            509 | 2020-11-14 |
+| Republic                            | Kansas         |       4636 |             29 | 2020-11-27 |
+| Seward                              | Kansas         |      21428 |            134 | 2020-12-11 |
+| Kearny                              | Kansas         |       3838 |             24 | 2020-11-20 |
+| Elliott                             | Kentucky       |       7517 |             47 | 2020-11-14 |
+| Elliott                             | Kentucky       |       7517 |             47 | 2020-11-29 |
+| Pierce                              | Wisconsin      |      42754 |            267 | 2020-10-19 |
+| Winkler                             | Texas          |       8010 |             50 | 2020-11-01 |
+| Pawnee                              | Kansas         |       6414 |             40 | 2020-12-23 |
+| Concho                              | Texas          |       2726 |             17 | 2020-12-13 |
+| San Miguel                          | Colorado       |       8179 |             51 | 2021-01-22 |
+| Treutlen                            | Georgia        |       6901 |             43 | 2020-11-03 |
+| Madison                             | Texas          |      14284 |             89 | 2020-08-25 |
+| Morris                              | Kansas         |       5620 |             35 | 2021-01-04 |
+| Morris                              | Kansas         |       5620 |             35 | 2020-12-14 |
+| Liberty                             | Florida        |       8354 |             52 | 2020-05-03 |
+| Ellis                               | Oklahoma       |       3859 |             24 | 2020-11-23 |
+| Shawano                             | Wisconsin      |      40899 |            254 | 2020-09-17 |
+| DeSoto                              | Florida        |      38001 |            236 | 2020-11-19 |
+| Bland                               | Virginia       |       6280 |             39 | 2020-11-24 |
+| Wabaunsee                           | Kansas         |       6931 |             43 | 2020-12-28 |
+| Kent                                | Rhode Island   |     164292 |           1019 | 2021-01-13 |
+| Richland                            | Montana        |      10803 |             67 | 2020-12-01 |
+| Newport                             | Rhode Island   |      82082 |            509 | 2021-01-13 |
+| Coke                                | Texas          |       3387 |             21 | 2020-10-14 |
+| Sumter                              | Georgia        |      29524 |            183 | 2020-11-03 |
+| Wibaux                              | Montana        |        969 |              6 | 2020-10-09 |
+| Wibaux                              | Montana        |        969 |              6 | 2020-11-14 |
+| Coal                                | Oklahoma       |       5495 |             34 | 2020-11-22 |
+| West Carroll                        | Louisiana      |      10830 |             67 | 2020-11-20 |
+| St. Croix                           | Wisconsin      |      90687 |            561 | 2020-09-16 |
+| Ness                                | Kansas         |       2750 |             17 | 2020-11-23 |
+| Glacier                             | Montana        |      13753 |             85 | 2020-10-15 |
+| Thomas                              | Kansas         |       7777 |             48 | 2020-12-02 |
+| Nemaha                              | Kansas         |      10231 |             63 | 2020-11-16 |
+| Dickey                              | North Dakota   |       4872 |             30 | 2020-11-06 |
+| Cascade                             | Montana        |      81366 |            501 | 2020-11-17 |
+| Sargent                             | North Dakota   |       3898 |             24 | 2020-12-09 |
+| Mills                               | Texas          |       4873 |             30 | 2021-01-20 |
+| Norton                              | Kansas         |       5361 |             33 | 2020-11-16 |
+| Hitchcock                           | Nebraska       |       2762 |             17 | 2021-01-24 |
+| Sweet Grass                         | Montana        |       3737 |             23 | 2020-11-26 |
+| Jim Hogg                            | Texas          |       5200 |             32 | 2021-01-05 |
+| Hyde                                | South Dakota   |       1301 |              8 | 2020-11-06 |
+| Hyde                                | South Dakota   |       1301 |              8 | 2020-11-27 |
+| Hudspeth                            | Texas          |       4886 |             30 | 2020-11-29 |
+| Lincoln                             | Colorado       |       5701 |             35 | 2021-01-31 |
+| Yankton                             | South Dakota   |      22814 |            140 | 2020-12-04 |
+| Beaverhead                          | Montana        |       9453 |             58 | 2020-11-13 |
+| Stutsman                            | North Dakota   |      20704 |            127 | 2020-11-12 |
+| Russell                             | Kansas         |       6856 |             42 | 2020-11-16 |
+| Chase                               | Nebraska       |       3924 |             24 | 2020-10-07 |
+| Phillips                            | Kansas         |       5234 |             32 | 2020-12-02 |
+| Washington                          | Colorado       |       4908 |             30 | 2020-12-04 |
+| Dewey                               | South Dakota   |       5892 |             36 | 2020-11-12 |
+| Nottoway                            | Virginia       |      15232 |             93 | 2020-12-06 |
+| Crowley                             | Colorado       |       6061 |             37 | 2021-01-29 |
+| Washington                          | Kansas         |       5406 |             33 | 2020-11-08 |
+| Washington                          | Kansas         |       5406 |             33 | 2020-12-30 |
+| Providence                          | Rhode Island   |     638931 |           3900 | 2021-01-06 |
+| Maverick                            | Texas          |      58722 |            358 | 2020-08-06 |
+| Quitman                             | Georgia        |       2299 |             14 | 2020-11-10 |
+| Sheridan                            | North Dakota   |       1315 |              8 | 2020-12-09 |
+| Hockley                             | Texas          |      23021 |            140 | 2020-11-13 |
+| Pawnee                              | Kansas         |       6414 |             39 | 2020-11-27 |
+| Pawnee                              | Kansas         |       6414 |             39 | 2020-08-25 |
+| Sullivan                            | Missouri       |       6089 |             37 | 2020-10-30 |
+| McPherson                           | Nebraska       |        494 |              3 | 2020-07-10 |
+| Hall                                | Texas          |       2964 |             18 | 2020-12-04 |
+| Reeves                              | Texas          |      15976 |             97 | 2020-12-15 |
+| Gove                                | Kansas         |       2636 |             16 | 2020-11-25 |
+| Gove                                | Kansas         |       2636 |             16 | 2020-10-05 |
+| Phillips                            | Montana        |       3954 |             24 | 2020-12-03 |
+| Trego                               | Kansas         |       2803 |             17 | 2020-11-20 |
+| Martin                              | Texas          |       5771 |             35 | 2020-11-25 |
+| Ellsworth                           | Kansas         |       6102 |             37 | 2020-12-16 |
+| Montgomery                          | Illinois       |      28414 |            172 | 2020-12-26 |
+| Chattahoochee                       | Georgia        |      10907 |             66 | 2020-08-01 |
+| Morris                              | Kansas         |       5620 |             34 | 2020-12-21 |
+| Charlton                            | Georgia        |      13392 |             81 | 2020-11-03 |
+| Clinch                              | Georgia        |       6618 |             40 | 2020-11-03 |
+| Clinch                              | Georgia        |       6618 |             40 | 2020-08-22 |
+| Graham                              | Kansas         |       2482 |             15 | 2020-11-13 |
+| Graham                              | Kansas         |       2482 |             15 | 2020-12-04 |
+| Potter                              | South Dakota   |       2153 |             13 | 2020-11-07 |
+| Butler                              | Kansas         |      66911 |            404 | 2020-09-20 |
+| Dimmit                              | Texas          |      10124 |             61 | 2021-01-23 |
+| Jones                               | Texas          |      20083 |            121 | 2020-11-01 |
+| Loup                                | Nebraska       |        664 |              4 | 2020-11-16 |
+| Loup                                | Nebraska       |        664 |              4 | 2020-11-19 |
+| St. Helena                          | Louisiana      |      10132 |             61 | 2020-08-25 |
+| Mercer                              | Kentucky       |      21933 |            132 | 2020-12-17 |
+| Greenwood                           | Kansas         |       5982 |             36 | 2020-11-23 |
+| Webb                                | Texas          |     276652 |           1664 | 2021-01-17 |
+| Cameron                             | Texas          |     423163 |           2545 | 2020-08-03 |
+| Wilson                              | Texas          |      51070 |            307 | 2020-09-21 |
+| Gilmer                              | West Virginia  |       7823 |             47 | 2020-11-11 |
+| Goliad                              | Texas          |       7658 |             46 | 2020-11-01 |
+| Washington                          | Alabama        |      16326 |             98 | 2020-10-22 |
+| Mineral                             | Nevada         |       4505 |             27 | 2021-01-31 |
+| Lake                                | Tennessee      |       7016 |             42 | 2020-09-21 |
+| Finney                              | Kansas         |      36467 |            218 | 2020-12-02 |
+| Reagan                              | Texas          |       3849 |             23 | 2020-11-17 |
+| Sanborn                             | South Dakota   |       2344 |             14 | 2020-11-14 |
+| Lyon                                | Nevada         |      57510 |            343 | 2020-11-25 |
+| Lincoln                             | Colorado       |       5701 |             34 | 2021-01-30 |
+| Lincoln                             | Colorado       |       5701 |             34 | 2020-11-13 |
+| Glacier                             | Montana        |      13753 |             82 | 2020-10-07 |
+| Jim Hogg                            | Texas          |       5200 |             31 | 2021-01-16 |
+| Jerauld                             | South Dakota   |       2013 |             12 | 2020-05-24 |
+| Southampton                         | Virginia       |      17631 |            105 | 2021-01-04 |
+| Barnes                              | North Dakota   |      10415 |             62 | 2020-11-13 |
+| Tyler                               | Texas          |      21672 |            129 | 2020-11-01 |
+| Sheridan                            | Kansas         |       2521 |             15 | 2020-10-27 |
+| Sheridan                            | Kansas         |       2521 |             15 | 2020-10-18 |
+| Hopewell                            | Virginia       |      22529 |            134 | 2021-01-17 |
+| Logan                               | North Dakota   |       1850 |             11 | 2020-09-26 |
+| Anderson                            | Texas          |      57735 |            343 | 2020-11-01 |
+| Wallace                             | Kansas         |       1518 |              9 | 2020-11-13 |
+| Stonewall                           | Texas          |       1350 |              8 | 2020-12-29 |
+| Hartley                             | Texas          |       5576 |             33 | 2021-01-28 |
+| Loving                              | Texas          |        169 |              1 | 2020-11-01 |
+| Loving                              | Texas          |        169 |              1 | 2020-11-17 |
+| Daniels                             | Montana        |       1690 |             10 | 2020-12-01 |
+| Woods                               | Oklahoma       |       8793 |             52 | 2020-09-18 |
+| Woods                               | Oklahoma       |       8793 |             52 | 2020-11-08 |
+| Zavala                              | Texas          |      11840 |             70 | 2020-12-02 |
+| Lincoln                             | Arkansas       |      13024 |             77 | 2020-04-24 |
+| Nelson                              | North Dakota   |       2879 |             17 | 2020-10-06 |
+| Rooks                               | Kansas         |       4920 |             29 | 2020-12-16 |
+| Pratt                               | Kansas         |       9164 |             54 | 2020-11-04 |
+| Comanche                            | Kansas         |       1700 |             10 | 2020-12-18 |
+| Nobles                              | Minnesota      |      21629 |            127 | 2020-04-30 |
+| Graham                              | Arizona        |      38837 |            228 | 2021-01-21 |
+| San Miguel                          | Colorado       |       8179 |             48 | 2021-01-21 |
+| Chattahoochee                       | Georgia        |      10907 |             64 | 2021-01-30 |
+| Hooker                              | Nebraska       |        682 |              4 | 2020-09-28 |
+| Nemaha                              | Kansas         |      10231 |             60 | 2020-11-05 |
+| Lane                                | Kansas         |       1535 |              9 | 2020-12-28 |
+| Emmons                              | North Dakota   |       3241 |             19 | 2020-09-27 |
+| Morgan                              | Kentucky       |      13309 |             78 | 2021-01-29 |
+| Humboldt                            | Iowa           |       9558 |             56 | 2020-11-24 |
+| Wheeler                             | Georgia        |       7855 |             46 | 2020-11-03 |
+| Bowie                               | Texas          |      93245 |            546 | 2021-01-27 |
+| Brown                               | Kansas         |       9564 |             56 | 2020-11-16 |
+| Roberts                             | Texas          |        854 |              5 | 2020-12-30 |
+| Osborne                             | Kansas         |       3421 |             20 | 2021-01-06 |
+| Comal                               | Texas          |     156209 |            912 | 2020-11-01 |
+| Haskell                             | Texas          |       5658 |             33 | 2020-12-17 |
+| Carson City                         | Nevada         |      55916 |            326 | 2020-12-09 |
+| East Carroll                        | Louisiana      |       6861 |             40 | 2020-06-26 |
+| Griggs                              | North Dakota   |       2231 |             13 | 2020-10-31 |
+| Griggs                              | North Dakota   |       2231 |             13 | 2020-11-22 |
+| Randolph                            | West Virginia  |      28695 |            167 | 2021-01-15 |
+| Ness                                | Kansas         |       2750 |             16 | 2020-11-25 |
+| Ness                                | Kansas         |       2750 |             16 | 2020-09-11 |
+| Huron                               | Ohio           |      58266 |            339 | 2020-12-08 |
+| Thurston                            | Nebraska       |       7224 |             42 | 2020-07-02 |
+| Lee                                 | Kentucky       |       7403 |             43 | 2020-11-17 |
+| Scurry                              | Texas          |      16703 |             97 | 2020-10-01 |
+| Lawrence                            | Illinois       |      15678 |             91 | 2020-12-25 |
+| Providence                          | Rhode Island   |     638931 |           3704 | 2020-11-18 |
+| Donley                              | Texas          |       3278 |             19 | 2021-01-28 |
+| Hitchcock                           | Nebraska       |       2762 |             16 | 2021-01-21 |
+| Hitchcock                           | Nebraska       |       2762 |             16 | 2021-02-03 |
+| Hitchcock                           | Nebraska       |       2762 |             16 | 2021-01-30 |
+| Gulf                                | Florida        |      13639 |             79 | 2020-08-07 |
+| Newport                             | Rhode Island   |      82082 |            474 | 2021-01-06 |
+| Crockett                            | Texas          |       3464 |             20 | 2021-02-03 |
+| Bee                                 | Texas          |      32565 |            188 | 2020-08-08 |
+| Pleasants                           | West Virginia  |       7460 |             43 | 2020-12-19 |
+| Turner                              | Georgia        |       7985 |             46 | 2020-11-03 |
+| Hemphill                            | Texas          |       3819 |             22 | 2021-01-09 |
+| Terry                               | Texas          |      12337 |             71 | 2020-12-19 |
+| Coffee                              | Georgia        |      43273 |            249 | 2020-11-03 |
+| Noble                               | Oklahoma       |      11131 |             64 | 2020-11-23 |
+| Waseca                              | Minnesota      |      18612 |            107 | 2020-09-20 |
+| Wilson                              | Kansas         |       8525 |             49 | 2020-12-21 |
+| Treasure                            | Montana        |        696 |              4 | 2021-01-07 |
+| Treasure                            | Montana        |        696 |              4 | 2020-10-26 |
+| Decatur                             | Tennessee      |      11663 |             67 | 2020-12-20 |
+| Petersburg                          | Virginia       |      31346 |            180 | 2021-01-17 |
+| Sheridan                            | Montana        |       3309 |             19 | 2020-11-26 |
+| Hansford                            | Texas          |       5399 |             31 | 2020-12-23 |
+| Lincoln                             | Kansas         |       2962 |             17 | 2020-12-11 |
+| Lincoln                             | Kansas         |       2962 |             17 | 2020-12-28 |
+| Dawson                              | Texas          |      12728 |             73 | 2021-01-07 |
++-------------------------------------+----------------+------------+----------------+------------+
+1000 rows in set, 41202 warnings (2.90 sec)
+
+mysql> select c.county, c.state, c.population, d.death_count, d.report_date
+    -> from county c
+    -> join deaths d on c.state = d.state and c.county = d.county
+    -> order by (d.death_count/ c.population)*1000 desc
+    -> limit 1000;
++---------------+----------------+------------+-------------+-------------+
+| county        | state          | population | death_count | report_date |
++---------------+----------------+------------+-------------+-------------+
+| Edwards       | Kansas         |       2798 |           8 | 2020-12-16  |
+| Sheridan      | Kansas         |       2521 |           7 | 2020-12-16  |
+| Gove          | Kansas         |       2636 |           7 | 2020-10-16  |
+| Kenedy        | Texas          |        404 |           1 | 2020-07-29  |
+| Kenedy        | Texas          |        404 |           1 | 2020-09-22  |
+| Golden Valley | Montana        |        821 |           2 | 2021-01-23  |
+| Hodgeman      | Kansas         |       1794 |           4 | 2020-11-30  |
+| Wayne         | Iowa           |       6441 |          14 | 2020-12-11  |
+| Decatur       | Kansas         |       2827 |           6 | 2020-12-24  |
+| Petroleum     | Montana        |        487 |           1 | 2020-11-28  |
+| McPherson     | Nebraska       |        494 |           1 | 2021-01-12  |
+| Jerauld       | South Dakota   |       2013 |           4 | 2020-10-24  |
+| Lane          | Kansas         |       1535 |           3 | 2020-12-08  |
+| Bath          | Virginia       |       4147 |           8 | 2021-01-31  |
+| Logan         | Kansas         |       2794 |           5 | 2020-12-16  |
+| Powder River  | Montana        |       1682 |           3 | 2020-10-17  |
+| Comanche      | Kansas         |       1700 |           3 | 2020-12-28  |
+| Marshall      | Kansas         |       9707 |          17 | 2020-12-11  |
+| Foard         | Texas          |       1155 |           2 | 2020-11-26  |
+| Perkins       | Nebraska       |       2891 |           5 | 2020-08-06  |
+| Yakutat       | Alaska         |        579 |           1 | 2020-12-09  |
+| Norton        | Kansas         |       5361 |           9 | 2020-10-21  |
+| Rush          | Kansas         |       3036 |           5 | 2020-12-16  |
+| Grant         | Nebraska       |        623 |           1 | 2020-12-23  |
+| Grant         | Nebraska       |        623 |           1 | 2020-12-01  |
+| Grant         | Nebraska       |        623 |           1 | 2021-01-11  |
+| Grant         | Nebraska       |        623 |           1 | 2020-11-12  |
+| Carter        | Montana        |       1252 |           2 | 2020-10-30  |
+| Foster        | North Dakota   |       3210 |           5 | 2020-11-24  |
+| Sterling      | Texas          |       1291 |           2 | 2021-01-08  |
+| Borden        | Texas          |        654 |           1 | 2021-02-03  |
+| Appanoose     | Iowa           |      12426 |          19 | 2020-12-11  |
+| Gove          | Kansas         |       2636 |           4 | 2020-11-02  |
+| Clark         | Kansas         |       1994 |           3 | 2020-10-22  |
+| Stanton       | Kansas         |       2006 |           3 | 2020-12-18  |
+| Hooker        | Nebraska       |        682 |           1 | 2020-09-29  |
+| Hooker        | Nebraska       |        682 |           1 | 2021-01-01  |
+| Ness          | Kansas         |       2750 |           4 | 2020-09-15  |
+| Campbell      | South Dakota   |       1376 |           2 | 2020-12-19  |
+| Treasure      | Montana        |        696 |           1 | 2020-10-24  |
+| Ottawa        | Kansas         |       5704 |           8 | 2020-12-16  |
+| Thomas        | Nebraska       |        722 |           1 | 2021-01-26  |
+| Towner        | North Dakota   |       2189 |           3 | 2020-10-25  |
+| McMullen      | Texas          |        743 |           1 | 2020-09-25  |
+| McMullen      | Texas          |        743 |           1 | 2021-01-23  |
+| McMullen      | Texas          |        743 |           1 | 2021-01-05  |
+| Throckmorton  | Texas          |       1501 |           2 | 2020-08-06  |
+| Menominee     | Wisconsin      |       4556 |           6 | 2020-11-25  |
+| Kent          | Texas          |        762 |           1 | 2020-11-16  |
+| Ellsworth     | Kansas         |       6102 |           8 | 2021-01-13  |
+| Lane          | Kansas         |       1535 |           2 | 2020-12-21  |
+| Mineral       | Colorado       |        769 |           1 | 2020-12-09  |
+| Hamlin        | South Dakota   |       6164 |           8 | 2020-12-03  |
+| Renville      | North Dakota   |       2327 |           3 | 2020-12-04  |
+| Renville      | North Dakota   |       2327 |           3 | 2020-12-01  |
+| Terrell       | Texas          |        776 |           1 | 2021-01-25  |
+| Terrell       | Texas          |        776 |           1 | 2020-11-24  |
+| Dickey        | North Dakota   |       4872 |           6 | 2020-11-10  |
+| Hancock       | Iowa           |      10630 |          13 | 2020-12-11  |
+| Powder River  | Montana        |       1682 |           2 | 2020-10-21  |
+| Rawlins       | Kansas         |       2530 |           3 | 2020-12-28  |
+| Daniels       | Montana        |       1690 |           2 | 2020-10-30  |
+| Dundy         | Nebraska       |       1693 |           2 | 2020-12-01  |
+| Comanche      | Kansas         |       1700 |           2 | 2020-12-18  |
+| Roberts       | Texas          |        854 |           1 | 2020-11-26  |
+| Harrison      | Iowa           |      14049 |          16 | 2020-12-11  |
+| Brown         | Indiana        |      15092 |          17 | 2021-01-07  |
+| Jones         | South Dakota   |        903 |           1 | 2020-12-02  |
+| Ness          | Kansas         |       2750 |           3 | 2020-11-30  |
+| Roosevelt     | Montana        |      11004 |          12 | 2020-10-30  |
+| McCook        | South Dakota   |       5586 |           6 | 2020-11-14  |
+| Trego         | Kansas         |       2803 |           3 | 2020-12-16  |
+| Morris        | Kansas         |       5620 |           6 | 2020-12-17  |
+| Hancock       | Georgia        |       8457 |           9 | 2020-05-20  |
+| Armstrong     | Texas          |       1887 |           2 | 2020-12-03  |
+| Haakon        | South Dakota   |       1899 |           2 | 2020-12-16  |
+| Perkins       | South Dakota   |       2865 |           3 | 2020-12-19  |
+| Wibaux        | Montana        |        969 |           1 | 2020-11-17  |
+| Wibaux        | Montana        |        969 |           1 | 2020-11-28  |
+| Wibaux        | Montana        |        969 |           1 | 2020-12-07  |
+| Wibaux        | Montana        |        969 |           1 | 2021-01-09  |
+| Wibaux        | Montana        |        969 |           1 | 2020-11-11  |
+| Wibaux        | Montana        |        969 |           1 | 2020-11-22  |
+| Buffalo       | South Dakota   |       1962 |           2 | 2020-11-28  |
+| Garfield      | Nebraska       |       1969 |           2 | 2020-11-26  |
+| Haskell       | Kansas         |       3968 |           4 | 2021-01-13  |
+| Pierce        | North Dakota   |       3975 |           4 | 2020-12-09  |
+| Pierce        | North Dakota   |       3975 |           4 | 2020-12-11  |
+| Gosper        | Nebraska       |       1990 |           2 | 2020-12-28  |
+| Jerauld       | South Dakota   |       2013 |           2 | 2020-10-03  |
+| Jerauld       | South Dakota   |       2013 |           2 | 2020-10-15  |
+| Jerauld       | South Dakota   |       2013 |           2 | 2020-12-09  |
+| Rush          | Kansas         |       3036 |           3 | 2020-12-28  |
+| Union         | Georgia        |      24511 |          24 | 2020-11-05  |
+| Union         | Georgia        |      24511 |          24 | 2020-11-09  |
+| Nemaha        | Kansas         |      10231 |          10 | 2020-12-08  |
+| Robertson     | Kentucky       |       2108 |           2 | 2020-12-17  |
+| Robertson     | Kentucky       |       2108 |           2 | 2021-01-13  |
+| Wichita       | Kansas         |       2119 |           2 | 2020-12-14  |
+| Wheatland     | Montana        |       2126 |           2 | 2020-11-28  |
+| Lyon          | Iowa           |      11755 |          11 | 2020-12-11  |
+| Menard        | Texas          |       2138 |           2 | 2020-11-12  |
+| Prairie       | Montana        |       1077 |           1 | 2020-12-04  |
+| Prairie       | Montana        |       1077 |           1 | 2020-11-30  |
+| Emmons        | North Dakota   |       3241 |           3 | 2020-10-07  |
+| Menifee       | Kentucky       |       6489 |           6 | 2021-01-27  |
+| Gentry        | Missouri       |       6571 |           6 | 2020-06-12  |
+| Dickens       | Texas          |       2211 |           2 | 2020-11-20  |
+| Cherokee      | Kansas         |      19939 |          18 | 2020-12-30  |
+| Garfield      | Washington     |       2225 |           2 | 2020-03-22  |
+| Perry         | Alabama        |       8923 |           8 | 2021-01-07  |
+| Rosebud       | Montana        |       8937 |           8 | 2021-01-27  |
+| Bibb          | Alabama        |      22394 |          20 | 2020-12-02  |
+| Cherokee      | Iowa           |      11235 |          10 | 2020-12-11  |
+| Nemaha        | Kansas         |      10231 |           9 | 2020-11-24  |
+| Nemaha        | Kansas         |      10231 |           9 | 2020-12-01  |
+| Nemaha        | Kansas         |      10231 |           9 | 2020-12-15  |
+| Iron          | Wisconsin      |       5687 |           5 | 2020-12-22  |
+| Kossuth       | Iowa           |      14813 |          13 | 2020-12-11  |
+| Eddy          | North Dakota   |       2287 |           2 | 2020-09-16  |
+| Faulk         | South Dakota   |       2299 |           2 | 2020-11-19  |
+| Faulk         | South Dakota   |       2299 |           2 | 2020-11-11  |
+| Faulk         | South Dakota   |       2299 |           2 | 2020-11-28  |
+| Crockett      | Texas          |       3464 |           3 | 2020-07-25  |
+| Foard         | Texas          |       1155 |           1 | 2021-02-02  |
+| Foard         | Texas          |       1155 |           1 | 2020-10-24  |
+| Foard         | Texas          |       1155 |           1 | 2020-12-04  |
+| Foard         | Texas          |       1155 |           1 | 2021-01-27  |
+| Foard         | Texas          |       1155 |           1 | 2021-01-05  |
+| Harrison      | Ohio           |      15040 |          13 | 2021-01-20  |
+| Van Buren     | Iowa           |       7044 |           6 | 2020-12-11  |
+| Pocahontas    | West Virginia  |       8247 |           7 | 2020-12-16  |
+| Motley        | Texas          |       1200 |           1 | 2020-12-04  |
+| Motley        | Texas          |       1200 |           1 | 2020-11-26  |
+| Motley        | Texas          |       1200 |           1 | 2020-12-16  |
+| Motley        | Texas          |       1200 |           1 | 2021-01-19  |
+| Motley        | Texas          |       1200 |           1 | 2020-12-29  |
+| Motley        | Texas          |       1200 |           1 | 2021-01-14  |
+| Motley        | Texas          |       1200 |           1 | 2020-12-31  |
+| Ford          | Kansas         |      33619 |          28 | 2020-12-16  |
+| Scott         | Kansas         |       4823 |           4 | 2020-12-23  |
+| Big Horn      | Montana        |      13319 |          11 | 2021-01-07  |
+| Roosevelt     | Montana        |      11004 |           9 | 2020-12-31  |
+| Taylor        | Iowa           |       6121 |           5 | 2020-12-11  |
+| Greeley       | Kansas         |       1232 |           1 | 2020-12-16  |
+| Hamlin        | South Dakota   |       6164 |           5 | 2020-12-10  |
+| Hamlin        | South Dakota   |       6164 |           5 | 2020-12-02  |
+| Buchanan      | Virginia       |      21004 |          17 | 2020-12-05  |
+| Kiowa         | Kansas         |       2475 |           2 | 2021-01-13  |
+| O'Brien       | Iowa           |      13753 |          11 | 2020-12-11  |
+| Carter        | Montana        |       1252 |           1 | 2020-11-14  |
+| Carter        | Montana        |       1252 |           1 | 2020-12-02  |
+| Carter        | Montana        |       1252 |           1 | 2021-01-09  |
+| Cloud         | Kansas         |       8786 |           7 | 2020-11-30  |
+| Garfield      | Montana        |       1258 |           1 | 2020-11-16  |
+| Garfield      | Montana        |       1258 |           1 | 2020-11-23  |
+| Rawlins       | Kansas         |       2530 |           2 | 2020-11-19  |
+| Galax         | Virginia       |       6347 |           5 | 2020-06-10  |
+| Union         | Florida        |      15237 |          12 | 2020-10-22  |
+| Edmunds       | South Dakota   |       3829 |           3 | 2021-01-23  |
+| Rosebud       | Montana        |       8937 |           7 | 2020-09-19  |
+| Kearny        | Kansas         |       3838 |           3 | 2020-10-23  |
+| Monroe        | Iowa           |       7707 |           6 | 2021-01-31  |
+| Sterling      | Texas          |       1291 |           1 | 2020-11-12  |
+| Sterling      | Texas          |       1291 |           1 | 2021-01-07  |
+| Morton        | Kansas         |       2587 |           2 | 2020-12-14  |
+| Morton        | Kansas         |       2587 |           2 | 2020-11-26  |
+| Tama          | Iowa           |      16854 |          13 | 2020-12-11  |
+| Harding       | South Dakota   |       1298 |           1 | 2020-12-23  |
+| Washakie      | Wyoming        |       7805 |           6 | 2020-09-02  |
+| Hyde          | South Dakota   |       1301 |           1 | 2020-12-26  |
+| Richardson    | Nebraska       |       7865 |           6 | 2020-12-09  |
+| Hardeman      | Texas          |       3933 |           3 | 2021-01-27  |
+| Sheridan      | North Dakota   |       1315 |           1 | 2020-12-09  |
+| Sheridan      | North Dakota   |       1315 |           1 | 2020-10-07  |
+| Gove          | Kansas         |       2636 |           2 | 2020-10-28  |
+| Gove          | Kansas         |       2636 |           2 | 2020-10-07  |
+| Gove          | Kansas         |       2636 |           2 | 2020-11-04  |
+| Gove          | Kansas         |       2636 |           2 | 2021-01-04  |
+| Mitchell      | Iowa           |      10586 |           8 | 2020-12-11  |
+| Pocahontas    | Iowa           |       6619 |           5 | 2021-01-31  |
+| Issaquena     | Mississippi    |       1327 |           1 | 2021-01-05  |
+| Issaquena     | Mississippi    |       1327 |           1 | 2020-08-26  |
+| Issaquena     | Mississippi    |       1327 |           1 | 2021-01-09  |
+| Issaquena     | Mississippi    |       1327 |           1 | 2020-10-21  |
+| Issaquena     | Mississippi    |       1327 |           1 | 2020-06-27  |
+| Issaquena     | Mississippi    |       1327 |           1 | 2020-08-10  |
+| Cheyenne      | Kansas         |       2657 |           2 | 2020-09-25  |
+| Cheyenne      | Kansas         |       2657 |           2 | 2020-10-14  |
+| Wheeler       | Oregon         |       1332 |           1 | 2020-12-30  |
+| Stark         | Illinois       |       5342 |           4 | 2020-12-28  |
+| Blaine        | Montana        |       6681 |           5 | 2020-11-14  |
+| Emporia       | Virginia       |       5346 |           4 | 2020-06-27  |
+| Norton        | Kansas         |       5361 |           4 | 2020-10-26  |
+| LaMoure       | North Dakota   |       4046 |           3 | 2020-10-28  |
+| LaMoure       | North Dakota   |       4046 |           3 | 2020-10-31  |
+| LaMoure       | North Dakota   |       4046 |           3 | 2020-10-14  |
+| Clayton       | Iowa           |      17549 |          13 | 2020-12-11  |
+| Stonewall     | Texas          |       1350 |           1 | 2021-01-21  |
+| Stonewall     | Texas          |       1350 |           1 | 2020-08-21  |
+| Stonewall     | Texas          |       1350 |           1 | 2021-02-02  |
+| Stonewall     | Texas          |       1350 |           1 | 2020-11-25  |
+| Stonewall     | Texas          |       1350 |           1 | 2020-12-10  |
+| Stonewall     | Texas          |       1350 |           1 | 2021-01-19  |
+| Randolph      | Georgia        |       6778 |           5 | 2020-04-17  |
+| Rock          | Nebraska       |       1357 |           1 | 2020-11-20  |
+| Rock          | Nebraska       |       1357 |           1 | 2020-09-21  |
+| Harper        | Kansas         |       5436 |           4 | 2020-11-30  |
+| Corson        | South Dakota   |       4086 |           3 | 2020-12-24  |
+| Brown         | Kansas         |       9564 |           7 | 2021-01-04  |
+| Baraga        | Michigan       |       8209 |           6 | 2020-12-01  |
+| Barbour       | Alabama        |      24686 |          18 | 2020-12-02  |
+| Aurora        | South Dakota   |       2751 |           2 | 2021-01-27  |
+| Aurora        | South Dakota   |       2751 |           2 | 2020-11-28  |
+| Aurora        | South Dakota   |       2751 |           2 | 2020-12-06  |
+| Aurora        | South Dakota   |       2751 |           2 | 2021-01-07  |
+| Aurora        | South Dakota   |       2751 |           2 | 2021-01-29  |
+| Campbell      | South Dakota   |       1376 |           1 | 2020-10-28  |
+| Campbell      | South Dakota   |       1376 |           1 | 2020-12-24  |
+| Bon Homme     | South Dakota   |       6901 |           5 | 2020-12-02  |
+| Wabaunsee     | Kansas         |       6931 |           5 | 2020-12-18  |
+| Sully         | South Dakota   |       1391 |           1 | 2020-11-22  |
+| Sully         | South Dakota   |       1391 |           1 | 2020-11-19  |
+| Sully         | South Dakota   |       1391 |           1 | 2020-11-15  |
+| Pulaski       | Georgia        |      11137 |           8 | 2020-09-23  |
+| Bremer        | Iowa           |      25062 |          18 | 2020-12-11  |
+| Nemaha        | Nebraska       |       6972 |           5 | 2020-12-12  |
+| Gregory       | South Dakota   |       4185 |           3 | 2020-10-08  |
+| McCook        | South Dakota   |       5586 |           4 | 2020-11-27  |
+| Cottle        | Texas          |       1398 |           1 | 2021-01-16  |
+| Cottle        | Texas          |       1398 |           1 | 2020-09-24  |
+| Cottle        | Texas          |       1398 |           1 | 2020-07-27  |
+| Cottle        | Texas          |       1398 |           1 | 2020-11-11  |
+| Cottle        | Texas          |       1398 |           1 | 2020-05-09  |
+| Cottle        | Texas          |       1398 |           1 | 2021-01-07  |
+| Cottle        | Texas          |       1398 |           1 | 2020-12-09  |
+| Morris        | Kansas         |       5620 |           4 | 2021-01-15  |
+| Morris        | Kansas         |       5620 |           4 | 2020-12-30  |
+| Kiowa         | Colorado       |       1406 |           1 | 2020-12-15  |
+| Kiowa         | Colorado       |       1406 |           1 | 2020-12-20  |
+| Kiowa         | Colorado       |       1406 |           1 | 2021-01-23  |
+| Glasscock     | Texas          |       1409 |           1 | 2020-12-03  |
+| Glasscock     | Texas          |       1409 |           1 | 2021-01-27  |
+| Grant         | South Dakota   |       7052 |           5 | 2020-11-25  |
+| Grant         | South Dakota   |       7052 |           5 | 2020-12-30  |
+| Iron          | Wisconsin      |       5687 |           4 | 2020-12-30  |
+| Terrell       | Georgia        |       8531 |           6 | 2020-04-07  |
+| Cass          | Iowa           |      12836 |           9 | 2020-12-11  |
+| Cochran       | Texas          |       2853 |           2 | 2020-12-30  |
+| Pierce        | Nebraska       |       7148 |           5 | 2020-12-10  |
+| Adair         | Iowa           |       7152 |           5 | 2020-12-11  |
+| Perkins       | South Dakota   |       2865 |           2 | 2020-12-24  |
+| Perkins       | South Dakota   |       2865 |           2 | 2020-12-18  |
+| Perkins       | South Dakota   |       2865 |           2 | 2020-11-21  |
+| Kittson       | Minnesota      |       4298 |           3 | 2020-12-08  |
+| Nelson        | North Dakota   |       2879 |           2 | 2020-10-12  |
+| Perkins       | Nebraska       |       2891 |           2 | 2020-09-08  |
+| Silver Bow    | Montana        |      34915 |          24 | 2021-01-05  |
+| Collingsworth | Texas          |       2920 |           2 | 2021-01-13  |
+| Sherman       | Kansas         |       5917 |           4 | 2020-10-27  |
+| Hall          | Texas          |       2964 |           2 | 2020-12-29  |
+| Hall          | Texas          |       2964 |           2 | 2020-12-31  |
+| Mitchell      | Kansas         |       5979 |           4 | 2021-01-27  |
+| Greenwood     | Kansas         |       5982 |           4 | 2020-12-24  |
+| Throckmorton  | Texas          |       1501 |           1 | 2020-12-20  |
+| Throckmorton  | Texas          |       1501 |           1 | 2021-01-27  |
+| Throckmorton  | Texas          |       1501 |           1 | 2021-01-26  |
+| Sherman       | Texas          |       3022 |           2 | 2021-01-08  |
+| Sherman       | Texas          |       3022 |           2 | 2020-12-30  |
+| Cowley        | Kansas         |      34908 |          23 | 2020-12-16  |
+| Wallace       | Kansas         |       1518 |           1 | 2021-01-13  |
+| Wallace       | Kansas         |       1518 |           1 | 2020-12-30  |
+| Wallace       | Kansas         |       1518 |           1 | 2021-01-27  |
+| Wallace       | Kansas         |       1518 |           1 | 2020-12-16  |
+| Ellsworth     | Kansas         |       6102 |           4 | 2020-12-21  |
+| Howard        | Iowa           |       9158 |           6 | 2020-12-11  |
+| Guthrie       | Iowa           |      10689 |           7 | 2020-12-11  |
+| Lane          | Kansas         |       1535 |           1 | 2021-01-05  |
+| Lane          | Kansas         |       1535 |           1 | 2021-01-13  |
+| Irion         | Texas          |       1536 |           1 | 2021-01-07  |
+| Briscoe       | Texas          |       1546 |           1 | 2020-12-11  |
+| Briscoe       | Texas          |       1546 |           1 | 2021-01-28  |
+| Briscoe       | Texas          |       1546 |           1 | 2021-01-07  |
+| Briscoe       | Texas          |       1546 |           1 | 2020-07-10  |
+| Morrill       | Nebraska       |       4642 |           3 | 2020-11-20  |
+| Dallas        | Alabama        |      37196 |          24 | 2021-01-12  |
+| Clay          | Nebraska       |       6203 |           4 | 2020-12-22  |
+| Thomas        | Kansas         |       7777 |           5 | 2021-01-13  |
+| Woodson       | Kansas         |       3138 |           2 | 2020-12-16  |
+| Bottineau     | North Dakota   |       6282 |           4 | 2020-10-07  |
+| Bottineau     | North Dakota   |       6282 |           4 | 2020-10-13  |
+| Anderson      | Kansas         |       7858 |           5 | 2021-01-13  |
+| Bronx         | New York       |    1418207 |         891 | 2020-05-18  |
+| Humboldt      | Iowa           |       9558 |           6 | 2020-12-11  |
+| Crane         | Texas          |       4797 |           3 | 2020-06-02  |
+| Clay          | Kansas         |       8002 |           5 | 2020-11-09  |
+| Pawnee        | Kansas         |       6414 |           4 | 2020-12-16  |
+| Foster        | North Dakota   |       3210 |           2 | 2020-11-27  |
+| Scott         | Kansas         |       4823 |           3 | 2020-12-28  |
+| Howard        | Nebraska       |       6445 |           4 | 2020-06-04  |
+| Lipscomb      | Texas          |       3233 |           2 | 2020-12-08  |
+| Emmons        | North Dakota   |       3241 |           2 | 2020-10-12  |
+| Dickey        | North Dakota   |       4872 |           3 | 2020-11-24  |
+| Chautauqua    | Kansas         |       3250 |           2 | 2020-12-11  |
+| Ringgold      | Iowa           |       4894 |           3 | 2020-12-11  |
+| Gasconade     | Missouri       |      14706 |           9 | 2020-09-17  |
+| Rooks         | Kansas         |       4920 |           3 | 2020-10-05  |
+| Rooks         | Kansas         |       4920 |           3 | 2020-09-28  |
+| Moody         | South Dakota   |       6576 |           4 | 2020-11-20  |
+| Hyde          | North Carolina |       4937 |           3 | 2020-09-04  |
+| Kings         | New York       |    2559903 |        1553 | 2020-05-18  |
+| Clay          | Alabama        |      13235 |           8 | 2020-11-19  |
+| Sheridan      | Montana        |       3309 |           2 | 2020-11-21  |
+| Dakota        | Nebraska       |      20026 |          12 | 2020-05-20  |
+| Blaine        | Montana        |       6681 |           4 | 2020-10-28  |
+| Jackson       | South Dakota   |       3344 |           2 | 2020-10-31  |
+| Jackson       | South Dakota   |       3344 |           2 | 2021-01-07  |
+| Jackson       | South Dakota   |       3344 |           2 | 2020-11-28  |
+| Turner        | South Dakota   |       8384 |           5 | 2020-11-06  |
+| Turner        | South Dakota   |       8384 |           5 | 2020-10-29  |
+| McPherson     | Kansas         |      28542 |          17 | 2021-01-13  |
+| Pershing      | Nevada         |       6725 |           4 | 2020-12-23  |
+| Powder River  | Montana        |       1682 |           1 | 2021-01-23  |
+| Bennett       | South Dakota   |       3365 |           2 | 2020-12-18  |
+| Bennett       | South Dakota   |       3365 |           2 | 2020-10-01  |
+| Bullock       | Alabama        |      10101 |           6 | 2021-01-08  |
+| Daniels       | Montana        |       1690 |           1 | 2021-01-27  |
+| Daniels       | Montana        |       1690 |           1 | 2020-11-14  |
+| Daniels       | Montana        |       1690 |           1 | 2020-10-21  |
+| Daniels       | Montana        |       1690 |           1 | 2020-11-25  |
+| Daniels       | Montana        |       1690 |           1 | 2020-12-09  |
+| Val Verde     | Texas          |      49025 |          29 | 2020-08-20  |
+| Dundy         | Nebraska       |       1693 |           1 | 2020-11-04  |
+| Dundy         | Nebraska       |       1693 |           1 | 2020-09-09  |
+| Randolph      | Georgia        |       6778 |           4 | 2020-04-07  |
+| Early         | Georgia        |      10190 |           6 | 2020-04-29  |
+| Comanche      | Kansas         |       1700 |           1 | 2020-12-04  |
+| Comanche      | Kansas         |       1700 |           1 | 2020-12-11  |
+| Comanche      | Kansas         |       1700 |           1 | 2021-01-04  |
+| Keokuk        | Iowa           |      10246 |           6 | 2020-12-11  |
+| Russell       | Kansas         |       6856 |           4 | 2020-11-20  |
+| Ida           | Iowa           |       6860 |           4 | 2020-12-29  |
+| Glacier       | Montana        |      13753 |           8 | 2020-10-21  |
+| Huerfano      | Colorado       |       6897 |           4 | 2020-12-09  |
+| Wilcox        | Alabama        |      10373 |           6 | 2020-11-17  |
+| Crockett      | Texas          |       3464 |           2 | 2021-01-08  |
+| Carroll       | Missouri       |       8679 |           5 | 2020-12-23  |
+| Ransom        | North Dakota   |       5218 |           3 | 2020-11-21  |
+| Webster       | Nebraska       |       3487 |           2 | 2020-11-06  |
+| Little River  | Arkansas       |      12259 |           7 | 2020-08-21  |
+| Nance         | Nebraska       |       3519 |           2 | 2020-12-06  |
+| Nance         | Nebraska       |       3519 |           2 | 2020-12-31  |
+| Golden Valley | North Dakota   |       1761 |           1 | 2021-01-15  |
+| Golden Valley | North Dakota   |       1761 |           1 | 2021-01-26  |
+| Golden Valley | North Dakota   |       1761 |           1 | 2021-01-21  |
+| Crittenden    | Kentucky       |       8806 |           5 | 2021-01-25  |
+| Brooks        | Texas          |       7093 |           4 | 2020-08-22  |
+| Willacy       | Texas          |      21358 |          12 | 2020-07-27  |
+| Stark         | Illinois       |       5342 |           3 | 2020-12-15  |
+| Emporia       | Virginia       |       5346 |           3 | 2020-09-15  |
+| Norton        | Kansas         |       5361 |           3 | 2020-10-30  |
+| Hodgeman      | Kansas         |       1794 |           1 | 2021-02-03  |
+| Hodgeman      | Kansas         |       1794 |           1 | 2021-01-01  |
+| Washington    | Kansas         |       5406 |           3 | 2020-11-13  |
+| Grimes        | Texas          |      28880 |          16 | 2020-07-27  |
+| Walworth      | South Dakota   |       5435 |           3 | 2020-10-30  |
+| Harper        | Kansas         |       5436 |           3 | 2020-11-20  |
+| Harper        | Kansas         |       5436 |           3 | 2021-01-05  |
+| Tripp         | South Dakota   |       5441 |           3 | 2020-12-04  |
+| Henry         | Iowa           |      19954 |          11 | 2020-12-11  |
+| Val Verde     | Texas          |      49025 |          27 | 2020-08-01  |
+| Huron         | Ohio           |      58266 |          32 | 2021-02-02  |
+| Cheyenne      | Colorado       |       1831 |           1 | 2020-12-03  |
+| Cheyenne      | Colorado       |       1831 |           1 | 2020-12-09  |
+| Cheyenne      | Colorado       |       1831 |           1 | 2020-12-25  |
+| Cheyenne      | Colorado       |       1831 |           1 | 2020-12-30  |
+| Cheyenne      | Colorado       |       1831 |           1 | 2020-12-05  |
+| Knox          | Texas          |       3664 |           2 | 2020-08-22  |
+| Audubon       | Iowa           |       5496 |           3 | 2020-12-11  |
+| Knox          | Texas          |       3664 |           2 | 2020-08-14  |
+| Garden        | Nebraska       |       1837 |           1 | 2021-01-01  |
+| Barton        | Kansas         |      25779 |          14 | 2021-01-01  |
+| Lander        | Nevada         |       5532 |           3 | 2021-01-04  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-10-29  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-11-04  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-10-30  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-11-17  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-12-30  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-11-24  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-12-16  |
+| Logan         | North Dakota   |       1850 |           1 | 2020-10-28  |
+| Bent          | Colorado       |       5577 |           3 | 2020-12-17  |
+| Bent          | Colorado       |       5577 |           3 | 2020-12-18  |
+| Bent          | Colorado       |       5577 |           3 | 2021-01-06  |
+| Lexington     | Virginia       |       7446 |           4 | 2021-01-14  |
+| Meagher       | Montana        |       1862 |           1 | 2020-11-14  |
+| Meagher       | Montana        |       1862 |           1 | 2020-10-22  |
+| Meagher       | Montana        |       1862 |           1 | 2020-11-02  |
+| Meagher       | Montana        |       1862 |           1 | 2020-10-26  |
+| Meagher       | Montana        |       1862 |           1 | 2020-09-21  |
+| Meagher       | Montana        |       1862 |           1 | 2020-09-09  |
+| Meagher       | Montana        |       1862 |           1 | 2020-11-10  |
+| Hamilton      | Nebraska       |       9324 |           5 | 2020-04-30  |
+| Morris        | Kansas         |       5620 |           3 | 2020-12-21  |
+| Scotts Bluff  | Nebraska       |      35618 |          19 | 2021-01-10  |
+| Queens        | New York       |    2253858 |        1200 | 2020-05-18  |
+| Jones         | Iowa           |      20681 |          11 | 2020-12-11  |
+| La Salle      | Texas          |       7520 |           4 | 2020-09-06  |
+| Rockbridge    | Virginia       |      22573 |          12 | 2021-01-17  |
+| Haskell       | Texas          |       5658 |           3 | 2021-01-19  |
+| Armstrong     | Texas          |       1887 |           1 | 2021-01-13  |
+| Armstrong     | Texas          |       1887 |           1 | 2020-12-12  |
+| Armstrong     | Texas          |       1887 |           1 | 2020-09-11  |
+| Armstrong     | Texas          |       1887 |           1 | 2020-12-18  |
+| Cotton        | Oklahoma       |       5666 |           3 | 2020-12-10  |
+| Steele        | North Dakota   |       1890 |           1 | 2020-11-01  |
+| Steele        | North Dakota   |       1890 |           1 | 2020-12-22  |
+| Clay          | Alabama        |      13235 |           7 | 2021-01-13  |
+| Iron          | Wisconsin      |       5687 |           3 | 2020-12-27  |
+| Haakon        | South Dakota   |       1899 |           1 | 2020-10-31  |
+| Haakon        | South Dakota   |       1899 |           1 | 2020-11-11  |
+| Haakon        | South Dakota   |       1899 |           1 | 2021-01-02  |
+| Haakon        | South Dakota   |       1899 |           1 | 2020-12-23  |
+| Haakon        | South Dakota   |       1899 |           1 | 2020-12-21  |
+| Haakon        | South Dakota   |       1899 |           1 | 2021-01-08  |
+| Haakon        | South Dakota   |       1899 |           1 | 2020-10-01  |
+| Floyd         | Texas          |       5712 |           3 | 2020-11-20  |
+| Gilliam       | Oregon         |       1912 |           1 | 2020-12-07  |
+| Crosby        | Texas          |       5737 |           3 | 2020-11-10  |
+| McHenry       | North Dakota   |       5745 |           3 | 2020-10-07  |
+| Kearny        | Kansas         |       3838 |           2 | 2020-11-09  |
+| Boyd          | Nebraska       |       1919 |           1 | 2020-11-06  |
+| Boyd          | Nebraska       |       1919 |           1 | 2020-12-28  |
+| Boyd          | Nebraska       |       1919 |           1 | 2020-11-10  |
+| Reagan        | Texas          |       3849 |           2 | 2020-07-25  |
+| Edwards       | Texas          |       1932 |           1 | 2020-09-30  |
+| Edwards       | Texas          |       1932 |           1 | 2021-01-08  |
+| Edwards       | Texas          |       1932 |           1 | 2020-08-26  |
+| Edwards       | Texas          |       1932 |           1 | 2021-01-27  |
+| Newton        | Arkansas       |       7753 |           4 | 2020-08-11  |
+| Berrien       | Georgia        |      19397 |          10 | 2020-11-03  |
+| Thomas        | Kansas         |       7777 |           4 | 2021-01-05  |
+| Thomas        | Kansas         |       7777 |           4 | 2020-11-21  |
+| Washakie      | Wyoming        |       7805 |           4 | 2020-12-28  |
+| Dallas        | Alabama        |      37196 |          19 | 2021-01-14  |
+| Oliver        | North Dakota   |       1959 |           1 | 2020-10-21  |
+| Oliver        | North Dakota   |       1959 |           1 | 2020-10-29  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2021-01-28  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2021-01-15  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-07-01  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-07-02  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2021-01-17  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-11-06  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-12-03  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-06-25  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-12-05  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-11-20  |
+| Buffalo       | South Dakota   |       1962 |           1 | 2020-10-21  |
+| Jackson       | Tennessee      |      11786 |           6 | 2020-12-09  |
+| Chippewa      | Minnesota      |      11800 |           6 | 2020-12-30  |
+| Hardeman      | Texas          |       3933 |           2 | 2020-10-27  |
+| Garfield      | Nebraska       |       1969 |           1 | 2020-11-23  |
+| Garfield      | Nebraska       |       1969 |           1 | 2020-12-01  |
+| Searcy        | Arkansas       |       7881 |           4 | 2020-12-12  |
+| Phillips      | Montana        |       3954 |           2 | 2020-11-06  |
+| Montgomery    | Iowa           |       9917 |           5 | 2021-01-08  |
+| Osceola       | Iowa           |       5958 |           3 | 2020-12-11  |
+| Pierce        | North Dakota   |       3975 |           2 | 2020-12-10  |
+| Pierce        | North Dakota   |       3975 |           2 | 2020-12-07  |
+| Pierce        | North Dakota   |       3975 |           2 | 2020-11-21  |
+| Pierce        | North Dakota   |       3975 |           2 | 2021-01-23  |
+| Gosper        | Nebraska       |       1990 |           1 | 2020-11-17  |
+| Gosper        | Nebraska       |       1990 |           1 | 2021-01-06  |
+| Mitchell      | Kansas         |       5979 |           3 | 2021-01-13  |
+| Clark         | Kansas         |       1994 |           1 | 2020-12-02  |
+| Clark         | Kansas         |       1994 |           1 | 2020-05-08  |
+| Clark         | Kansas         |       1994 |           1 | 2021-01-25  |
+| Gray          | Kansas         |       5988 |           3 | 2020-12-18  |
+| Gray          | Kansas         |       5988 |           3 | 2021-01-13  |
+| Stanton       | Kansas         |       2006 |           1 | 2021-01-15  |
+| Stanton       | Kansas         |       2006 |           1 | 2020-07-29  |
+| Stanton       | Kansas         |       2006 |           1 | 2020-08-29  |
+| Putnam        | New York       |      98320 |          49 | 2020-05-15  |
+| Judith Basin  | Montana        |       2007 |           1 | 2021-01-23  |
+| Tyrrell       | North Carolina |       4016 |           2 | 2021-01-19  |
+| Jerauld       | South Dakota   |       2013 |           1 | 2020-10-25  |
+| Jerauld       | South Dakota   |       2013 |           1 | 2020-11-01  |
+| Jerauld       | South Dakota   |       2013 |           1 | 2020-10-08  |
+| Jerauld       | South Dakota   |       2013 |           1 | 2020-04-24  |
+| Worth         | Missouri       |       2013 |           1 | 2020-12-19  |
+| Jerauld       | South Dakota   |       2013 |           1 | 2021-01-09  |
+| Jerauld       | South Dakota   |       2013 |           1 | 2020-10-23  |
+| Meade         | Kansas         |       4033 |           2 | 2020-12-08  |
+| Meade         | Kansas         |       4033 |           2 | 2021-01-05  |
+| LaMoure       | North Dakota   |       4046 |           2 | 2020-10-22  |
+| Union         | New Mexico     |       4059 |           2 | 2020-08-05  |
+| Union         | New Mexico     |       4059 |           2 | 2020-11-24  |
+| Union         | New Mexico     |       4059 |           2 | 2020-12-09  |
+| Ellis         | Kansas         |      28553 |          14 | 2021-01-01  |
+| Little River  | Arkansas       |      12259 |           6 | 2020-10-17  |
+| Walker        | Alabama        |      63521 |          31 | 2021-01-07  |
+| Houston       | Tennessee      |       8201 |           4 | 2020-10-05  |
+| Baraga        | Michigan       |       8209 |           4 | 2020-11-25  |
+| Oscoda        | Michigan       |       8241 |           4 | 2020-12-01  |
+| Mellette      | South Dakota   |       2061 |           1 | 2020-12-18  |
+| Mellette      | South Dakota   |       2061 |           1 | 2020-10-20  |
+| Allen         | Kansas         |      12369 |           6 | 2020-12-16  |
+| Pocahontas    | West Virginia  |       8247 |           4 | 2020-12-24  |
+| Stafford      | Kansas         |       4156 |           2 | 2020-12-07  |
+| Stafford      | Kansas         |       4156 |           2 | 2020-11-30  |
+| Stafford      | Kansas         |       4156 |           2 | 2020-12-18  |
+| Roberts       | South Dakota   |      10394 |           5 | 2020-12-24  |
+| Barnes        | North Dakota   |      10415 |           5 | 2020-11-24  |
+| Gregory       | South Dakota   |       4185 |           2 | 2020-11-19  |
+| Gregory       | South Dakota   |       4185 |           2 | 2020-11-14  |
+| Gregory       | South Dakota   |       4185 |           2 | 2020-11-18  |
+| Gregory       | South Dakota   |       4185 |           2 | 2020-09-25  |
+| Ashe          | North Carolina |      27203 |          13 | 2020-12-16  |
+| Hale          | Alabama        |      14651 |           7 | 2021-01-08  |
+| Bristol       | Virginia       |      16762 |           8 | 2021-01-16  |
+| Turner        | South Dakota   |       8384 |           4 | 2020-11-27  |
+| Antelope      | Nebraska       |       6298 |           3 | 2020-12-02  |
+| Cedar         | Nebraska       |       8402 |           4 | 2020-12-11  |
+| Hardin        | Iowa           |      16846 |           8 | 2020-12-11  |
+| Robertson     | Kentucky       |       2108 |           1 | 2021-01-14  |
+| Robertson     | Kentucky       |       2108 |           1 | 2020-12-01  |
+| Robertson     | Kentucky       |       2108 |           1 | 2021-01-20  |
+| Robertson     | Kentucky       |       2108 |           1 | 2020-10-05  |
+| Robertson     | Kentucky       |       2108 |           1 | 2020-11-15  |
+| Robertson     | Kentucky       |       2108 |           1 | 2021-01-24  |
+| Red River     | Louisiana      |       8442 |           4 | 2021-01-31  |
+| Oldham        | Texas          |       2112 |           1 | 2021-02-02  |
+| Oldham        | Texas          |       2112 |           1 | 2020-03-24  |
+| Oldham        | Texas          |       2112 |           1 | 2020-10-19  |
+| Hancock       | Georgia        |       8457 |           4 | 2020-05-24  |
+| Burke         | North Dakota   |       2115 |           1 | 2020-08-21  |
+| Sioux         | North Dakota   |       4230 |           2 | 2020-12-05  |
+| Keweenaw      | Michigan       |       2116 |           1 | 2020-11-28  |
+| Keweenaw      | Michigan       |       2116 |           1 | 2020-11-05  |
+| Wichita       | Kansas         |       2119 |           1 | 2020-12-18  |
+| Wichita       | Kansas         |       2119 |           1 | 2020-11-23  |
+| Wichita       | Kansas         |       2119 |           1 | 2020-11-13  |
+| Dawson        | Texas          |      12728 |           6 | 2020-11-12  |
+| Norman        | Minnesota      |       6375 |           3 | 2020-11-05  |
+| Spink         | South Dakota   |       6376 |           3 | 2020-12-05  |
+| Spink         | South Dakota   |       6376 |           3 | 2020-11-20  |
+| Wheatland     | Montana        |       2126 |           1 | 2020-12-01  |
+| Wheatland     | Montana        |       2126 |           1 | 2020-10-29  |
+| Wheatland     | Montana        |       2126 |           1 | 2020-09-25  |
+| Wheatland     | Montana        |       2126 |           1 | 2020-10-20  |
+| Lee           | Virginia       |      23423 |          11 | 2020-12-16  |
+| Evans         | Georgia        |      10654 |           5 | 2020-11-03  |
+| Phillips      | Colorado       |       4265 |           2 | 2021-01-14  |
+| Terrell       | Georgia        |       8531 |           4 | 2020-04-20  |
+| Cimarron      | Oklahoma       |       2137 |           1 | 2020-12-19  |
+| Menard        | Texas          |       2138 |           1 | 2021-01-14  |
+| Menard        | Texas          |       2138 |           1 | 2020-11-07  |
+| Menard        | Texas          |       2138 |           1 | 2020-12-31  |
+| Butler        | Kentucky       |      12879 |           6 | 2020-05-29  |
+| Florence      | Wisconsin      |       4295 |           2 | 2020-10-18  |
+| Florence      | Wisconsin      |       4295 |           2 | 2020-11-09  |
+| Kittson       | Minnesota      |       4298 |           2 | 2020-12-17  |
+| Kittson       | Minnesota      |       4298 |           2 | 2020-11-21  |
+| Potter        | South Dakota   |       2153 |           1 | 2020-11-21  |
+| Potter        | South Dakota   |       2153 |           1 | 2020-12-31  |
+| Potter        | South Dakota   |       2153 |           1 | 2020-12-03  |
+| Dawson        | Montana        |       8613 |           4 | 2021-01-02  |
+| Crawford      | Kansas         |      38818 |          18 | 2021-01-13  |
+| Sierra        | New Mexico     |      10791 |           5 | 2020-12-17  |
+| Buena Vista   | Virginia       |       6478 |           3 | 2021-01-12  |
+| Sharkey       | Mississippi    |       4321 |           2 | 2020-08-13  |
+| Sharkey       | Mississippi    |       4321 |           2 | 2020-08-05  |
+| Butler        | Alabama        |      19448 |           9 | 2021-01-09  |
+| Harlan        | Kentucky       |      26010 |          12 | 2021-01-30  |
+| Culberson     | Texas          |       2171 |           1 | 2020-10-31  |
+| Culberson     | Texas          |       2171 |           1 | 2020-07-11  |
+| Culberson     | Texas          |       2171 |           1 | 2021-01-26  |
+| Culberson     | Texas          |       2171 |           1 | 2021-01-01  |
+| Culberson     | Texas          |       2171 |           1 | 2021-01-28  |
+| Culberson     | Texas          |       2171 |           1 | 2021-01-27  |
+| Culberson     | Texas          |       2171 |           1 | 2020-07-27  |
+| Madison       | North Carolina |      21755 |          10 | 2020-11-25  |
+| St. Clair     | Alabama        |      89512 |          41 | 2021-01-09  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-11-03  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-11-24  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-12-11  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-11-05  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-11-04  |
+| Towner        | North Dakota   |       2189 |           1 | 2021-01-21  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-10-16  |
+| Towner        | North Dakota   |       2189 |           1 | 2020-10-19  |
+| Hickman       | Kentucky       |       4380 |           2 | 2020-12-27  |
+| McPherson     | Kansas         |      28542 |          13 | 2021-01-05  |
+| Holt          | Missouri       |       4403 |           2 | 2020-12-15  |
+| Holt          | Missouri       |       4403 |           2 | 2020-12-22  |
+| Pocahontas    | Iowa           |       6619 |           3 | 2020-12-24  |
+| Owsley        | Kentucky       |       4415 |           2 | 2020-12-20  |
+| Owsley        | Kentucky       |       4415 |           2 | 2020-12-19  |
+| Owsley        | Kentucky       |       4415 |           2 | 2020-12-21  |
+| Fergus        | Montana        |      11050 |           5 | 2021-01-23  |
+| Dickens       | Texas          |       2211 |           1 | 2020-12-11  |
+| Dickens       | Texas          |       2211 |           1 | 2020-12-05  |
+| Dickens       | Texas          |       2211 |           1 | 2020-12-25  |
+| Dickens       | Texas          |       2211 |           1 | 2020-09-11  |
+| Dickens       | Texas          |       2211 |           1 | 2020-07-27  |
+| Dickens       | Texas          |       2211 |           1 | 2021-02-02  |
+| Iron          | Michigan       |      11066 |           5 | 2020-10-13  |
+| Barber        | Kansas         |       4427 |           2 | 2020-12-02  |
+| Barber        | Kansas         |       4427 |           2 | 2021-01-13  |
+| Miner         | South Dakota   |       2216 |           1 | 2020-11-11  |
+| Adams         | North Dakota   |       2216 |           1 | 2020-12-16  |
+| Adams         | North Dakota   |       2216 |           1 | 2020-12-14  |
+| Miner         | South Dakota   |       2216 |           1 | 2020-11-20  |
+| Miner         | South Dakota   |       2216 |           1 | 2020-11-25  |
+| Miner         | South Dakota   |       2216 |           1 | 2020-10-21  |
+| Miner         | South Dakota   |       2216 |           1 | 2020-11-01  |
+| Miner         | South Dakota   |       2216 |           1 | 2020-12-11  |
+| Miner         | South Dakota   |       2216 |           1 | 2021-01-03  |
+| Palo Alto     | Iowa           |       8886 |           4 | 2021-01-31  |
+| Greene        | Iowa           |       8888 |           4 | 2020-12-11  |
+| Cameron       | Pennsylvania   |       4447 |           2 | 2020-12-30  |
+| Garfield      | Washington     |       2225 |           1 | 2021-01-14  |
+| Garfield      | Washington     |       2225 |           1 | 2021-01-12  |
+| Garfield      | Washington     |       2225 |           1 | 2020-10-29  |
+| Garfield      | Washington     |       2225 |           1 | 2020-12-29  |
+| Blaine        | Montana        |       6681 |           3 | 2020-11-18  |
+| Griggs        | North Dakota   |       2231 |           1 | 2020-08-04  |
+| Griggs        | North Dakota   |       2231 |           1 | 2020-12-02  |
+| Lavaca        | Texas          |      20154 |           9 | 2020-07-27  |
+| Sedgwick      | Colorado       |       2248 |           1 | 2020-07-29  |
+| Sedgwick      | Colorado       |       2248 |           1 | 2020-11-27  |
+| Yancey        | North Carolina |      18069 |           8 | 2021-01-28  |
+| Mora          | New Mexico     |       4521 |           2 | 2021-01-01  |
+| Hunterdon     | New Jersey     |     124371 |          55 | 2020-06-25  |
+| Divide        | North Dakota   |       2264 |           1 | 2020-10-01  |
+| Divide        | North Dakota   |       2264 |           1 | 2020-12-03  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-10-17  |
+| Jeff Davis    | Texas          |       2274 |           1 | 2020-12-05  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-12-06  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-10-30  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-09-29  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-12-02  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-11-17  |
+| Grant         | North Dakota   |       2274 |           1 | 2020-10-22  |
+| Eddy          | North Dakota   |       2287 |           1 | 2020-12-16  |
+| Eddy          | North Dakota   |       2287 |           1 | 2020-11-16  |
+| Eddy          | North Dakota   |       2287 |           1 | 2020-09-14  |
+| Eddy          | North Dakota   |       2287 |           1 | 2020-12-05  |
+| Crenshaw      | Alabama        |      13772 |           6 | 2021-01-14  |
+| Crenshaw      | Alabama        |      13772 |           6 | 2020-08-29  |
+| Livingston    | Kentucky       |       9194 |           4 | 2021-01-03  |
+| Faulk         | South Dakota   |       2299 |           1 | 2020-12-31  |
+| Faulk         | South Dakota   |       2299 |           1 | 2020-10-31  |
+| Quitman       | Georgia        |       2299 |           1 | 2020-04-15  |
+| Faulk         | South Dakota   |       2299 |           1 | 2020-11-06  |
+| Faulk         | South Dakota   |       2299 |           1 | 2020-06-25  |
+| Faulk         | South Dakota   |       2299 |           1 | 2020-11-14  |
+| Faulk         | South Dakota   |       2299 |           1 | 2021-01-09  |
+| Faulk         | South Dakota   |       2299 |           1 | 2020-12-24  |
+| Stutsman      | North Dakota   |      20704 |           9 | 2020-12-09  |
+| Bon Homme     | South Dakota   |       6901 |           3 | 2020-11-20  |
+| Ramsey        | North Dakota   |      11519 |           5 | 2021-01-05  |
+| Jackson       | North Carolina |      43938 |          19 | 2021-02-03  |
+| Musselshell   | Montana        |       4633 |           2 | 2020-12-01  |
+| Musselshell   | Montana        |       4633 |           2 | 2020-11-28  |
+| Republic      | Kansas         |       4636 |           2 | 2020-11-20  |
+| Republic      | Kansas         |       4636 |           2 | 2020-12-22  |
+| Republic      | Kansas         |       4636 |           2 | 2020-12-01  |
+| Republic      | Kansas         |       4636 |           2 | 2020-12-05  |
+| Morrill       | Nebraska       |       4642 |           2 | 2021-01-11  |
+| Morrill       | Nebraska       |       4642 |           2 | 2020-12-10  |
+| Renville      | North Dakota   |       2327 |           1 | 2020-09-26  |
+| Renville      | North Dakota   |       2327 |           1 | 2021-01-16  |
+| Renville      | North Dakota   |       2327 |           1 | 2020-10-09  |
+| Renville      | North Dakota   |       2327 |           1 | 2020-12-12  |
+| Renville      | North Dakota   |       2327 |           1 | 2020-12-15  |
+| Renville      | North Dakota   |       2327 |           1 | 2020-12-09  |
+| Renville      | North Dakota   |       2327 |           1 | 2020-12-10  |
+| Wapello       | Iowa           |      34969 |          15 | 2020-12-11  |
+| Liberty       | Montana        |       2337 |           1 | 2020-11-06  |
+| Sanborn       | South Dakota   |       2344 |           1 | 2020-12-03  |
+| Sanborn       | South Dakota   |       2344 |           1 | 2020-10-29  |
+| Sanborn       | South Dakota   |       2344 |           1 | 2020-12-06  |
+| Clarke        | Iowa           |       9395 |           4 | 2021-01-31  |
+| Grant         | South Dakota   |       7052 |           3 | 2020-12-24  |
+| Grant         | South Dakota   |       7052 |           3 | 2020-12-26  |
+| Grant         | South Dakota   |       7052 |           3 | 2020-12-10  |
+| Jones         | North Carolina |       9419 |           4 | 2020-09-11  |
+| Jones         | North Carolina |       9419 |           4 | 2020-08-11  |
+| Niobrara      | Wyoming        |       2356 |           1 | 2020-12-07  |
+| Greeley       | Nebraska       |       2356 |           1 | 2020-12-21  |
+| Van Wert      | Ohio           |      28275 |          12 | 2020-12-10  |
+| Van Wert      | Ohio           |      28275 |          12 | 2020-11-25  |
+| Greeley       | Nebraska       |       2356 |           1 | 2020-12-23  |
+| Niobrara      | Wyoming        |       2356 |           1 | 2020-12-22  |
+| Big Horn      | Wyoming        |      11790 |           5 | 2020-10-26  |
+| Beaverhead    | Montana        |       9453 |           4 | 2020-12-12  |
+| Brooks        | Texas          |       7093 |           3 | 2020-09-05  |
+| McCormick     | South Carolina |       9463 |           4 | 2021-01-30  |
+| Toole         | Montana        |       4736 |           2 | 2020-03-30  |
+| Toole         | Montana        |       4736 |           2 | 2020-11-02  |
+| Toole         | Montana        |       4736 |           2 | 2021-01-28  |
+| Tallapoosa    | Alabama        |      40367 |          17 | 2020-05-07  |
+| McPherson     | South Dakota   |       2379 |           1 | 2020-11-04  |
+| McPherson     | South Dakota   |       2379 |           1 | 2021-01-06  |
+| McPherson     | South Dakota   |       2379 |           1 | 2021-01-17  |
+| McPherson     | South Dakota   |       2379 |           1 | 2021-01-10  |
+| Pierce        | Nebraska       |       7148 |           3 | 2020-09-11  |
+| Kingman       | Kansas         |       7152 |           3 | 2021-01-05  |
+| Caribou       | Idaho          |       7155 |           3 | 2020-11-17  |
+| Colfax        | New Mexico     |      11941 |           5 | 2020-12-31  |
+| Geneva        | Alabama        |      26271 |          11 | 2021-01-20  |
+| Colfax        | New Mexico     |      11941 |           5 | 2021-01-18  |
+| Humboldt      | Iowa           |       9558 |           4 | 2020-12-14  |
+| Brown         | Kansas         |       9564 |           4 | 2020-12-30  |
+| Brown         | Kansas         |       9564 |           4 | 2020-12-02  |
+| Brown         | Kansas         |       9564 |           4 | 2020-12-16  |
+| Crawford      | Iowa           |      16820 |           7 | 2021-01-31  |
+| Towns         | Georgia        |      12037 |           5 | 2020-11-13  |
+| Johnson       | Georgia        |       9643 |           4 | 2020-09-10  |
+| Scott         | Kansas         |       4823 |           2 | 2020-12-07  |
+| Scott         | Kansas         |       4823 |           2 | 2020-12-02  |
+| Forest        | Pennsylvania   |       7247 |           3 | 2021-01-26  |
+| Morgan        | Ohio           |      14508 |           6 | 2020-12-15  |
+| Sanders       | Montana        |      12113 |           5 | 2021-01-26  |
+| Tishomingo    | Mississippi    |      19383 |           8 | 2020-08-26  |
+| Dallam        | Texas          |       7287 |           3 | 2020-07-27  |
+| Mitchell      | Georgia        |      21863 |           9 | 2020-04-07  |
+| Edmonson      | Kentucky       |      12150 |           5 | 2020-05-07  |
+| Prowers       | Colorado       |      12172 |           5 | 2020-11-05  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-10-31  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-11-01  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-12-09  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-11-06  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-11-26  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-11-05  |
+| Dickey        | North Dakota   |       4872 |           2 | 2020-11-02  |
+| Mills         | Texas          |       4873 |           2 | 2020-12-19  |
+| Mills         | Texas          |       4873 |           2 | 2021-01-28  |
+| Hudspeth      | Texas          |       4886 |           2 | 2020-07-27  |
+| Ringgold      | Iowa           |       4894 |           2 | 2021-01-20  |
+| Little River  | Arkansas       |      12259 |           5 | 2020-09-15  |
+| Holmes        | Florida        |      19617 |           8 | 2021-01-31  |
+| Washington    | Colorado       |       4908 |           2 | 2020-12-01  |
+| Todd          | Kentucky       |      12294 |           5 | 2020-09-02  |
+| Lee           | Texas          |      17239 |           7 | 2020-07-27  |
+| Kossuth       | Iowa           |      14813 |           6 | 2021-01-12  |
+| Kingsbury     | South Dakota   |       4939 |           2 | 2020-11-18  |
+| Pulaski       | Indiana        |      12353 |           5 | 2020-11-25  |
+| Kiowa         | Kansas         |       2475 |           1 | 2020-12-16  |
+| Kiowa         | Kansas         |       2475 |           1 | 2021-01-04  |
+| Caldwell      | Louisiana      |       9918 |           4 | 2020-12-13  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-12-18  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-11-12  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-10-21  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-10-11  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-12-05  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-11-05  |
+| Kidder        | North Dakota   |       2480 |           1 | 2021-01-07  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-11-15  |
+| Kidder        | North Dakota   |       2480 |           1 | 2020-11-22  |
+| Graham        | Kansas         |       2482 |           1 | 2020-12-18  |
+| Graham        | Kansas         |       2482 |           1 | 2020-09-05  |
+| Graham        | Kansas         |       2482 |           1 | 2021-01-15  |
+| Graham        | Kansas         |       2482 |           1 | 2020-11-09  |
+| Graham        | Kansas         |       2482 |           1 | 2021-01-25  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-08-24  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-08-06  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-07-24  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-11-19  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-11-28  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-10-14  |
+| McIntosh      | North Dakota   |       2497 |           1 | 2020-10-27  |
+| Hettinger     | North Dakota   |       2499 |           1 | 2020-12-31  |
+| Hettinger     | North Dakota   |       2499 |           1 | 2020-10-19  |
+| Hettinger     | North Dakota   |       2499 |           1 | 2020-11-20  |
+| Hettinger     | North Dakota   |       2499 |           1 | 2020-11-05  |
+| Hettinger     | North Dakota   |       2499 |           1 | 2020-10-10  |
+| Lafayette     | Missouri       |      32708 |          13 | 2020-10-08  |
+| Choctaw       | Alabama        |      12589 |           5 | 2020-12-02  |
+| Presque Isle  | Michigan       |      12592 |           5 | 2021-01-05  |
+| Jeff Davis    | Georgia        |      15115 |           6 | 2020-11-03  |
+| Sheridan      | Kansas         |       2521 |           1 | 2021-01-04  |
+| Sheridan      | Kansas         |       2521 |           1 | 2021-01-20  |
+| Sheridan      | Kansas         |       2521 |           1 | 2020-12-21  |
+| Pickett       | Tennessee      |       5048 |           2 | 2020-10-22  |
+| Wheeler       | Texas          |       5056 |           2 | 2020-11-18  |
+| Elk           | Kansas         |       2530 |           1 | 2021-01-15  |
+| Elk           | Kansas         |       2530 |           1 | 2021-01-13  |
+| Rawlins       | Kansas         |       2530 |           1 | 2020-12-29  |
+| Rawlins       | Kansas         |       2530 |           1 | 2020-11-30  |
+| Doniphan      | Kansas         |       7600 |           3 | 2021-01-13  |
+| Doniphan      | Kansas         |       7600 |           3 | 2020-12-07  |
+| Johnson       | Nebraska       |       5071 |           2 | 2020-12-08  |
+| Sumner        | Kansas         |      22836 |           9 | 2021-01-13  |
+| Livingston    | Missouri       |      15227 |           6 | 2021-01-27  |
+| Clay          | Tennessee      |       7615 |           3 | 2020-10-19  |
+| Chaffee       | Colorado       |      20356 |           8 | 2020-04-24  |
+| Early         | Georgia        |      10190 |           4 | 2020-05-04  |
+| Early         | Georgia        |      10190 |           4 | 2020-04-07  |
+| San Juan      | Utah           |      15308 |           6 | 2020-07-14  |
+| Bristol       | Rhode Island   |      48479 |          19 | 2021-01-20  |
+| Wilbarger     | Texas          |      12769 |           5 | 2021-01-21  |
+| Wilbarger     | Texas          |      12769 |           5 | 2020-12-11  |
+| Clinton       | Kentucky       |      10218 |           4 | 2020-12-11  |
+| Warren        | New York       |      63944 |          25 | 2020-05-15  |
+| Nemaha        | Kansas         |      10231 |           4 | 2020-12-29  |
+| Randolph      | Arkansas       |      17958 |           7 | 2020-08-15  |
+| Clark         | Illinois       |      15441 |           6 | 2020-10-24  |
+| Dodge         | Georgia        |      20605 |           8 | 2020-11-03  |
+| Dodge         | Georgia        |      20605 |           8 | 2020-11-05  |
+| Lamb          | Texas          |      12893 |           5 | 2020-12-01  |
+| Newton        | Arkansas       |       7753 |           3 | 2020-08-21  |
+| Newton        | Arkansas       |       7753 |           3 | 2020-07-30  |
+| Morton        | Kansas         |       2587 |           1 | 2020-11-19  |
+| Morton        | Kansas         |       2587 |           1 | 2020-07-02  |
+| Morton        | Kansas         |       2587 |           1 | 2020-11-09  |
+| Morton        | Kansas         |       2587 |           1 | 2020-06-05  |
+| Morton        | Kansas         |       2587 |           1 | 2021-01-15  |
+| Butte         | Idaho          |       2597 |           1 | 2021-01-02  |
+| Jim Hogg      | Texas          |       5200 |           2 | 2021-01-22  |
+| Washakie      | Wyoming        |       7805 |           3 | 2020-12-31  |
+| Barnes        | North Dakota   |      10415 |           4 | 2020-12-01  |
+| Polk          | Nebraska       |       5213 |           2 | 2020-11-01  |
+| Webster       | Georgia        |       2607 |           1 | 2020-07-02  |
+| Webster       | Georgia        |       2607 |           1 | 2020-04-26  |
+| Webster       | Georgia        |       2607 |           1 | 2021-01-20  |
+| Webster       | Georgia        |       2607 |           1 | 2020-04-27  |
+| Ransom        | North Dakota   |       5218 |           2 | 2021-01-21  |
+| Pawnee        | Nebraska       |       2613 |           1 | 2020-12-12  |
+| Phillips      | Kansas         |       5234 |           2 | 2021-01-13  |
+| Phillips      | Kansas         |       5234 |           2 | 2021-01-05  |
+| Matagorda     | Texas          |      36643 |          14 | 2020-07-27  |
+| Phillips      | Kansas         |       5234 |           2 | 2020-07-11  |
+| Phillips      | Kansas         |       5234 |           2 | 2020-07-20  |
+| Phillips      | Kansas         |       5234 |           2 | 2020-12-08  |
+| Phillips      | Kansas         |       5234 |           2 | 2020-07-07  |
+| Richardson    | Nebraska       |       7865 |           3 | 2020-12-23  |
+| Sheridan      | Nebraska       |       5246 |           2 | 2020-11-23  |
+| Frontier      | Nebraska       |       2627 |           1 | 2020-11-04  |
+| Warren        | Georgia        |       5254 |           2 | 2020-08-25  |
+| Warren        | Georgia        |       5254 |           2 | 2020-11-03  |
+| Greene        | North Carolina |      21069 |           8 | 2020-10-16  |
+| Jackson       | Kansas         |      13171 |           5 | 2020-12-03  |
+| Gove          | Kansas         |       2636 |           1 | 2020-11-25  |
+| Gove          | Kansas         |       2636 |           1 | 2020-10-21  |
+| Gove          | Kansas         |       2636 |           1 | 2020-11-06  |
+| Sabine        | Texas          |      10542 |           4 | 2021-01-01  |
+| Poweshiek     | Iowa           |      18504 |           7 | 2020-12-11  |
+| Middlesex     | Virginia       |      10582 |           4 | 2020-09-15  |
+| Mitchell      | Iowa           |      10586 |           4 | 2020-12-02  |
+| Chase         | Kansas         |       2648 |           1 | 2020-10-26  |
+| Chase         | Kansas         |       2648 |           1 | 2020-10-05  |
+| Brule         | South Dakota   |       5297 |           2 | 2020-11-14  |
+| Chase         | Kansas         |       2648 |           1 | 2020-09-01  |
+| Montgomery    | Kansas         |      31829 |          12 | 2020-12-16  |
+| Harmon        | Oklahoma       |       2653 |           1 | 2021-01-15  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2020-11-23  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2020-12-11  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2020-11-11  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2020-10-12  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2021-01-13  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2020-11-02  |
+| Cheyenne      | Kansas         |       2657 |           1 | 2020-11-16  |
+| Monroe        | Kentucky       |      10650 |           4 | 2020-12-26  |
+| Monroe        | Kentucky       |      10650 |           4 | 2021-01-19  |
+| Clay          | Kansas         |       8002 |           3 | 2021-01-13  |
+| Winkler       | Texas          |       8010 |           3 | 2020-12-31  |
+| New York      | New York       |    1628706 |         610 | 2020-05-18  |
+| Stark         | Illinois       |       5342 |           2 | 2020-12-05  |
+| Stark         | Illinois       |       5342 |           2 | 2020-12-17  |
+| Emporia       | Virginia       |       5346 |           2 | 2020-06-29  |
+| Emporia       | Virginia       |       5346 |           2 | 2020-06-30  |
+| Emporia       | Virginia       |       5346 |           2 | 2020-05-25  |
+| Lemhi         | Idaho          |       8027 |           3 | 2020-11-05  |
+| Charlton      | Georgia        |      13392 |           5 | 2020-11-03  |
+| Traill        | North Dakota   |       8036 |           3 | 2020-12-09  |
+| Seward        | Kansas         |      21428 |           8 | 2020-12-29  |
+| Traill        | North Dakota   |       8036 |           3 | 2020-11-05  |
+| Norton        | Kansas         |       5361 |           2 | 2020-11-25  |
+| Red Willow    | Nebraska       |      10724 |           4 | 2021-01-15  |
+| Bradley       | Arkansas       |      10763 |           4 | 2021-01-01  |
+| Perry         | Tennessee      |       8076 |           3 | 2020-11-19  |
+| Perry         | Tennessee      |       8076 |           3 | 2020-10-30  |
+| Perry         | Tennessee      |       8076 |           3 | 2020-10-27  |
+| Seminole      | Georgia        |       8090 |           3 | 2020-08-21  |
+| Sierra        | New Mexico     |      10791 |           4 | 2020-12-16  |
+| Washington    | Kansas         |       5406 |           2 | 2020-11-16  |
+| Greene        | Alabama        |       8111 |           3 | 2021-01-28  |
+| Day           | South Dakota   |       5424 |           2 | 2020-11-28  |
+| Day           | South Dakota   |       5424 |           2 | 2020-11-15  |
+| Day           | South Dakota   |       5424 |           2 | 2020-11-27  |
+| Day           | South Dakota   |       5424 |           2 | 2020-12-18  |
+| Day           | South Dakota   |       5424 |           2 | 2021-01-23  |
+| Walworth      | South Dakota   |       5435 |           2 | 2020-10-28  |
+| Walworth      | South Dakota   |       5435 |           2 | 2020-11-01  |
+| Tripp         | South Dakota   |       5441 |           2 | 2020-11-28  |
+| Wyandot       | Ohio           |      21772 |           8 | 2021-01-05  |
+| Coleman       | Texas          |       8175 |           3 | 2021-02-03  |
+| Concho        | Texas          |       2726 |           1 | 2020-12-06  |
+| Concho        | Texas          |       2726 |           1 | 2021-01-20  |
+| Coffey        | Kansas         |       8179 |           3 | 2021-01-05  |
+| Concho        | Texas          |       2726 |           1 | 2020-07-27  |
+| Coffey        | Kansas         |       8179 |           3 | 2020-04-16  |
+| Concho        | Texas          |       2726 |           1 | 2020-09-11  |
+| Concho        | Texas          |       2726 |           1 | 2020-08-29  |
+| Concho        | Texas          |       2726 |           1 | 2021-01-10  |
+| Fillmore      | Nebraska       |       5462 |           2 | 2021-01-14  |
+| Fillmore      | Nebraska       |       5462 |           2 | 2020-12-08  |
+| Houston       | Tennessee      |       8201 |           3 | 2020-10-04  |
+| Baraga        | Michigan       |       8209 |           3 | 2020-11-28  |
+| Allamakee     | Iowa           |      13687 |           5 | 2021-01-31  |
+| Scotts Bluff  | Nebraska       |      35618 |          13 | 2021-01-20  |
+| Brooke        | West Virginia  |      21939 |           8 | 2021-01-08  |
+| Adair         | Kentucky       |      19202 |           7 | 2020-12-11  |
+| San Augustine | Texas          |       8237 |           3 | 2020-07-14  |
+| Oscoda        | Michigan       |       8241 |           3 | 2020-12-15  |
+| Ness          | Kansas         |       2750 |           1 | 2020-09-18  |
+| Ness          | Kansas         |       2750 |           1 | 2020-12-18  |
+| Ness          | Kansas         |       2750 |           1 | 2020-10-21  |
+| Ness          | Kansas         |       2750 |           1 | 2020-10-12  |
+| Ness          | Kansas         |       2750 |           1 | 2020-11-13  |
+| Ness          | Kansas         |       2750 |           1 | 2020-09-02  |
+| Ness          | Kansas         |       2750 |           1 | 2020-12-23  |
+| Ness          | Kansas         |       2750 |           1 | 2020-09-25  |
+| Aurora        | South Dakota   |       2751 |           1 | 2020-11-06  |
+| Aurora        | South Dakota   |       2751 |           1 | 2020-12-16  |
+| Nevada        | Arkansas       |       8252 |           3 | 2020-07-17  |
+| Aurora        | South Dakota   |       2751 |           1 | 2021-01-11  |
+| Aurora        | South Dakota   |       2751 |           1 | 2021-01-24  |
+| Aurora        | South Dakota   |       2751 |           1 | 2020-11-05  |
+| Aurora        | South Dakota   |       2751 |           1 | 2020-11-20  |
+| Benton        | Mississippi    |       8259 |           3 | 2020-11-10  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-11-14  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-11-24  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-10-03  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-10-25  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-11-19  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-11-21  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-12-30  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2020-11-22  |
+| Ziebach       | South Dakota   |       2756 |           1 | 2021-01-24  |
+| Louisa        | Iowa           |      11035 |           4 | 2021-02-03  |
+| Hitchcock     | Nebraska       |       2762 |           1 | 2021-01-15  |
+| Hitchcock     | Nebraska       |       2762 |           1 | 2020-12-10  |
+| Hitchcock     | Nebraska       |       2762 |           1 | 2020-11-04  |
+| Lander        | Nevada         |       5532 |           2 | 2020-10-23  |
+| Crawford      | Ohio           |      41494 |          15 | 2020-12-29  |
+| Winn          | Louisiana      |      13904 |           5 | 2020-08-21  |
+| Harrison      | Missouri       |       8352 |           3 | 2020-12-30  |
+| Bent          | Colorado       |       5577 |           2 | 2020-12-24  |
+| Chowan        | North Carolina |      13943 |           5 | 2020-10-16  |
+| Schleicher    | Texas          |       2793 |           1 | 2020-12-08  |
+| McCook        | South Dakota   |       5586 |           2 | 2020-11-05  |
+| Schleicher    | Texas          |       2793 |           1 | 2020-11-26  |
+| Schleicher    | Texas          |       2793 |           1 | 2020-08-26  |
+| Schleicher    | Texas          |       2793 |           1 | 2020-07-08  |
+| Schleicher    | Texas          |       2793 |           1 | 2020-11-24  |
+| McCook        | South Dakota   |       5586 |           2 | 2020-12-05  |
+| Schleicher    | Texas          |       2793 |           1 | 2020-12-23  |
+| McCook        | South Dakota   |       5586 |           2 | 2020-12-02  |
+| Logan         | Kansas         |       2794 |           1 | 2020-12-21  |
+| Turner        | South Dakota   |       8384 |           3 | 2020-11-04  |
+| Edwards       | Kansas         |       2798 |           1 | 2021-01-27  |
+| Edwards       | Kansas         |       2798 |           1 | 2021-01-15  |
+| Edwards       | Kansas         |       2798 |           1 | 2021-01-29  |
+| Edwards       | Kansas         |       2798 |           1 | 2021-01-13  |
+| Richmond      | New York       |     476143 |         170 | 2020-05-18  |
+| Trego         | Kansas         |       2803 |           1 | 2020-09-10  |
+| Trego         | Kansas         |       2803 |           1 | 2021-01-13  |
+| Trego         | Kansas         |       2803 |           1 | 2020-07-29  |
+| Trego         | Kansas         |       2803 |           1 | 2020-09-04  |
+| Dickinson     | Michigan       |      25239 |           9 | 2020-12-03  |
+| Fremont       | Wyoming        |      39261 |          14 | 2020-09-02  |
+| Lafayette     | Florida        |       8422 |           3 | 2020-09-01  |
+| Lafayette     | Florida        |       8422 |           3 | 2020-08-26  |
+| Harrison      | Iowa           |      14049 |           5 | 2021-01-02  |
+| Morris        | Kansas         |       5620 |           2 | 2020-12-08  |
+| Clare         | Michigan       |      30950 |          11 | 2021-01-09  |
+| Hancock       | Georgia        |       8457 |           3 | 2020-06-09  |
+| Audrain       | Missouri       |      25388 |           9 | 2021-01-05  |
+| Decatur       | Kansas         |       2827 |           1 | 2020-12-30  |
+| Decatur       | Kansas         |       2827 |           1 | 2020-09-28  |
+| Decatur       | Kansas         |       2827 |           1 | 2021-01-15  |
+| Haskell       | Texas          |       5658 |           2 | 2020-12-24  |
+| Cotton        | Oklahoma       |       5666 |           2 | 2020-12-20  |
+| Clay          | Georgia        |       2834 |           1 | 2020-10-02  |
+| Greensville   | Virginia       |      11336 |           4 | 2020-04-22  |
+| Clay          | Georgia        |       2834 |           1 | 2020-04-07  |
+| Clay          | Georgia        |       2834 |           1 | 2020-04-30  |
+| Clay          | Georgia        |       2834 |           1 | 2020-04-15  |
+| Essex         | New York       |      36885 |          13 | 2020-09-21  |
+| Iron          | Wisconsin      |       5687 |           2 | 2020-12-18  |
+| Iron          | Wisconsin      |       5687 |           2 | 2020-11-24  |
+| Iron          | Wisconsin      |       5687 |           2 | 2021-01-02  |
+| Iron          | Wisconsin      |       5687 |           2 | 2020-11-17  |
+| Cherry        | Nebraska       |       5689 |           2 | 2020-09-11  |
+| Cherry        | Nebraska       |       5689 |           2 | 2021-01-06  |
+| Fallon        | Montana        |       2846 |           1 | 2020-11-24  |
+| New Madrid    | Missouri       |      17076 |           6 | 2021-01-06  |
++---------------+----------------+------------+-------------+-------------+
+1000 rows in set, 41202 warnings (2.80 sec)
+
+mysql> exit

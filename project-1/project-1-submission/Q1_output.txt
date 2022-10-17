@@ -1,0 +1,25 @@
+mysql> source db_create.sql
+Database changed
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.11 sec)
+
+Query OK, 0 rows affected (0.15 sec)
+
+Query OK, 0 rows affected (0.12 sec)
+
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_axa5861 |
++-------------------+
+| confirmed_cases   |
+| county            |
+| deaths            |
+| state             |
+| vaccinations      |
++-------------------+
+5 rows in set (0.02 sec)
+
+mysql> exit

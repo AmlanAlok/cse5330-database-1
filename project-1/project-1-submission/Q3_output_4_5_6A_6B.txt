@@ -1,0 +1,1130 @@
+mysql> 
+mysql> select * from (
+    -> select c.state as state, c.county as county, sum(cc.positive_count) as total, ROW_NUMBER() 
+    -> over (PARTITION BY state order by sum(cc.positive_count) desc) as rank_no
+    -> from county c
+    -> join confirmed_cases cc on cc.state = c.state and cc.county = c.county
+    -> group by c.state, c.county) rs WHERE rank_no <= 10;
+ERROR 1046 (3D000): No database selected
+mysql> use axa5861;
+Database changed
+mysql> 
+mysql> select * from (
+    -> select c.state as state, c.county as county, sum(cc.positive_count) as total, ROW_NUMBER() 
+    -> over (PARTITION BY state order by sum(cc.positive_count) desc) as rank_no
+    -> from county c
+    -> join confirmed_cases cc on cc.state = c.state and cc.county = c.county
+    -> group by c.state, c.county) rs WHERE rank_no <= 10;
++----------------+-------------------------------------------+---------+---------+
+| state          | county                                    | total   | rank_no |
++----------------+-------------------------------------------+---------+---------+
+| Alabama        | Jefferson                                 |   67639 |       1 |
+| Alabama        | Mobile                                    |   33449 |       2 |
+| Alabama        | Madison                                   |   30103 |       3 |
+| Alabama        | Tuscaloosa                                |   22731 |       4 |
+| Alabama        | Montgomery                                |   21157 |       5 |
+| Alabama        | Shelby                                    |   20501 |       6 |
+| Alabama        | Baldwin                                   |   18418 |       7 |
+| Alabama        | Lee                                       |   14048 |       8 |
+| Alabama        | Morgan                                    |   13086 |       9 |
+| Alabama        | Etowah                                    |   12642 |      10 |
+| Alaska         | Anchorage                                 |   25641 |       1 |
+| Alaska         | Matanuska-Susitna                         |    7603 |       2 |
+| Alaska         | Fairbanks North Star                      |    5909 |       3 |
+| Alaska         | Kenai Peninsula                           |    3929 |       4 |
+| Alaska         | Bethel                                    |    3347 |       5 |
+| Alaska         | Juneau                                    |    1184 |       6 |
+| Alaska         | Kusilvak                                  |    1126 |       7 |
+| Alaska         | Kodiak Island                             |    1043 |       8 |
+| Alaska         | North Slope                               |     985 |       9 |
+| Alaska         | Northwest Arctic                          |     573 |      10 |
+| Arizona        | Maricopa                                  |  478354 |       1 |
+| Arizona        | Pima                                      |  102712 |       2 |
+| Arizona        | Pinal                                     |   43151 |       3 |
+| Arizona        | Yuma                                      |   35318 |       4 |
+| Arizona        | Mohave                                    |   19782 |       5 |
+| Arizona        | Yavapai                                   |   16407 |       6 |
+| Arizona        | Coconino                                  |   15376 |       7 |
+| Arizona        | Navajo                                    |   14645 |       8 |
+| Arizona        | Cochise                                   |   10500 |       9 |
+| Arizona        | Apache                                    |    9684 |      10 |
+| Arkansas       | Pulaski                                   |   34651 |       1 |
+| Arkansas       | Washington                                |   27963 |       2 |
+| Arkansas       | Benton                                    |   25477 |       3 |
+| Arkansas       | Sebastian                                 |   13715 |       4 |
+| Arkansas       | Craighead                                 |   12290 |       5 |
+| Arkansas       | Faulkner                                  |   10929 |       6 |
+| Arkansas       | Saline                                    |   10625 |       7 |
+| Arkansas       | Garland                                   |    8628 |       8 |
+| Arkansas       | Jefferson                                 |    8172 |       9 |
+| Arkansas       | Pope                                      |    7272 |      10 |
+| California     | Los Angeles                               | 1129503 |       1 |
+| California     | Riverside                                 |  277724 |       2 |
+| California     | San Bernardino                            |  275960 |       3 |
+| California     | Orange                                    |  248510 |       4 |
+| California     | San Diego                                 |  241018 |       5 |
+| California     | Santa Clara                               |  103236 |       6 |
+| California     | Kern                                      |   94994 |       7 |
+| California     | Fresno                                    |   89542 |       8 |
+| California     | Sacramento                                |   87107 |       9 |
+| California     | Alameda                                   |   74959 |      10 |
+| Colorado       | Denver                                    |   56051 |       1 |
+| Colorado       | El Paso                                   |   48056 |       2 |
+| Colorado       | Adams                                     |   45982 |       3 |
+| Colorado       | Arapahoe                                  |   45359 |       4 |
+| Colorado       | Jefferson                                 |   34827 |       5 |
+| Colorado       | Weld                                      |   23841 |       6 |
+| Colorado       | Douglas                                   |   19205 |       7 |
+| Colorado       | Larimer                                   |   18246 |       8 |
+| Colorado       | Boulder                                   |   17369 |       9 |
+| Colorado       | Pueblo                                    |   14381 |      10 |
+| Connecticut    | Fairfield                                 |   73762 |       1 |
+| Connecticut    | Hartford                                  |   64924 |       2 |
+| Connecticut    | New Haven                                 |   64889 |       3 |
+| Connecticut    | New London                                |   17373 |       4 |
+| Connecticut    | Litchfield                                |   10165 |       5 |
+| Connecticut    | Middlesex                                 |    9481 |       6 |
+| Connecticut    | Windham                                   |    8475 |       7 |
+| Connecticut    | Tolland                                   |    7090 |       8 |
+| Connecticut    | Unassigned                                |     845 |       9 |
+| Connecticut    | Out of CT                                 |       0 |      10 |
+| Delaware       | New Castle                                |   44833 |       1 |
+| Delaware       | Sussex                                    |   20940 |       2 |
+| Delaware       | Kent                                      |   13031 |       3 |
+| Delaware       | Unassigned                                |     178 |       4 |
+| Delaware       | Out of DE                                 |       0 |       5 |
+| Florida        | Miami-Dade                                |  376552 |       1 |
+| Florida        | Broward                                   |  175306 |       2 |
+| Florida        | Palm Beach                                |  108585 |       3 |
+| Florida        | Orange                                    |  104621 |       4 |
+| Florida        | Hillsborough                              |  101910 |       5 |
+| Florida        | Duval                                     |   82963 |       6 |
+| Florida        | Pinellas                                  |   60322 |       7 |
+| Florida        | Lee                                       |   53332 |       8 |
+| Florida        | Polk                                      |   51297 |       9 |
+| Florida        | Osceola                                   |   33993 |      10 |
+| Georgia        | Gwinnett                                  |   84740 |       1 |
+| Georgia        | Fulton                                    |   78400 |       2 |
+| Georgia        | Cobb                                      |   63643 |       3 |
+| Georgia        | DeKalb                                    |   51986 |       4 |
+| Georgia        | Out of GA                                 |   28189 |       5 |
+| Georgia        | Cherokee                                  |   24595 |       6 |
+| Georgia        | Hall                                      |   24228 |       7 |
+| Georgia        | Richmond                                  |   20871 |       8 |
+| Georgia        | Clayton                                   |   19979 |       9 |
+| Georgia        | Henry                                     |   19439 |      10 |
+| Hawaii         | Honolulu                                  |   21237 |       1 |
+| Hawaii         | Maui                                      |    2376 |       2 |
+| Hawaii         | Hawaii                                    |    2206 |       3 |
+| Hawaii         | Out of HI                                 |     286 |       4 |
+| Hawaii         | Kauai                                     |     181 |       5 |
+| Hawaii         | Kalawao                                   |       0 |       6 |
+| Hawaii         | Unassigned                                |       0 |       7 |
+| Idaho          | Ada                                       |   44869 |       1 |
+| Idaho          | Canyon                                    |   23911 |       2 |
+| Idaho          | Kootenai                                  |   15871 |       3 |
+| Idaho          | Bonneville                                |   11539 |       4 |
+| Idaho          | Twin Falls                                |    8793 |       5 |
+| Idaho          | Bannock                                   |    7413 |       6 |
+| Idaho          | Madison                                   |    5932 |       7 |
+| Idaho          | Bingham                                   |    4080 |       8 |
+| Idaho          | Nez Perce                                 |    3310 |       9 |
+| Idaho          | Cassia                                    |    2787 |      10 |
+| Illinois       | Cook                                      |  456144 |       1 |
+| Illinois       | DuPage                                    |   72945 |       2 |
+| Illinois       | Will                                      |   61737 |       3 |
+| Illinois       | Lake                                      |   56469 |       4 |
+| Illinois       | Kane                                      |   48542 |       5 |
+| Illinois       | Winnebago                                 |   27428 |       6 |
+| Illinois       | Madison                                   |   26467 |       7 |
+| Illinois       | St. Clair                                 |   23940 |       8 |
+| Illinois       | McHenry                                   |   22976 |       9 |
+| Illinois       | Champaign                                 |   16571 |      10 |
+| Indiana        | Marion                                    |   87016 |       1 |
+| Indiana        | Lake                                      |   46651 |       2 |
+| Indiana        | Allen                                     |   33947 |       3 |
+| Indiana        | Hamilton                                  |   30544 |       4 |
+| Indiana        | St. Joseph                                |   28096 |       5 |
+| Indiana        | Elkhart                                   |   24781 |       6 |
+| Indiana        | Vanderburgh                               |   20294 |       7 |
+| Indiana        | Tippecanoe                                |   18663 |       8 |
+| Indiana        | Johnson                                   |   15682 |       9 |
+| Indiana        | Porter                                    |   15263 |      10 |
+| Iowa           | Polk                                      |   48567 |       1 |
+| Iowa           | Linn                                      |   18715 |       2 |
+| Iowa           | Scott                                     |   16388 |       3 |
+| Iowa           | Black Hawk                                |   14468 |       4 |
+| Iowa           | Woodbury                                  |   13319 |       5 |
+| Iowa           | Johnson                                   |   12582 |       6 |
+| Iowa           | Dubuque                                   |   11911 |       7 |
+| Iowa           | Dallas                                    |    9466 |       8 |
+| Iowa           | Pottawattamie                             |    9416 |       9 |
+| Iowa           | Story                                     |    9096 |      10 |
+| Kansas         | Sedgwick                                  |   50800 |       1 |
+| Kansas         | Johnson                                   |   50392 |       2 |
+| Kansas         | Wyandotte                                 |   18309 |       3 |
+| Kansas         | Shawnee                                   |   15425 |       4 |
+| Kansas         | Douglas                                   |    8238 |       5 |
+| Kansas         | Reno                                      |    8094 |       6 |
+| Kansas         | Butler                                    |    6863 |       7 |
+| Kansas         | Leavenworth                               |    6304 |       8 |
+| Kansas         | Riley                                     |    6025 |       9 |
+| Kansas         | Finney                                    |    5913 |      10 |
+| Kentucky       | Jefferson                                 |   67208 |       1 |
+| Kentucky       | Fayette                                   |   30165 |       2 |
+| Kentucky       | Warren                                    |   13519 |       3 |
+| Kentucky       | Kenton                                    |   13162 |       4 |
+| Kentucky       | Boone                                     |   11073 |       5 |
+| Kentucky       | Daviess                                   |    8833 |       6 |
+| Kentucky       | Hardin                                    |    8105 |       7 |
+| Kentucky       | Madison                                   |    7831 |       8 |
+| Kentucky       | Campbell                                  |    6928 |       9 |
+| Kentucky       | Oldham                                    |    6524 |      10 |
+| Louisiana      | Jefferson                                 |   41691 |       1 |
+| Louisiana      | East Baton Rouge                          |   33174 |       2 |
+| Louisiana      | Orleans                                   |   26883 |       3 |
+| Louisiana      | Caddo                                     |   23126 |       4 |
+| Louisiana      | St. Tammany                               |   22029 |       5 |
+| Louisiana      | Lafayette                                 |   20784 |       6 |
+| Louisiana      | Calcasieu                                 |   18094 |       7 |
+| Louisiana      | Ouachita                                  |   17222 |       8 |
+| Louisiana      | Bossier                                   |   12105 |       9 |
+| Louisiana      | Livingston                                |   11504 |      10 |
+| Maine          | Cumberland                                |   11427 |       1 |
+| Maine          | York                                      |    8584 |       2 |
+| Maine          | Androscoggin                              |    4391 |       3 |
+| Maine          | Penobscot                                 |    3490 |       4 |
+| Maine          | Kennebec                                  |    3231 |       5 |
+| Maine          | Oxford                                    |    1956 |       6 |
+| Maine          | Aroostook                                 |    1165 |       7 |
+| Maine          | Somerset                                  |    1110 |       8 |
+| Maine          | Sagadahoc                                 |     812 |       9 |
+| Maine          | Hancock                                   |     801 |      10 |
+| Maryland       | Prince George's                           |   68490 |       1 |
+| Maryland       | Montgomery                                |   59439 |       2 |
+| Maryland       | Baltimore                                 |   47735 |       3 |
+| Maryland       | Baltimore City                            |   38194 |       4 |
+| Maryland       | Anne Arundel                              |   33194 |       5 |
+| Maryland       | Frederick                                 |   15759 |       6 |
+| Maryland       | Howard                                    |   14704 |       7 |
+| Maryland       | Washington                                |   11521 |       8 |
+| Maryland       | Harford                                   |   11481 |       9 |
+| Maryland       | Charles                                   |    8126 |      10 |
+| Massachusetts  | Middlesex                                 |  103162 |       1 |
+| Massachusetts  | Essex                                     |   78059 |       2 |
+| Massachusetts  | Suffolk                                   |   72287 |       3 |
+| Massachusetts  | Worcester                                 |   60056 |       4 |
+| Massachusetts  | Bristol                                   |   51164 |       5 |
+| Massachusetts  | Norfolk                                   |   41091 |       6 |
+| Massachusetts  | Hampden                                   |   37731 |       7 |
+| Massachusetts  | Plymouth                                  |   36608 |       8 |
+| Massachusetts  | Unassigned                                |   28001 |       9 |
+| Massachusetts  | Barnstable                                |    8920 |      10 |
+| Michigan       | Wayne                                     |   97402 |       1 |
+| Michigan       | Oakland                                   |   71177 |       2 |
+| Michigan       | Macomb                                    |   56293 |       3 |
+| Michigan       | Kent                                      |   49660 |       4 |
+| Michigan       | Genesee                                   |   24486 |       5 |
+| Michigan       | Michigan Department of Corrections (MDOC) |   23856 |       6 |
+| Michigan       | Ottawa                                    |   21399 |       7 |
+| Michigan       | Washtenaw                                 |   17028 |       8 |
+| Michigan       | Ingham                                    |   15267 |       9 |
+| Michigan       | Kalamazoo                                 |   14345 |      10 |
+| Minnesota      | Hennepin                                  |   96262 |       1 |
+| Minnesota      | Ramsey                                    |   41383 |       2 |
+| Minnesota      | Dakota                                    |   34335 |       3 |
+| Minnesota      | Anoka                                     |   31905 |       4 |
+| Minnesota      | Washington                                |   21005 |       5 |
+| Minnesota      | Stearns                                   |   18291 |       6 |
+| Minnesota      | St. Louis                                 |   14251 |       7 |
+| Minnesota      | Scott                                     |   12517 |       8 |
+| Minnesota      | Wright                                    |   12004 |       9 |
+| Minnesota      | Olmsted                                   |   11171 |      10 |
+| Mississippi    | DeSoto                                    |   18490 |       1 |
+| Mississippi    | Hinds                                     |   17748 |       2 |
+| Mississippi    | Harrison                                  |   15412 |       3 |
+| Mississippi    | Rankin                                    |   11796 |       4 |
+| Mississippi    | Jackson                                   |   11590 |       5 |
+| Mississippi    | Lee                                       |    9323 |       6 |
+| Mississippi    | Madison                                   |    9009 |       7 |
+| Mississippi    | Jones                                     |    7332 |       8 |
+| Mississippi    | Forrest                                   |    6542 |       9 |
+| Mississippi    | Lauderdale                                |    6425 |      10 |
+| Missouri       | St. Louis                                 |   84254 |       1 |
+| Missouri       | Kansas City                               |   35799 |       2 |
+| Missouri       | St. Charles                               |   31696 |       3 |
+| Missouri       | Jackson                                   |   28660 |       4 |
+| Missouri       | Greene                                    |   22517 |       5 |
+| Missouri       | St. Louis City                            |   20453 |       6 |
+| Missouri       | Jefferson                                 |   18380 |       7 |
+| Missouri       | Boone                                     |   15430 |       8 |
+| Missouri       | Jasper                                    |   11772 |       9 |
+| Missouri       | Cole                                      |    8399 |      10 |
+| Montana        | Yellowstone                               |   15582 |       1 |
+| Montana        | Gallatin                                  |   11472 |       2 |
+| Montana        | Flathead                                  |   10250 |       3 |
+| Montana        | Missoula                                  |    7759 |       4 |
+| Montana        | Cascade                                   |    7336 |       5 |
+| Montana        | Lewis and Clark                           |    5969 |       6 |
+| Montana        | Silver Bow                                |    3490 |       7 |
+| Montana        | Ravalli                                   |    2506 |       8 |
+| Montana        | Big Horn                                  |    2273 |       9 |
+| Montana        | Hill                                      |    1833 |      10 |
+| Nebraska       | Douglas                                   |   61564 |       1 |
+| Nebraska       | Lancaster                                 |   26938 |       2 |
+| Nebraska       | Sarpy                                     |   18524 |       3 |
+| Nebraska       | Hall                                      |    6697 |       4 |
+| Nebraska       | Buffalo                                   |    4845 |       5 |
+| Nebraska       | Dodge                                     |    4437 |       6 |
+| Nebraska       | Madison                                   |    4038 |       7 |
+| Nebraska       | Platte                                    |    3776 |       8 |
+| Nebraska       | Dakota                                    |    3660 |       9 |
+| Nebraska       | Lincoln                                   |    3437 |      10 |
+| Nevada         | Clark                                     |  216121 |       1 |
+| Nevada         | Washoe                                    |   41491 |       2 |
+| Nevada         | Carson City                               |    5720 |       3 |
+| Nevada         | Elko                                      |    4304 |       4 |
+| Nevada         | Nye                                       |    2634 |       5 |
+| Nevada         | Lyon                                      |    2610 |       6 |
+| Nevada         | Douglas                                   |    2396 |       7 |
+| Nevada         | Churchill                                 |    1839 |       8 |
+| Nevada         | Humboldt                                  |    1013 |       9 |
+| Nevada         | Pershing                                  |     907 |      10 |
+| New Hampshire  | Hillsborough                              |   25948 |       1 |
+| New Hampshire  | Rockingham                                |   16257 |       2 |
+| New Hampshire  | Merrimack                                 |    6749 |       3 |
+| New Hampshire  | Strafford                                 |    5752 |       4 |
+| New Hampshire  | Belknap                                   |    2860 |       5 |
+| New Hampshire  | Cheshire                                  |    2275 |       6 |
+| New Hampshire  | Grafton                                   |    2013 |       7 |
+| New Hampshire  | Carroll                                   |    1516 |       8 |
+| New Hampshire  | Coos                                      |    1167 |       9 |
+| New Hampshire  | Sullivan                                  |    1142 |      10 |
+| New Jersey     | Bergen                                    |   68134 |       1 |
+| New Jersey     | Essex                                     |   65963 |       2 |
+| New Jersey     | Middlesex                                 |   65019 |       3 |
+| New Jersey     | Hudson                                    |   61987 |       4 |
+| New Jersey     | Passaic                                   |   51891 |       5 |
+| New Jersey     | Union                                     |   51740 |       6 |
+| New Jersey     | Ocean                                     |   51021 |       7 |
+| New Jersey     | Monmouth                                  |   49757 |       8 |
+| New Jersey     | Camden                                    |   40798 |       9 |
+| New Jersey     | Morris                                    |   32853 |      10 |
+| New Mexico     | Bernalillo                                |   49691 |       1 |
+| New Mexico     | Dona Ana                                  |   21270 |       2 |
+| New Mexico     | San Juan                                  |   13072 |       3 |
+| New Mexico     | McKinley                                  |   11638 |       4 |
+| New Mexico     | Sandoval                                  |   10255 |       5 |
+| New Mexico     | Santa Fe                                  |    9226 |       6 |
+| New Mexico     | Chaves                                    |    8279 |       7 |
+| New Mexico     | Lea                                       |    7865 |       8 |
+| New Mexico     | Eddy                                      |    6052 |       9 |
+| New Mexico     | Valencia                                  |    5861 |      10 |
+| New York       | Queens                                    |  181723 |       1 |
+| New York       | Kings                                     |  178939 |       2 |
+| New York       | Suffolk                                   |  145642 |       3 |
+| New York       | Nassau                                    |  130933 |       4 |
+| New York       | Bronx                                     |  122235 |       5 |
+| New York       | Westchester                               |   95642 |       6 |
+| New York       | New York                                  |   87468 |       7 |
+| New York       | Erie                                      |   58099 |       8 |
+| New York       | Richmond                                  |   50515 |       9 |
+| New York       | Monroe                                    |   48534 |      10 |
+| North Carolina | Mecklenburg                               |   88055 |       1 |
+| North Carolina | Wake                                      |   66959 |       2 |
+| North Carolina | Guilford                                  |   36020 |       3 |
+| North Carolina | Forsyth                                   |   28501 |       4 |
+| North Carolina | Gaston                                    |   21681 |       5 |
+| North Carolina | Cumberland                                |   21049 |       6 |
+| North Carolina | Durham                                    |   19728 |       7 |
+| North Carolina | Union                                     |   18714 |       8 |
+| North Carolina | Cabarrus                                  |   16577 |       9 |
+| North Carolina | Johnston                                  |   15996 |      10 |
+| North Dakota   | Cass                                      |   21005 |       1 |
+| North Dakota   | Burleigh                                  |   14321 |       2 |
+| North Dakota   | Grand Forks                               |    9673 |       3 |
+| North Dakota   | Ward                                      |    8961 |       4 |
+| North Dakota   | Morton                                    |    4859 |       5 |
+| North Dakota   | Williams                                  |    4328 |       6 |
+| North Dakota   | Stark                                     |    4260 |       7 |
+| North Dakota   | Stutsman                                  |    3248 |       8 |
+| North Dakota   | Rolette                                   |    2080 |       9 |
+| North Dakota   | Walsh                                     |    1737 |      10 |
+| Ohio           | Franklin                                  |  105796 |       1 |
+| Ohio           | Cuyahoga                                  |   89881 |       2 |
+| Ohio           | Hamilton                                  |   68156 |       3 |
+| Ohio           | Montgomery                                |   44954 |       4 |
+| Ohio           | Summit                                    |   36929 |       5 |
+| Ohio           | Lucas                                     |   32974 |       6 |
+| Ohio           | Butler                                    |   32764 |       7 |
+| Ohio           | Stark                                     |   27331 |       8 |
+| Ohio           | Warren                                    |   20836 |       9 |
+| Ohio           | Lorain                                    |   20311 |      10 |
+| Oklahoma       | Oklahoma                                  |   75891 |       1 |
+| Oklahoma       | Tulsa                                     |   65112 |       2 |
+| Oklahoma       | Cleveland                                 |   26603 |       3 |
+| Oklahoma       | Canadian                                  |   14471 |       4 |
+| Oklahoma       | Comanche                                  |   10568 |       5 |
+| Oklahoma       | Rogers                                    |    9280 |       6 |
+| Oklahoma       | Muskogee                                  |    8550 |       7 |
+| Oklahoma       | Payne                                     |    7936 |       8 |
+| Oklahoma       | Pottawatomie                              |    7227 |       9 |
+| Oklahoma       | Wagoner                                   |    7070 |      10 |
+| Oregon         | Multnomah                                 |   30278 |       1 |
+| Oregon         | Washington                                |   20023 |       2 |
+| Oregon         | Marion                                    |   17424 |       3 |
+| Oregon         | Clackamas                                 |   12655 |       4 |
+| Oregon         | Lane                                      |    9316 |       5 |
+| Oregon         | Jackson                                   |    7594 |       6 |
+| Oregon         | Umatilla                                  |    7222 |       7 |
+| Oregon         | Deschutes                                 |    5468 |       8 |
+| Oregon         | Yamhill                                   |    3475 |       9 |
+| Oregon         | Linn                                      |    3363 |      10 |
+| Pennsylvania   | Philadelphia                              |  111098 |       1 |
+| Pennsylvania   | Allegheny                                 |   70165 |       2 |
+| Pennsylvania   | Montgomery                                |   49270 |       3 |
+| Pennsylvania   | Bucks                                     |   40698 |       4 |
+| Pennsylvania   | Lancaster                                 |   39065 |       5 |
+| Pennsylvania   | Delaware                                  |   37727 |       6 |
+| Pennsylvania   | Berks                                     |   32957 |       7 |
+| Pennsylvania   | York                                      |   32578 |       8 |
+| Pennsylvania   | Lehigh                                    |   28427 |       9 |
+| Pennsylvania   | Chester                                   |   25762 |      10 |
+| Rhode Island   | Providence                                |   76727 |       1 |
+| Rhode Island   | Kent                                      |   14129 |       2 |
+| Rhode Island   | Unassigned                                |   10562 |       3 |
+| Rhode Island   | Washington                                |    6765 |       4 |
+| Rhode Island   | Newport                                   |    4631 |       5 |
+| Rhode Island   | Bristol                                   |    3890 |       6 |
+| Rhode Island   | Out of RI                                 |       0 |       7 |
+| South Carolina | Greenville                                |   56779 |       1 |
+| South Carolina | Richland                                  |   36340 |       2 |
+| South Carolina | Charleston                                |   33516 |       3 |
+| South Carolina | Spartanburg                               |   30405 |       4 |
+| South Carolina | Horry                                     |   29568 |       5 |
+| South Carolina | Lexington                                 |   25077 |       6 |
+| South Carolina | York                                      |   22640 |       7 |
+| South Carolina | Anderson                                  |   17817 |       8 |
+| South Carolina | Florence                                  |   15191 |       9 |
+| South Carolina | Pickens                                   |   14869 |      10 |
+| South Dakota   | Minnehaha                                 |   27109 |       1 |
+| South Dakota   | Pennington                                |   12424 |       2 |
+| South Dakota   | Lincoln                                   |    7486 |       3 |
+| South Dakota   | Brown                                     |    4966 |       4 |
+| South Dakota   | Codington                                 |    3766 |       5 |
+| South Dakota   | Brookings                                 |    3440 |       6 |
+| South Dakota   | Davison                                   |    2905 |       7 |
+| South Dakota   | Lawrence                                  |    2758 |       8 |
+| South Dakota   | Yankton                                   |    2748 |       9 |
+| South Dakota   | Beadle                                    |    2614 |      10 |
+| Tennessee      | Shelby                                    |   81572 |       1 |
+| Tennessee      | Davidson                                  |   75423 |       2 |
+| Tennessee      | Knox                                      |   41888 |       3 |
+| Tennessee      | Hamilton                                  |   37462 |       4 |
+| Tennessee      | Rutherford                                |   35394 |       5 |
+| Tennessee      | Unassigned                                |   24941 |       6 |
+| Tennessee      | Williamson                                |   23250 |       7 |
+| Tennessee      | Sumner                                    |   19478 |       8 |
+| Tennessee      | Out of TN                                 |   16527 |       9 |
+| Tennessee      | Montgomery                                |   15913 |      10 |
+| Texas          | Harris                                    |  323408 |       1 |
+| Texas          | Dallas                                    |  262738 |       2 |
+| Texas          | Tarrant                                   |  223736 |       3 |
+| Texas          | Bexar                                     |  177802 |       4 |
+| Texas          | El Paso                                   |  114819 |       5 |
+| Texas          | Collin                                    |   75051 |       6 |
+| Texas          | Travis                                    |   70631 |       7 |
+| Texas          | Hidalgo                                   |   66272 |       8 |
+| Texas          | Denton                                    |   55363 |       9 |
+| Texas          | Fort Bend                                 |   51916 |      10 |
+| Utah           | Salt Lake                                 |  131260 |       1 |
+| Utah           | Utah                                      |   85190 |       2 |
+| Utah           | Davis                                     |   32382 |       3 |
+| Utah           | Weber-Morgan                              |   26345 |       4 |
+| Utah           | Southwest Utah                            |   24990 |       5 |
+| Utah           | Bear River                                |   18804 |       6 |
+| Utah           | Central Utah                              |    7814 |       7 |
+| Utah           | Tooele                                    |    5988 |       8 |
+| Utah           | Summit                                    |    4647 |       9 |
+| Utah           | Wasatch                                   |    4116 |      10 |
+| Vermont        | Chittenden                                |    4135 |       1 |
+| Vermont        | Washington                                |    1254 |       2 |
+| Vermont        | Bennington                                |    1125 |       3 |
+| Vermont        | Rutland                                   |     956 |       4 |
+| Vermont        | Windsor                                   |     874 |       5 |
+| Vermont        | Franklin                                  |     831 |       6 |
+| Vermont        | Windham                                   |     811 |       7 |
+| Vermont        | Addison                                   |     607 |       8 |
+| Vermont        | Orange                                    |     432 |       9 |
+| Vermont        | Orleans                                   |     367 |      10 |
+| Virginia       | Fairfax                                   |   60265 |       1 |
+| Virginia       | Prince William                            |   35693 |       2 |
+| Virginia       | Virginia Beach                            |   26750 |       3 |
+| Virginia       | Loudoun                                   |   20791 |       4 |
+| Virginia       | Chesterfield                              |   19563 |       5 |
+| Virginia       | Henrico                                   |   18886 |       6 |
+| Virginia       | Chesapeake                                |   15793 |       7 |
+| Virginia       | Norfolk                                   |   13057 |       8 |
+| Virginia       | Richmond City                             |   13032 |       9 |
+| Virginia       | Arlington                                 |   11867 |      10 |
+| Washington     | King                                      |   79060 |       1 |
+| Washington     | Pierce                                    |   34653 |       2 |
+| Washington     | Spokane                                   |   33850 |       3 |
+| Washington     | Snohomish                                 |   28096 |       4 |
+| Washington     | Yakima                                    |   24797 |       5 |
+| Washington     | Clark                                     |   17809 |       6 |
+| Washington     | Benton                                    |   14244 |       7 |
+| Washington     | Franklin                                  |   10540 |       8 |
+| Washington     | Grant                                     |    7218 |       9 |
+| Washington     | Thurston                                  |    6468 |      10 |
+| West Virginia  | Kanawha                                   |   11206 |       1 |
+| West Virginia  | Berkeley                                  |    9031 |       2 |
+| West Virginia  | Cabell                                    |    7201 |       3 |
+| West Virginia  | Monongalia                                |    7183 |       4 |
+| West Virginia  | Wood                                      |    6586 |       5 |
+| West Virginia  | Harrison                                  |    4529 |       6 |
+| West Virginia  | Raleigh                                   |    4237 |       7 |
+| West Virginia  | Mercer                                    |    3946 |       8 |
+| West Virginia  | Putnam                                    |    3891 |       9 |
+| West Virginia  | Ohio                                      |    3427 |      10 |
+| Wisconsin      | Milwaukee                                 |  103941 |       1 |
+| Wisconsin      | Waukesha                                  |   43201 |       2 |
+| Wisconsin      | Dane                                      |   39669 |       3 |
+| Wisconsin      | Brown                                     |   31611 |       4 |
+| Wisconsin      | Racine                                    |   22400 |       5 |
+| Wisconsin      | Outagamie                                 |   20647 |       6 |
+| Wisconsin      | Winnebago                                 |   19137 |       7 |
+| Wisconsin      | Kenosha                                   |   16290 |       8 |
+| Wisconsin      | Rock                                      |   15296 |       9 |
+| Wisconsin      | Washington                                |   15038 |      10 |
+| Wyoming        | Laramie                                   |    8010 |       1 |
+| Wyoming        | Natrona                                   |    7555 |       2 |
+| Wyoming        | Campbell                                  |    4632 |       3 |
+| Wyoming        | Fremont                                   |    4513 |       4 |
+| Wyoming        | Albany                                    |    3791 |       5 |
+| Wyoming        | Sweetwater                                |    3519 |       6 |
+| Wyoming        | Teton                                     |    3161 |       7 |
+| Wyoming        | Sheridan                                  |    2905 |       8 |
+| Wyoming        | Park                                      |    2549 |       9 |
+| Wyoming        | Uinta                                     |    1981 |      10 |
++----------------+-------------------------------------------+---------+---------+
+489 rows in set (9.69 sec)
+
+mysql> select * from (
+    -> select c.state as state, c.county as county, sum(d.death_count) as total, ROW_NUMBER() 
+    -> over (PARTITION BY state order by sum(d.death_count) desc) as r
+    -> from county c
+    -> join deaths d on d.county = c.county and c.county = c.county
+    -> group by c.state, c.county) rs WHERE r <= 10;
++----------------+----------------------+-------+----+
+| state          | county               | total | r  |
++----------------+----------------------+-------+----+
+| Alabama        | Jefferson            |  4805 |  1 |
+| Alabama        | Montgomery           |  4680 |  2 |
+| Alabama        | Dallas               |  3118 |  3 |
+| Alabama        | Unassigned           |  2995 |  4 |
+| Alabama        | Marion               |  2969 |  5 |
+| Alabama        | Washington           |  2636 |  6 |
+| Alabama        | Monroe               |  2022 |  7 |
+| Alabama        | Franklin             |  2013 |  8 |
+| Alabama        | Madison              |  1844 |  9 |
+| Alabama        | Shelby               |  1731 | 10 |
+| Alaska         | Unassigned           |  2995 |  1 |
+| Alaska         | Anchorage            |   152 |  2 |
+| Alaska         | Petersburg           |    38 |  3 |
+| Alaska         | Matanuska-Susitna    |    29 |  4 |
+| Alaska         | Fairbanks North Star |    26 |  5 |
+| Alaska         | Juneau               |    23 |  6 |
+| Alaska         | Kenai Peninsula      |    22 |  7 |
+| Alaska         | Bethel               |    17 |  8 |
+| Alaska         | Kodiak Island        |     5 |  9 |
+| Alaska         | Yukon-Koyukuk        |     4 | 10 |
+| Arizona        | Maricopa             |  7672 |  1 |
+| Arizona        | Unassigned           |  2995 |  2 |
+| Arizona        | Pima                 |  1831 |  3 |
+| Arizona        | Yuma                 |   735 |  4 |
+| Arizona        | Pinal                |   636 |  5 |
+| Arizona        | Mohave               |   550 |  6 |
+| Arizona        | Navajo               |   446 |  7 |
+| Arizona        | Yavapai              |   403 |  8 |
+| Arizona        | Apache               |   317 |  9 |
+| Arizona        | Santa Cruz           |   304 | 10 |
+| Arkansas       | Jefferson            |  4805 |  1 |
+| Arkansas       | Montgomery           |  4680 |  2 |
+| Arkansas       | Clark                |  4153 |  3 |
+| Arkansas       | Dallas               |  3118 |  4 |
+| Arkansas       | Unassigned           |  2995 |  5 |
+| Arkansas       | Marion               |  2969 |  6 |
+| Arkansas       | Washington           |  2636 |  7 |
+| Arkansas       | Union                |  2541 |  8 |
+| Arkansas       | Monroe               |  2022 |  9 |
+| Arkansas       | Franklin             |  2013 | 10 |
+| California     | Los Angeles          | 17308 |  1 |
+| California     | Kings                |  8628 |  2 |
+| California     | Orange               |  5098 |  3 |
+| California     | Riverside            |  3278 |  4 |
+| California     | Unassigned           |  2995 |  5 |
+| California     | San Diego            |  2683 |  6 |
+| California     | Lake                 |  2334 |  7 |
+| California     | San Bernardino       |  1966 |  8 |
+| California     | Santa Clara          |  1473 |  9 |
+| California     | Sacramento           |  1271 | 10 |
+| Colorado       | Jefferson            |  4805 |  1 |
+| Colorado       | Unassigned           |  2995 |  2 |
+| Colorado       | El Paso              |  2848 |  3 |
+| Colorado       | Washington           |  2636 |  4 |
+| Colorado       | Lake                 |  2334 |  5 |
+| Colorado       | Jackson              |  1683 |  6 |
+| Colorado       | Douglas              |  1271 |  7 |
+| Colorado       | Adams                |  1044 |  8 |
+| Colorado       | Summit               |   823 |  9 |
+| Colorado       | Denver               |   742 | 10 |
+| Connecticut    | Middlesex            |  5439 |  1 |
+| Connecticut    | Unassigned           |  2995 |  2 |
+| Connecticut    | Hartford             |  2146 |  3 |
+| Connecticut    | Fairfield            |  2091 |  4 |
+| Connecticut    | New Haven            |  1810 |  5 |
+| Connecticut    | New London           |   371 |  6 |
+| Connecticut    | Litchfield           |   259 |  7 |
+| Connecticut    | Windham              |   162 |  8 |
+| Connecticut    | Tolland              |   143 |  9 |
+| Connecticut    | Out of CT            |     0 | 10 |
+| Delaware       | Unassigned           |  2995 |  1 |
+| Delaware       | Kent                 |  1169 |  2 |
+| Delaware       | Sussex               |   629 |  3 |
+| Delaware       | New Castle           |   561 |  4 |
+| Delaware       | Out of DE            |     0 |  5 |
+| Florida        | Orange               |  5098 |  1 |
+| Florida        | Miami-Dade           |  4919 |  2 |
+| Florida        | Jefferson            |  4805 |  3 |
+| Florida        | Unassigned           |  2995 |  4 |
+| Florida        | Marion               |  2969 |  5 |
+| Florida        | Nassau               |  2797 |  6 |
+| Florida        | Washington           |  2636 |  7 |
+| Florida        | Union                |  2541 |  8 |
+| Florida        | Lake                 |  2334 |  9 |
+| Florida        | Palm Beach           |  2212 | 10 |
+| Georgia        | Cook                 |  8962 |  1 |
+| Georgia        | Wayne                |  4910 |  2 |
+| Georgia        | Jefferson            |  4805 |  3 |
+| Georgia        | Montgomery           |  4680 |  4 |
+| Georgia        | Harris               |  4396 |  5 |
+| Georgia        | Unassigned           |  2995 |  6 |
+| Georgia        | Marion               |  2969 |  7 |
+| Georgia        | Washington           |  2636 |  8 |
+| Georgia        | Union                |  2541 |  9 |
+| Georgia        | Monroe               |  2022 | 10 |
+| Hawaii         | Unassigned           |  2995 |  1 |
+| Hawaii         | Honolulu             |   331 |  2 |
+| Hawaii         | Hawaii               |    53 |  3 |
+| Hawaii         | Maui                 |    26 |  4 |
+| Hawaii         | Out of HI            |     2 |  5 |
+| Hawaii         | Kauai                |     1 |  6 |
+| Hawaii         | Kalawao              |     0 |  7 |
+| Idaho          | Jefferson            |  4805 |  1 |
+| Idaho          | Clark                |  4153 |  2 |
+| Idaho          | Unassigned           |  2995 |  3 |
+| Idaho          | Washington           |  2636 |  4 |
+| Idaho          | Franklin             |  2013 |  5 |
+| Idaho          | Madison              |  1844 |  6 |
+| Idaho          | Adams                |  1044 |  7 |
+| Idaho          | Lincoln              |   722 |  8 |
+| Idaho          | Oneida               |   490 |  9 |
+| Idaho          | Ada                  |   414 | 10 |
+| Illinois       | Cook                 |  8962 |  1 |
+| Illinois       | Wayne                |  4910 |  2 |
+| Illinois       | Jefferson            |  4805 |  3 |
+| Illinois       | Montgomery           |  4680 |  4 |
+| Illinois       | Clark                |  4153 |  5 |
+| Illinois       | Unassigned           |  2995 |  6 |
+| Illinois       | Marion               |  2969 |  7 |
+| Illinois       | Washington           |  2636 |  8 |
+| Illinois       | Union                |  2541 |  9 |
+| Illinois       | Lake                 |  2334 | 10 |
+| Indiana        | Orange               |  5098 |  1 |
+| Indiana        | Wayne                |  4910 |  2 |
+| Indiana        | Jefferson            |  4805 |  3 |
+| Indiana        | Montgomery           |  4680 |  4 |
+| Indiana        | Clark                |  4153 |  5 |
+| Indiana        | Unassigned           |  2995 |  6 |
+| Indiana        | Marion               |  2969 |  7 |
+| Indiana        | Washington           |  2636 |  8 |
+| Indiana        | Union                |  2541 |  9 |
+| Indiana        | Lake                 |  2334 | 10 |
+| Iowa           | Wayne                |  4910 |  1 |
+| Iowa           | Jefferson            |  4805 |  2 |
+| Iowa           | Montgomery           |  4680 |  3 |
+| Iowa           | Dallas               |  3118 |  4 |
+| Iowa           | Unassigned           |  2995 |  5 |
+| Iowa           | Marion               |  2969 |  6 |
+| Iowa           | Washington           |  2636 |  7 |
+| Iowa           | Union                |  2541 |  8 |
+| Iowa           | Monroe               |  2022 |  9 |
+| Iowa           | Franklin             |  2013 | 10 |
+| Kansas         | Jefferson            |  4805 |  1 |
+| Kansas         | Montgomery           |  4680 |  2 |
+| Kansas         | Clark                |  4153 |  3 |
+| Kansas         | Unassigned           |  2995 |  4 |
+| Kansas         | Marion               |  2969 |  5 |
+| Kansas         | Washington           |  2636 |  6 |
+| Kansas         | Franklin             |  2013 |  7 |
+| Kansas         | Jackson              |  1683 |  8 |
+| Kansas         | Johnson              |  1486 |  9 |
+| Kansas         | Hamilton             |  1280 | 10 |
+| Kentucky       | Wayne                |  4910 |  1 |
+| Kentucky       | Jefferson            |  4805 |  2 |
+| Kentucky       | Montgomery           |  4680 |  3 |
+| Kentucky       | Clark                |  4153 |  4 |
+| Kentucky       | Unassigned           |  2995 |  5 |
+| Kentucky       | Marion               |  2969 |  6 |
+| Kentucky       | Washington           |  2636 |  7 |
+| Kentucky       | Union                |  2541 |  8 |
+| Kentucky       | Monroe               |  2022 |  9 |
+| Kentucky       | Franklin             |  2013 | 10 |
+| Louisiana      | Jefferson            |  4805 |  1 |
+| Louisiana      | Unassigned           |  2995 |  2 |
+| Louisiana      | Washington           |  2636 |  3 |
+| Louisiana      | Union                |  2541 |  4 |
+| Louisiana      | Franklin             |  2013 |  5 |
+| Louisiana      | Madison              |  1844 |  6 |
+| Louisiana      | Jackson              |  1683 |  7 |
+| Louisiana      | Cameron              |  1353 |  8 |
+| Louisiana      | Orleans              |   815 |  9 |
+| Louisiana      | Allen                |   814 | 10 |
+| Maine          | Unassigned           |  2995 |  1 |
+| Maine          | Washington           |  2636 |  2 |
+| Maine          | Franklin             |  2013 |  3 |
+| Maine          | Cumberland           |  1258 |  4 |
+| Maine          | York                 |  1043 |  5 |
+| Maine          | Somerset             |   983 |  6 |
+| Maine          | Knox                 |   731 |  7 |
+| Maine          | Lincoln              |   722 |  8 |
+| Maine          | Hancock              |   513 |  9 |
+| Maine          | Penobscot            |    70 | 10 |
+| Maryland       | Montgomery           |  4680 |  1 |
+| Maryland       | Unassigned           |  2995 |  2 |
+| Maryland       | Washington           |  2636 |  3 |
+| Maryland       | Worcester            |  1936 |  4 |
+| Maryland       | Prince George's      |  1243 |  5 |
+| Maryland       | Kent                 |  1169 |  6 |
+| Maryland       | Baltimore            |  1158 |  7 |
+| Maryland       | Somerset             |   983 |  8 |
+| Maryland       | Baltimore City       |   823 |  9 |
+| Maryland       | Carroll              |   714 | 10 |
+| Massachusetts  | Middlesex            |  5439 |  1 |
+| Massachusetts  | Essex                |  4569 |  2 |
+| Massachusetts  | Suffolk              |  4513 |  3 |
+| Massachusetts  | Unassigned           |  2995 |  4 |
+| Massachusetts  | Franklin             |  2013 |  5 |
+| Massachusetts  | Worcester            |  1936 |  6 |
+| Massachusetts  | Norfolk              |  1629 |  7 |
+| Massachusetts  | Bristol              |  1493 |  8 |
+| Massachusetts  | Plymouth             |  1247 |  9 |
+| Massachusetts  | Hampden              |  1210 | 10 |
+| Michigan       | Wayne                |  4910 |  1 |
+| Michigan       | Unassigned           |  2995 |  2 |
+| Michigan       | Lake                 |  2334 |  3 |
+| Michigan       | Monroe               |  2022 |  4 |
+| Michigan       | Oakland              |  1907 |  5 |
+| Michigan       | Macomb               |  1874 |  6 |
+| Michigan       | Jackson              |  1683 |  7 |
+| Michigan       | Kent                 |  1169 |  8 |
+| Michigan       | St. Clair            |   850 |  9 |
+| Michigan       | Genesee              |   840 | 10 |
+| Minnesota      | Cook                 |  8962 |  1 |
+| Minnesota      | Unassigned           |  2995 |  2 |
+| Minnesota      | Washington           |  2636 |  3 |
+| Minnesota      | Lake                 |  2334 |  4 |
+| Minnesota      | St. Louis            |  2019 |  5 |
+| Minnesota      | Polk                 |  1902 |  6 |
+| Minnesota      | Jackson              |  1683 |  7 |
+| Minnesota      | Hennepin             |  1539 |  8 |
+| Minnesota      | Douglas              |  1271 |  9 |
+| Minnesota      | Clay                 |   837 | 10 |
+| Mississippi    | Wayne                |  4910 |  1 |
+| Mississippi    | Jefferson            |  4805 |  2 |
+| Mississippi    | Montgomery           |  4680 |  3 |
+| Mississippi    | Unassigned           |  2995 |  4 |
+| Mississippi    | Marion               |  2969 |  5 |
+| Mississippi    | Washington           |  2636 |  6 |
+| Mississippi    | Union                |  2541 |  7 |
+| Mississippi    | Monroe               |  2022 |  8 |
+| Mississippi    | Franklin             |  2013 |  9 |
+| Mississippi    | Madison              |  1844 | 10 |
+| Missouri       | Wayne                |  4910 |  1 |
+| Missouri       | Jefferson            |  4805 |  2 |
+| Missouri       | Montgomery           |  4680 |  3 |
+| Missouri       | Clark                |  4153 |  4 |
+| Missouri       | Dallas               |  3118 |  5 |
+| Missouri       | Unassigned           |  2995 |  6 |
+| Missouri       | Marion               |  2969 |  7 |
+| Missouri       | Washington           |  2636 |  8 |
+| Missouri       | Monroe               |  2022 |  9 |
+| Missouri       | St. Louis            |  2019 | 10 |
+| Montana        | Jefferson            |  4805 |  1 |
+| Montana        | Unassigned           |  2995 |  2 |
+| Montana        | Lake                 |  2334 |  3 |
+| Montana        | Madison              |  1844 |  4 |
+| Montana        | Lincoln              |   722 |  5 |
+| Montana        | Richland             |   720 |  6 |
+| Montana        | Yellowstone          |   225 |  7 |
+| Montana        | Carter               |   206 |  8 |
+| Montana        | Liberty              |   193 |  9 |
+| Montana        | Carbon               |   159 | 10 |
+| Nebraska       | Wayne                |  4910 |  1 |
+| Nebraska       | Jefferson            |  4805 |  2 |
+| Nebraska       | Unassigned           |  2995 |  3 |
+| Nebraska       | Washington           |  2636 |  4 |
+| Nebraska       | Franklin             |  2013 |  5 |
+| Nebraska       | Polk                 |  1902 |  6 |
+| Nebraska       | Madison              |  1844 |  7 |
+| Nebraska       | Johnson              |  1486 |  8 |
+| Nebraska       | Hamilton             |  1280 |  9 |
+| Nebraska       | Douglas              |  1271 | 10 |
+| Nevada         | Clark                |  4153 |  1 |
+| Nevada         | Unassigned           |  2995 |  2 |
+| Nevada         | Douglas              |  1271 |  3 |
+| Nevada         | Lincoln              |   722 |  4 |
+| Nevada         | Washoe               |   604 |  5 |
+| Nevada         | Lyon                 |   218 |  6 |
+| Nevada         | Carson City          |   106 |  7 |
+| Nevada         | Nye                  |    84 |  8 |
+| Nevada         | Mineral              |    81 |  9 |
+| Nevada         | Humboldt             |    64 | 10 |
+| New Hampshire  | Unassigned           |  2995 |  1 |
+| New Hampshire  | Hillsborough         |  1888 |  2 |
+| New Hampshire  | Carroll              |   714 |  3 |
+| New Hampshire  | Sullivan             |   378 |  4 |
+| New Hampshire  | Rockingham           |   304 |  5 |
+| New Hampshire  | Merrimack            |    96 |  6 |
+| New Hampshire  | Belknap              |    88 |  7 |
+| New Hampshire  | Strafford            |    65 |  8 |
+| New Hampshire  | Coos                 |    44 |  9 |
+| New Hampshire  | Cheshire             |    20 | 10 |
+| New Jersey     | Middlesex            |  5439 |  1 |
+| New Jersey     | Essex                |  4569 |  2 |
+| New Jersey     | Unassigned           |  2995 |  3 |
+| New Jersey     | Union                |  2541 |  4 |
+| New Jersey     | Bergen               |  2488 |  5 |
+| New Jersey     | Hudson               |  1871 |  6 |
+| New Jersey     | Ocean                |  1685 |  7 |
+| New Jersey     | Passaic              |  1607 |  8 |
+| New Jersey     | Mercer               |  1289 |  9 |
+| New Jersey     | Monmouth             |  1284 | 10 |
+| New Mexico     | Unassigned           |  2995 |  1 |
+| New Mexico     | Union                |  2541 |  2 |
+| New Mexico     | Hidalgo              |  2475 |  3 |
+| New Mexico     | Bernalillo           |   778 |  4 |
+| New Mexico     | Lincoln              |   722 |  5 |
+| New Mexico     | Grant                |   479 |  6 |
+| New Mexico     | San Juan             |   425 |  7 |
+| New Mexico     | McKinley             |   417 |  8 |
+| New Mexico     | Dona Ana             |   361 |  9 |
+| New Mexico     | Sandoval             |   179 | 10 |
+| New York       | Kings                |  8628 |  1 |
+| New York       | Queens               |  8200 |  2 |
+| New York       | Bronx                |  5467 |  3 |
+| New York       | Orange               |  5098 |  4 |
+| New York       | Wayne                |  4910 |  5 |
+| New York       | Jefferson            |  4805 |  6 |
+| New York       | Montgomery           |  4680 |  7 |
+| New York       | Essex                |  4569 |  8 |
+| New York       | Suffolk              |  4513 |  9 |
+| New York       | New York             |  3612 | 10 |
+| North Carolina | Orange               |  5098 |  1 |
+| North Carolina | Wayne                |  4910 |  2 |
+| North Carolina | Montgomery           |  4680 |  3 |
+| North Carolina | Unassigned           |  2995 |  4 |
+| North Carolina | Washington           |  2636 |  5 |
+| North Carolina | Union                |  2541 |  6 |
+| North Carolina | Franklin             |  2013 |  7 |
+| North Carolina | Richmond             |  1904 |  8 |
+| North Carolina | Polk                 |  1902 |  9 |
+| North Carolina | Madison              |  1844 | 10 |
+| North Dakota   | Unassigned           |  2995 |  1 |
+| North Dakota   | Mercer               |  1289 |  2 |
+| North Dakota   | Adams                |  1044 |  3 |
+| North Dakota   | Ramsey               |   800 |  4 |
+| North Dakota   | Richland             |   720 |  5 |
+| North Dakota   | Pierce               |   602 |  6 |
+| North Dakota   | Cass                 |   559 |  7 |
+| North Dakota   | Stark                |   535 |  8 |
+| North Dakota   | Grant                |   479 |  9 |
+| North Dakota   | Logan                |   317 | 10 |
+| Ohio           | Wayne                |  4910 |  1 |
+| Ohio           | Jefferson            |  4805 |  2 |
+| Ohio           | Montgomery           |  4680 |  3 |
+| Ohio           | Clark                |  4153 |  4 |
+| Ohio           | Unassigned           |  2995 |  5 |
+| Ohio           | Marion               |  2969 |  6 |
+| Ohio           | Washington           |  2636 |  7 |
+| Ohio           | Union                |  2541 |  8 |
+| Ohio           | Lake                 |  2334 |  9 |
+| Ohio           | Fairfield            |  2091 | 10 |
+| Oklahoma       | Jefferson            |  4805 |  1 |
+| Oklahoma       | Unassigned           |  2995 |  2 |
+| Oklahoma       | Washington           |  2636 |  3 |
+| Oklahoma       | Jackson              |  1683 |  4 |
+| Oklahoma       | Delaware             |  1488 |  5 |
+| Oklahoma       | Lincoln              |   722 |  6 |
+| Oklahoma       | Caddo                |   677 |  7 |
+| Oklahoma       | Marshall             |   616 |  8 |
+| Oklahoma       | Tulsa                |   600 |  9 |
+| Oklahoma       | Oklahoma             |   595 | 10 |
+| Oregon         | Jefferson            |  4805 |  1 |
+| Oregon         | Unassigned           |  2995 |  2 |
+| Oregon         | Marion               |  2969 |  3 |
+| Oregon         | Washington           |  2636 |  4 |
+| Oregon         | Union                |  2541 |  5 |
+| Oregon         | Lake                 |  2334 |  6 |
+| Oregon         | Polk                 |  1902 |  7 |
+| Oregon         | Jackson              |  1683 |  8 |
+| Oregon         | Douglas              |  1271 |  9 |
+| Oregon         | Benton               |   794 | 10 |
+| Pennsylvania   | Wayne                |  4910 |  1 |
+| Pennsylvania   | Jefferson            |  4805 |  2 |
+| Pennsylvania   | Montgomery           |  4680 |  3 |
+| Pennsylvania   | Unassigned           |  2995 |  4 |
+| Pennsylvania   | Philadelphia         |  2911 |  5 |
+| Pennsylvania   | Washington           |  2636 |  6 |
+| Pennsylvania   | Union                |  2541 |  7 |
+| Pennsylvania   | Monroe               |  2022 |  8 |
+| Pennsylvania   | Franklin             |  2013 |  9 |
+| Pennsylvania   | Erie                 |  1961 | 10 |
+| Rhode Island   | Unassigned           |  2995 |  1 |
+| Rhode Island   | Washington           |  2636 |  2 |
+| Rhode Island   | Providence           |  1632 |  3 |
+| Rhode Island   | Bristol              |  1493 |  4 |
+| Rhode Island   | Kent                 |  1169 |  5 |
+| Rhode Island   | Newport              |    15 |  6 |
+| Rhode Island   | Out of RI            |     0 |  7 |
+| South Carolina | Unassigned           |  2995 |  1 |
+| South Carolina | Marion               |  2969 |  2 |
+| South Carolina | Union                |  2541 |  3 |
+| South Carolina | Fairfield            |  2091 |  4 |
+| South Carolina | Lee                  |  1445 |  5 |
+| South Carolina | Lancaster            |  1200 |  6 |
+| South Carolina | York                 |  1043 |  7 |
+| South Carolina | Chester              |   751 |  8 |
+| South Carolina | Greenville           |   739 |  9 |
+| South Carolina | Richland             |   720 | 10 |
+| South Dakota   | Clark                |  4153 |  1 |
+| South Dakota   | Unassigned           |  2995 |  2 |
+| South Dakota   | Union                |  2541 |  3 |
+| South Dakota   | Lake                 |  2334 |  4 |
+| South Dakota   | Jackson              |  1683 |  5 |
+| South Dakota   | Douglas              |  1271 |  6 |
+| South Dakota   | Clay                 |   837 |  7 |
+| South Dakota   | Lincoln              |   722 |  8 |
+| South Dakota   | Lawrence             |   668 |  9 |
+| South Dakota   | Marshall             |   616 | 10 |
+| Tennessee      | Wayne                |  4910 |  1 |
+| Tennessee      | Jefferson            |  4805 |  2 |
+| Tennessee      | Montgomery           |  4680 |  3 |
+| Tennessee      | Unassigned           |  2995 |  4 |
+| Tennessee      | Marion               |  2969 |  5 |
+| Tennessee      | Washington           |  2636 |  6 |
+| Tennessee      | Union                |  2541 |  7 |
+| Tennessee      | Lake                 |  2334 |  8 |
+| Tennessee      | Monroe               |  2022 |  9 |
+| Tennessee      | Franklin             |  2013 | 10 |
+| Texas          | Orange               |  5098 |  1 |
+| Texas          | Jefferson            |  4805 |  2 |
+| Texas          | Montgomery           |  4680 |  3 |
+| Texas          | Harris               |  4396 |  4 |
+| Texas          | Dallas               |  3118 |  5 |
+| Texas          | Unassigned           |  2995 |  6 |
+| Texas          | Marion               |  2969 |  7 |
+| Texas          | El Paso              |  2848 |  8 |
+| Texas          | Washington           |  2636 |  9 |
+| Texas          | Hidalgo              |  2475 | 10 |
+| Utah           | Wayne                |  4910 |  1 |
+| Utah           | Unassigned           |  2995 |  2 |
+| Utah           | Washington           |  2636 |  3 |
+| Utah           | Summit               |   823 |  4 |
+| Utah           | Salt Lake            |   694 |  5 |
+| Utah           | Kane                 |   680 |  6 |
+| Utah           | Morgan               |   588 |  7 |
+| Utah           | San Juan             |   425 |  8 |
+| Utah           | Beaver               |   329 |  9 |
+| Utah           | Utah                 |   290 | 10 |
+| Vermont        | Orange               |  5098 |  1 |
+| Vermont        | Essex                |  4569 |  2 |
+| Vermont        | Unassigned           |  2995 |  3 |
+| Vermont        | Washington           |  2636 |  4 |
+| Vermont        | Franklin             |  2013 |  5 |
+| Vermont        | Orleans              |   815 |  6 |
+| Vermont        | Windham              |   162 |  7 |
+| Vermont        | Chittenden           |    80 |  8 |
+| Vermont        | Rutland              |     9 |  9 |
+| Vermont        | Addison              |     8 | 10 |
+| Virginia       | Middlesex            |  5439 |  1 |
+| Virginia       | Orange               |  5098 |  2 |
+| Virginia       | Montgomery           |  4680 |  3 |
+| Virginia       | Essex                |  4569 |  4 |
+| Virginia       | Suffolk              |  4513 |  5 |
+| Virginia       | Unassigned           |  2995 |  6 |
+| Virginia       | Washington           |  2636 |  7 |
+| Virginia       | Franklin             |  2013 |  8 |
+| Virginia       | Richmond             |  1904 |  9 |
+| Virginia       | Madison              |  1844 | 10 |
+| Washington     | Jefferson            |  4805 |  1 |
+| Washington     | Clark                |  4153 |  2 |
+| Washington     | Unassigned           |  2995 |  3 |
+| Washington     | Franklin             |  2013 |  4 |
+| Washington     | Douglas              |  1271 |  5 |
+| Washington     | King                 |  1264 |  6 |
+| Washington     | Adams                |  1044 |  7 |
+| Washington     | Benton               |   794 |  8 |
+| Washington     | Lincoln              |   722 |  9 |
+| Washington     | Columbia             |   630 | 10 |
+| West Virginia  | Wayne                |  4910 |  1 |
+| West Virginia  | Jefferson            |  4805 |  2 |
+| West Virginia  | Unassigned           |  2995 |  3 |
+| West Virginia  | Marion               |  2969 |  4 |
+| West Virginia  | Monroe               |  2022 |  5 |
+| West Virginia  | Jackson              |  1683 |  6 |
+| West Virginia  | Mercer               |  1289 |  7 |
+| West Virginia  | Fayette              |   919 |  8 |
+| West Virginia  | Clay                 |   837 |  9 |
+| West Virginia  | Lincoln              |   722 | 10 |
+| Wisconsin      | Jefferson            |  4805 |  1 |
+| Wisconsin      | Clark                |  4153 |  2 |
+| Wisconsin      | Unassigned           |  2995 |  3 |
+| Wisconsin      | Washington           |  2636 |  4 |
+| Wisconsin      | Monroe               |  2022 |  5 |
+| Wisconsin      | Polk                 |  1902 |  6 |
+| Wisconsin      | Jackson              |  1683 |  7 |
+| Wisconsin      | Douglas              |  1271 |  8 |
+| Wisconsin      | Milwaukee            |  1181 |  9 |
+| Wisconsin      | Adams                |  1044 | 10 |
+| Wyoming        | Unassigned           |  2995 |  1 |
+| Wyoming        | Johnson              |  1486 |  2 |
+| Wyoming        | Lincoln              |   722 |  3 |
+| Wyoming        | Albany               |   312 |  4 |
+| Wyoming        | Campbell             |   179 |  5 |
+| Wyoming        | Carbon               |   159 |  6 |
+| Wyoming        | Fremont              |   138 |  7 |
+| Wyoming        | Natrona              |   121 |  8 |
+| Wyoming        | Big Horn             |    97 |  9 |
+| Wyoming        | Platte               |    94 | 10 |
++----------------+----------------------+-------+----+
+489 rows in set (1 min 1.23 sec)
+
+mysql> select *
+    -> from vaccinations v
+    -> order by people_with_one_plus_doses_per_100k desc;
++----------------+-------------------+--------------------+----------------------+-----------------------+----------------------------+-------------------------------------+----------------------------+-------------------------------------+
+| state          | total_distributed | total_administered | distributed_per_100k | administered_per_100k | people_with_one_plus_doses | people_with_one_plus_doses_per_100k | people_with_two_plus_doses | people_with_two_plus_doses_per_100k |
++----------------+-------------------+--------------------+----------------------+-----------------------+----------------------------+-------------------------------------+----------------------------+-------------------------------------+
+| Alaska         |            229975 |             125765 |                31437 |                 17192 |                      98076 |                               13407 |                      27528 |                                3763 |
+| West Virginia  |            328600 |             268065 |                18336 |                 14958 |                     195200 |                               10892 |                      72456 |                                4043 |
+| New Mexico     |            356150 |             284830 |                16985 |                 13584 |                     219033 |                               10446 |                      62821 |                                2996 |
+| Connecticut    |            608600 |             465008 |                17070 |                 13043 |                     365975 |                               10265 |                      90574 |                                2540 |
+| North Dakota   |            122150 |             103572 |                16029 |                 13591 |                      72589 |                                9525 |                      27418 |                                3598 |
+| Oklahoma       |            675850 |             462440 |                17080 |                 11687 |                     372020 |                                9402 |                      87596 |                                2214 |
+| Delaware       |            154700 |             107544 |                15887 |                 11044 |                      88325 |                                9070 |                      18568 |                                1907 |
+| South Dakota   |            147600 |             110967 |                16684 |                 12543 |                      79025 |                                8933 |                      31863 |                                3602 |
+| Virginia       |           1370975 |             922940 |                16062 |                 10813 |                     757544 |                                8875 |                     138321 |                                1621 |
+| Vermont        |            113625 |              74718 |                18209 |                 11974 |                      55357 |                                8871 |                      19237 |                                3083 |
+| Oregon         |            706575 |             454269 |                16752 |                 10770 |                     361249 |                                8565 |                      91240 |                                2163 |
+| Wyoming        |             97750 |              60775 |                16890 |                 10501 |                      49361 |                                8529 |                      10495 |                                1813 |
+| Arkansas       |            499325 |             322447 |                16546 |                 10685 |                     256307 |                                8493 |                      63356 |                                2099 |
+| Louisiana      |            746550 |             488960 |                16059 |                 10518 |                     384041 |                                8261 |                     104070 |                                2239 |
+| Colorado       |            940800 |             617125 |                16337 |                 10716 |                     472820 |                                8210 |                     140610 |                                2442 |
+| Maine          |            226275 |             145786 |                16833 |                 10845 |                     109917 |                                8177 |                      34299 |                                2552 |
+| Florida        |           3658975 |            2133168 |                17036 |                  9932 |                    1752699 |                                8161 |                     373238 |                                1738 |
+| North Carolina |           1643800 |            1026683 |                15673 |                  9789 |                     855450 |                                8156 |                     170087 |                                1622 |
+| Michigan       |           1629000 |            1042268 |                16311 |                 10436 |                     814362 |                                8154 |                     214234 |                                2145 |
+| Hawaii         |            253150 |             143686 |                17879 |                 10148 |                     115440 |                                8153 |                      28245 |                                1995 |
+| Washington     |           1163675 |             765954 |                15282 |                 10059 |                     616340 |                                8094 |                     137930 |                                1811 |
+| Kentucky       |            719200 |             435400 |                16098 |                  9746 |                     360015 |                                8058 |                      73264 |                                1640 |
+| New Jersey     |           1252250 |             851721 |                14098 |                  9589 |                     703957 |                                7925 |                     145570 |                                1639 |
+| Wisconsin      |            922900 |             548172 |                15851 |                  9415 |                     457768 |                                7862 |                      84830 |                                1457 |
+| Montana        |            157275 |             110374 |                14715 |                 10327 |                      83875 |                                7848 |                      26345 |                                2465 |
+| California     |           6343925 |            3671316 |                16056 |                  9292 |                    3044980 |                                7706 |                     613845 |                                1554 |
+| Nevada         |            417875 |             279471 |                13567 |                  9073 |                     236799 |                                7688 |                      41227 |                                1338 |
+| Indiana        |           1106550 |             637745 |                16437 |                  9473 |                     517147 |                                7682 |                     120352 |                                1788 |
+| Georgia        |           1638700 |             975038 |                15434 |                  9183 |                     813214 |                                7659 |                     140900 |                                1327 |
+| Utah           |            471575 |             324636 |                14709 |                 10126 |                     245534 |                                7659 |                      63286 |                                1974 |
+| New Hampshire  |            235250 |             138271 |                17301 |                 10169 |                     104042 |                                7652 |                      34130 |                                2510 |
+| Minnesota      |            919975 |             552701 |                16313 |                  9800 |                     431172 |                                7645 |                     119631 |                                2121 |
+| South Carolina |            682700 |             479202 |                13260 |                  9307 |                     391585 |                                7605 |                      84010 |                                1632 |
+| Arizona        |           1181000 |             656040 |                16225 |                  9013 |                     553373 |                                7603 |                     102107 |                                1403 |
+| Ohio           |           1812025 |            1085391 |                15502 |                  9285 |                     883630 |                                7559 |                     200784 |                                1718 |
+| Maryland       |            958575 |             546409 |                15856 |                  9038 |                     454437 |                                7517 |                      91468 |                                1513 |
+| Mississippi    |            484850 |             250905 |                16291 |                  8431 |                     222860 |                                7488 |                      27786 |                                 934 |
+| Massachusetts  |           1156375 |             625477 |                16777 |                  9075 |                     497445 |                                7217 |                     126560 |                                1836 |
+| Texas          |           4214900 |            2652896 |                14536 |                  9149 |                    2086493 |                                7196 |                     564433 |                                1947 |
+| Pennsylvania   |           2143150 |            1158091 |                16741 |                  9046 |                     917497 |                                7167 |                     237876 |                                1858 |
+| Nebraska       |            332525 |             188285 |                17190 |                  9733 |                     138354 |                                7152 |                      48889 |                                2527 |
+| Rhode Island   |            176650 |             101474 |                16675 |                  9579 |                      74473 |                                7030 |                      26973 |                                2546 |
+| Tennessee      |           1043575 |             657819 |                15281 |                  9632 |                     463300 |                                6784 |                     192674 |                                2821 |
+| Illinois       |           1986725 |            1108571 |                15678 |                  8748 |                     859076 |                                6779 |                     230850 |                                1822 |
+| Alabama        |            765150 |             388339 |                15605 |                  7920 |                     324998 |                                6628 |                      62990 |                                1285 |
+| Kansas         |            470800 |             241156 |                16160 |                  8278 |                     192026 |                                6591 |                      47394 |                                1627 |
+| Iowa           |            446825 |             266777 |                14162 |                  8456 |                     199242 |                                6315 |                      64234 |                                2036 |
+| Missouri       |            904250 |             482112 |                14733 |                  7855 |                     371382 |                                6051 |                     106842 |                                1741 |
+| Idaho          |            245925 |             132384 |                13761 |                  7408 |                     107234 |                                6001 |                      24171 |                                1353 |
++----------------+-------------------+--------------------+----------------------+-----------------------+----------------------------+-------------------------------------+----------------------------+-------------------------------------+
+49 rows in set (0.01 sec)
+
+mysql> select *
+    -> from vaccinations v
+    -> order by people_with_two_plus_doses_per_100k desc;
++----------------+-------------------+--------------------+----------------------+-----------------------+----------------------------+-------------------------------------+----------------------------+-------------------------------------+
+| state          | total_distributed | total_administered | distributed_per_100k | administered_per_100k | people_with_one_plus_doses | people_with_one_plus_doses_per_100k | people_with_two_plus_doses | people_with_two_plus_doses_per_100k |
++----------------+-------------------+--------------------+----------------------+-----------------------+----------------------------+-------------------------------------+----------------------------+-------------------------------------+
+| West Virginia  |            328600 |             268065 |                18336 |                 14958 |                     195200 |                               10892 |                      72456 |                                4043 |
+| Alaska         |            229975 |             125765 |                31437 |                 17192 |                      98076 |                               13407 |                      27528 |                                3763 |
+| South Dakota   |            147600 |             110967 |                16684 |                 12543 |                      79025 |                                8933 |                      31863 |                                3602 |
+| North Dakota   |            122150 |             103572 |                16029 |                 13591 |                      72589 |                                9525 |                      27418 |                                3598 |
+| Vermont        |            113625 |              74718 |                18209 |                 11974 |                      55357 |                                8871 |                      19237 |                                3083 |
+| New Mexico     |            356150 |             284830 |                16985 |                 13584 |                     219033 |                               10446 |                      62821 |                                2996 |
+| Tennessee      |           1043575 |             657819 |                15281 |                  9632 |                     463300 |                                6784 |                     192674 |                                2821 |
+| Maine          |            226275 |             145786 |                16833 |                 10845 |                     109917 |                                8177 |                      34299 |                                2552 |
+| Rhode Island   |            176650 |             101474 |                16675 |                  9579 |                      74473 |                                7030 |                      26973 |                                2546 |
+| Connecticut    |            608600 |             465008 |                17070 |                 13043 |                     365975 |                               10265 |                      90574 |                                2540 |
+| Nebraska       |            332525 |             188285 |                17190 |                  9733 |                     138354 |                                7152 |                      48889 |                                2527 |
+| New Hampshire  |            235250 |             138271 |                17301 |                 10169 |                     104042 |                                7652 |                      34130 |                                2510 |
+| Montana        |            157275 |             110374 |                14715 |                 10327 |                      83875 |                                7848 |                      26345 |                                2465 |
+| Colorado       |            940800 |             617125 |                16337 |                 10716 |                     472820 |                                8210 |                     140610 |                                2442 |
+| Louisiana      |            746550 |             488960 |                16059 |                 10518 |                     384041 |                                8261 |                     104070 |                                2239 |
+| Oklahoma       |            675850 |             462440 |                17080 |                 11687 |                     372020 |                                9402 |                      87596 |                                2214 |
+| Oregon         |            706575 |             454269 |                16752 |                 10770 |                     361249 |                                8565 |                      91240 |                                2163 |
+| Michigan       |           1629000 |            1042268 |                16311 |                 10436 |                     814362 |                                8154 |                     214234 |                                2145 |
+| Minnesota      |            919975 |             552701 |                16313 |                  9800 |                     431172 |                                7645 |                     119631 |                                2121 |
+| Arkansas       |            499325 |             322447 |                16546 |                 10685 |                     256307 |                                8493 |                      63356 |                                2099 |
+| Iowa           |            446825 |             266777 |                14162 |                  8456 |                     199242 |                                6315 |                      64234 |                                2036 |
+| Hawaii         |            253150 |             143686 |                17879 |                 10148 |                     115440 |                                8153 |                      28245 |                                1995 |
+| Utah           |            471575 |             324636 |                14709 |                 10126 |                     245534 |                                7659 |                      63286 |                                1974 |
+| Texas          |           4214900 |            2652896 |                14536 |                  9149 |                    2086493 |                                7196 |                     564433 |                                1947 |
+| Delaware       |            154700 |             107544 |                15887 |                 11044 |                      88325 |                                9070 |                      18568 |                                1907 |
+| Pennsylvania   |           2143150 |            1158091 |                16741 |                  9046 |                     917497 |                                7167 |                     237876 |                                1858 |
+| Massachusetts  |           1156375 |             625477 |                16777 |                  9075 |                     497445 |                                7217 |                     126560 |                                1836 |
+| Illinois       |           1986725 |            1108571 |                15678 |                  8748 |                     859076 |                                6779 |                     230850 |                                1822 |
+| Wyoming        |             97750 |              60775 |                16890 |                 10501 |                      49361 |                                8529 |                      10495 |                                1813 |
+| Washington     |           1163675 |             765954 |                15282 |                 10059 |                     616340 |                                8094 |                     137930 |                                1811 |
+| Indiana        |           1106550 |             637745 |                16437 |                  9473 |                     517147 |                                7682 |                     120352 |                                1788 |
+| Missouri       |            904250 |             482112 |                14733 |                  7855 |                     371382 |                                6051 |                     106842 |                                1741 |
+| Florida        |           3658975 |            2133168 |                17036 |                  9932 |                    1752699 |                                8161 |                     373238 |                                1738 |
+| Ohio           |           1812025 |            1085391 |                15502 |                  9285 |                     883630 |                                7559 |                     200784 |                                1718 |
+| Kentucky       |            719200 |             435400 |                16098 |                  9746 |                     360015 |                                8058 |                      73264 |                                1640 |
+| New Jersey     |           1252250 |             851721 |                14098 |                  9589 |                     703957 |                                7925 |                     145570 |                                1639 |
+| South Carolina |            682700 |             479202 |                13260 |                  9307 |                     391585 |                                7605 |                      84010 |                                1632 |
+| Kansas         |            470800 |             241156 |                16160 |                  8278 |                     192026 |                                6591 |                      47394 |                                1627 |
+| North Carolina |           1643800 |            1026683 |                15673 |                  9789 |                     855450 |                                8156 |                     170087 |                                1622 |
+| Virginia       |           1370975 |             922940 |                16062 |                 10813 |                     757544 |                                8875 |                     138321 |                                1621 |
+| California     |           6343925 |            3671316 |                16056 |                  9292 |                    3044980 |                                7706 |                     613845 |                                1554 |
+| Maryland       |            958575 |             546409 |                15856 |                  9038 |                     454437 |                                7517 |                      91468 |                                1513 |
+| Wisconsin      |            922900 |             548172 |                15851 |                  9415 |                     457768 |                                7862 |                      84830 |                                1457 |
+| Arizona        |           1181000 |             656040 |                16225 |                  9013 |                     553373 |                                7603 |                     102107 |                                1403 |
+| Idaho          |            245925 |             132384 |                13761 |                  7408 |                     107234 |                                6001 |                      24171 |                                1353 |
+| Nevada         |            417875 |             279471 |                13567 |                  9073 |                     236799 |                                7688 |                      41227 |                                1338 |
+| Georgia        |           1638700 |             975038 |                15434 |                  9183 |                     813214 |                                7659 |                     140900 |                                1327 |
+| Alabama        |            765150 |             388339 |                15605 |                  7920 |                     324998 |                                6628 |                      62990 |                                1285 |
+| Mississippi    |            484850 |             250905 |                16291 |                  8431 |                     222860 |                                7488 |                      27786 |                                 934 |
++----------------+-------------------+--------------------+----------------------+-----------------------+----------------------------+-------------------------------------+----------------------------+-------------------------------------+
+49 rows in set (0.02 sec)
+
+mysql> exit
