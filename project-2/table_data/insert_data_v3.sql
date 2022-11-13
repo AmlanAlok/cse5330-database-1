@@ -20,7 +20,7 @@ values (1, 'Chief Librarian'),
 
 insert into member_status values (1, 'active'), (2, 'inactive');
 
-insert into member_type values (1,'standard',3,1,5), (2,'professor',12,2,50);
+insert into member_type values (1,'standard',21,1,5), (2,'professor',90,2,50);
 
 insert into author values (1, 'Richard Feynman'), (2, 'Alan Heeger'), (3, 'Eddie Woo'), (4, 'Cleopatra'), (5, 'Amit');
 
@@ -40,7 +40,11 @@ insert into member values (1, 'Jon', '123456789','Arbor Oaks','Irving','12345678
 (2, 'Arya', '123456780','Meadow Run','Dallas','123456789','2022-11-04','2026-11-04', 0, 1, 1),
 (3, 'Sansa', '123456781','Meadow Run','Frisco','123456789','2018-11-06','2022-11-06', 0, 1, 2);
 
-insert into book_member values (1,1,'2022-11-10','2022-12-01',NULL);
-
 insert into employee values (1, 'Jennifer', '987654321', 'library', 'Grapevine', '1112223334','2022-11-11', 1),
 (2, 'James', '987654322', 'library', 'Grapevine', '1112223335','2022-11-11', 5);
+
+insert into employee values (3, 'Mike', '987654323', 'library', 'Grapevine', '1112223336','2022-11-11', 6);
+
+insert into book_member values (1,1,'2022-11-10','2022-12-01',NULL),
+(2,4,'2022-11-10','2023-02-10',NULL);
+
