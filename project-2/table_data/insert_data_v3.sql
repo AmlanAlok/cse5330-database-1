@@ -42,5 +42,5 @@ insert into member values (1, 'Jon', '123456789','Arbor Oaks','Irving','12345678
 
 insert into book_member values (1,1,'2022-11-10','2022-12-01',NULL);
 
-insert into employee values (1, 'Jennifer', '987654321', 'library', 'Grapevine', '1112223334', 1),
-(2, 'James', '987654322', 'library', 'Grapevine', '1112223335', 5);
+insert into employee values (1, 'Jennifer', '987654321', 'library', 'Grapevine', '1112223334','2022-11-11', 1),
+(2, 'James', '987654322', 'library', 'Grapevine', '1112223335','2022-11-11', 5);
