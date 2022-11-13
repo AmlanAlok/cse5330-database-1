@@ -9,6 +9,7 @@ select * from staff_position;
 select * from member_status;
 select * from member_type;
 
+
 -- display all books
 select b.isbn, b.title, bc.book_category, a.author_name, sa.subject_area, bnd.bind_type, l.language_name
 from book as b
@@ -17,7 +18,6 @@ join author as a on a.id = b.author_id
 join subject_area as sa on sa.id = b.subject_area_id
 join binding as bnd on bnd.id = b.binding_id
 join lang as l on l.id = b.lang_id;
-
 
 
 -- display books interested to acquire

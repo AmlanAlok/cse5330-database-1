@@ -10,8 +10,13 @@ insert into binding values (1, 'Hardcover'), (2, 'Softcover');
 
 insert into lang values (1, 'English'), (2, 'Hindi');
 
-insert into staff_position values (1, 'Chief Librarian'), (2, 'Departmental Associate Librarian'),
-(3, 'Reference Librarian'), (4, 'Check-Out Staff'), (5, 'Library Assistants'), (6, 'professor');
+insert into staff_position
+values (1, 'Chief Librarian'),
+(2, 'Departmental Associate Librarian'),
+(3, 'Reference Librarian'),
+(4, 'Check-Out Staff'),
+(5, 'Library Assistants'),
+(6, 'professor');
 
 insert into member_status values (1, 'active'), (2, 'inactive');
 
@@ -29,5 +34,13 @@ values (1, 'Introduction to Physics', 'Learn Physics', 1,1,1,1,1),
 insert into interested_to_acquire (`book_isbn`,`reason_id`)
 values (4,1), (5,3);
 
+insert into book_for_lending values (1, 0, 10, 1), (2, 0, 20, 2), (3, 0, 30, 3);
 
+insert into member values (1, 'Jon', '123456789','Arbor Oaks','Irving','123456789','2022-11-10','2026-11-10', 0, 1, 1),
+(2, 'Arya', '123456780','Meadow Run','Dallas','123456789','2022-11-04','2026-11-04', 0, 1, 1),
+(3, 'Sansa', '123456781','Meadow Run','Frisco','123456789','2018-11-06','2022-11-06', 0, 1, 2);
 
+insert into book_member values (1,1,'2022-11-10','2022-12-01',NULL);
+
+insert into employee values (1, 'Jennifer', '987654321', 'library', 'Grapevine', '1112223334', 1),
+(2, 'James', '987654322', 'library', 'Grapevine', '1112223335', 5);
