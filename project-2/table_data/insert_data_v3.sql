@@ -20,7 +20,7 @@ insert into member_type values (1,'standard',3,1,5), (2,'professor',12,2,50);
 insert into author values (1, 'Richard Feynman'), (2, 'Alan Heeger'), (3, 'Eddie Woo'), (4, 'Cleopatra'), (5, 'Amit');
 
 insert into book (`isbn`,`title`,`description`,`book_category_id`,`author_id`,`subject_area_id`, `binding_id`,`lang_id`)
-values (1, 'Introduction to Physics', 'Learn Physics', 1,2,2,1,1),
+values (1, 'Introduction to Physics', 'Learn Physics', 1,1,1,1,1),
 (2, 'Introduction to Chemistry', 'Learn Chemistry', 1,2,2,1,1),
 (3, 'Introduction to Mathematics', 'Learn Mathematics', 1,3,3,1,1),
 (4, 'Secrets of Egypt', 'Know what is in the Pyramids', 3,4,4,1,1),
