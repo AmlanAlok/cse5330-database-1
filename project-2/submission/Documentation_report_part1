@@ -1,7 +1,7 @@
 Part 1:
 
 EER diagram for library Data Management consists for various tables.
-It's representation is stored EER Diagram.png file.
+It's representation is stored in EER-Schema-Diagram.png file.
 
 
 
@@ -10,7 +10,7 @@ Entity:Book  = Holds information regarding book
    			  Title
    			  Description
 
-Entity Book is mappped to other entities such as book_category,author,subject_area , lang,binding .These entities are connected to book with non-identifying relationship.
+Entity Book is mapped to other entities such as book_category,author,subject_area , lang,binding .These entities are connected to book with non-identifying relationship.
 
 Entity author contains: attributes id and author_name.
 
@@ -24,7 +24,7 @@ Entity lang contains: attributes id and language_name.
 It describes the book is written in which language.
 
 Entity book_category contains: attributes id and book_category.
-It also descibes the book is reference or rare book.
+It also describes the book as reference or rare book.
 
 
 Entity interested_to_acquire contains id and is mapped to another reason entity to justify the reason where book is available to lent or not or interested to acquire. 
@@ -32,10 +32,10 @@ Entity reason contains 2 attributes as id (Primary Key) and reason.
 
 
 
-Entity book_for_lending: Ir provides the details on count of books lent to member or available.
+Entity book_for_lending: It provides the details on count of books lent to member or available.
 		Attributes:id primary key
 				   loan_count= No of borrowed copies of particular book
-				   available_count= No of borrowed copies of particular book
+				   available_count= No of available copies of particular book
 				   
 
 Entity book_member :It is similar to transaction receipt of book while borrowing.
@@ -54,7 +54,7 @@ Attributes:    id
 				   campus_address
 				   home_address
 				   phone_no
-				   cardissue 
+				   card_issue
 				   card_expiry
 
 
@@ -95,6 +95,9 @@ chief librarian, departmental associate librarians, reference librarians, check-
 
 
 Representation of One-to-Many or One-to-One,etc is represented in EER diagram itself.
+
+
+
 
 
 		
