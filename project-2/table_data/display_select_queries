@@ -1,0 +1,3 @@
+
+select b.isbn,a.author_name,b.title,s.subject_area,b.description
+from  author a join book b  on a.id=b.author_id join subject_area s on s.id=b.subject_area_id;
