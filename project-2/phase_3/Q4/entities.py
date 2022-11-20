@@ -1,44 +1,4 @@
-import pymysql
-from constants import *
-
-DB = LOCAL_DB
-
-
-def connect_db_fetch_data(sql_query):
-
-    try:
-        print('Start DB connection')
-        connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],
-                                     port=3306)
-        cursor = connection.cursor()
-
-        cursor.execute(sql_query)
-        output = cursor.fetchone()
-
-        connection.close()
-
-        return output[0]
-    except Exception as e:
-        print('Exception -> ', e)
-        return 'Failed'
-
-
-def connect_db_save_data(sql_query, db_record):
-
-    try:
-        print('Start DB connection')
-        connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],
-                                     port=3306)
-        cursor = connection.cursor()
-
-        cursor.execute(sql_query, db_record)
-        connection.commit()
-        connection.close()
-
-        return 'Success'
-    except Exception as e:
-        print('Exception -> ', e)
-        return 'Failed'
+from database_connection import *
 
 
 def get_fk(table_name, col_name, field_value):
@@ -54,5 +14,18 @@ def save_member(db_record):
     return connect_db_save_data(sql_query, db_record)
 
 
+def save_book(db_record):
+    sql_query = "insert into book (`title`, `description`, `book_category_id`, `author_id`, `subject_area_id`, " \
+                "`binding_id`, `lang_id`) values (%s, %s, %s, %s, %s, %s, %s)"
+    return connect_db_save_data(sql_query, db_record)
+
+
+def get_all(table_name):
+    sql_query = "select * from " + table_name
+    return connect_db_fetch_all(sql_query)
+
+
 if __name__ == '__main__':
-    get_member_status_fk('active')
+    # get_member_status_fk('active')
+    print('start')
+    print(type(x('lang')))

@@ -39,3 +39,12 @@ MEMBER_TYPE_DICT = {
 
 MEMBERSHIP_LENGTH = 4
 INIT_BORROWED_COUNT = 0
+
+LANG = 'lang'
+BINDING = 'binding'
+SUBJECT_AREA = 'subject_area'
+AUTHOR = 'author'
+BOOK_CATEGORY = 'book_category'
+REASON = 'reason'
+
+
