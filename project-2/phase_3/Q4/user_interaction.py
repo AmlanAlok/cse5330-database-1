@@ -1,4 +1,4 @@
-
+from service import *
 
 
 def display_menu():
@@ -11,19 +11,22 @@ def display_menu():
 
 def new_member():
     print('Enter new member information below')
-    member_name = input('Member Name')
-    ssn = input('SSN')
-    campus_address = input('Campus Address')
-    home_address = input('Home Address')
-    phone_number = input('Phone Number')
+    member_name = input('Member Name: ')
+    ssn = input('SSN: ')
+    campus_address = input('Campus Address: ')
+    home_address = input('Home Address: ')
+    phone_number = input('Phone Number: ')
 
-
+    return add_new_member(member_name, ssn, campus_address, home_address, phone_number)
 
 
 def main():
-    option = display_menu()
+    # option = display_menu()
+
+    option = 1
     if option == 1:
-        new_member()
+        output = new_member()
+    print(output)
 
 
 
