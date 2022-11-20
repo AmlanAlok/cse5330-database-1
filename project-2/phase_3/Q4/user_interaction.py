@@ -43,10 +43,19 @@ def new_book():
                         book_fk_lists)
 
 
+def loan_book():
+
+    print('Enter your Member ID and Book ISBN')
+    # member_id = int(input('Member Id: '))
+    # isbn = int(input('Book ISBN: '))
+    # get_book_loan(member_id, isbn)
+    get_book_loan(str(3), str(1))
+
+
 def main():
     # option = display_menu()
 
-    option = 2
+    option = 3
     if option == 1:
         output, member_id = new_member()
         print('--------------------')
@@ -57,6 +66,8 @@ def main():
         print('--------------------')
         print('Book ISBN:', isbn)
         print('--------------------')
+    elif option == 3:
+        output = loan_book()
     elif option == 0:
         print('Exiting program')
         exit(0)

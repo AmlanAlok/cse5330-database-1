@@ -47,4 +47,14 @@ AUTHOR = 'author'
 BOOK_CATEGORY = 'book_category'
 REASON = 'reason'
 
+BOOK_FOR_LENDING_DICT = {
+    TABLE_NAME: 'book_for_lending',
+    COL_NAME: 'book_isbn'
+}
+
+MEMBER_DICT = {
+    TABLE_NAME: 'member',
+    COL_NAME: 'id'
+}
+
 

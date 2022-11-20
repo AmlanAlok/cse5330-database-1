@@ -3,7 +3,6 @@ import datetime
 
 
 def add_new_member(member_name, ssn, campus_address, home_address, phone_number):
-
     date_today = datetime.date.today()
     card_issue_date = date_today.strftime('%Y-%m-%d')
     card_expiry_date = date_today.replace(year=date_today.year + MEMBERSHIP_LENGTH).strftime('%Y-%m-%d')
@@ -24,7 +23,6 @@ def add_new_member(member_name, ssn, campus_address, home_address, phone_number)
 
 
 def add_new_book(title, description, book_category_id, author_id, subject_area_id, binding_id, lang_id, book_fk_lists):
-
     db_record = [title, description, book_category_id, author_id, subject_area_id, binding_id, lang_id]
     saving_book, isbn = save_book(db_record)
 
@@ -59,9 +57,7 @@ def get_book_category_dict(book_category_list):
     return book_category_dict
 
 
-
 def get_book_fk_list():
-
     book_fk_list_dict = {
         'lang_list': get_all(LANG),
         'binding_list': get_all(BINDING),
@@ -71,18 +67,74 @@ def get_book_fk_list():
         'reason_list': get_all(REASON)
     }
 
-    # book_category_dict = {}
-    #
-    # for (i, v) in enumerate(book_fk_list_dict['book_category_list']):
-    #     book_category_dict[v[1]] = v[0]
-
     return book_fk_list_dict
+
+
+def validate_lending_for_loan(isbn):
+    lending_record = get_record(table_name=BOOK_FOR_LENDING_DICT[TABLE_NAME], col_name=BOOK_FOR_LENDING_DICT[COL_NAME],
+                                field_value=isbn)
+
+    if lending_record:
+        pk, loan_count, available_count = lending_record[0], lending_record[1], lending_record[2]
+
+        if available_count == 0:
+            return 'No copies available to lend at the moment'
+        elif available_count > 0:
+            update_status = update_book_for_lending(str(loan_count + 1), str(available_count - 1), str(pk))
+            return update_status
+    else:
+        return 'This book is not for lending'
+
+
+'''to check if he is within limit ot borrow'''
+
+def get_member_status(member_status_id):
+    member_status_record = get_record(table_name=MEMBER_STATUS_DICT[TABLE_NAME], col_name=MEMBER_STATUS_DICT[COL_NAME],
+                                      field_value=member_status_id)
+    return member_status_record[1]
+
+
+def get_member_limit(member_type_id):
+    member_type_record = get_record(table_name=MEMBER_STATUS_DICT[TABLE_NAME], col_name=MEMBER_STATUS_DICT[COL_NAME],
+                                      field_value=member_type_id)
+    return member_type_record[4]
+
+
+def validate_member_for_loan(member_id):
+    member_record = get_record(table_name=MEMBER_DICT[TABLE_NAME], col_name=MEMBER_DICT[COL_NAME],
+                                field_value=member_id)
+
+    member_type_id, member_status_id = member_record[9], member_record[10]
+    borrow_count = member_record[8]
+
+    member_status = get_member_status(member_status_id)
+
+    if member_status == 'active':
+        member_book_limit = get_member_limit(member_type_id)
+
+        if borrow_count < member_book_limit:
+            return 'Success'
+        else:
+            return 'Member has borrows books to their allowed limit'
+
+    else:
+        return 'Member is inactive. Cannot loan a book'
+
+
+def get_book_loan(member_id, isbn):
+    validate_member = validate_member_for_loan(member_id)
+
+    if validate_member == 'Success':
+
+        validate_loan = validate_lending_for_loan(isbn)
+
+        if validate_loan == "Success":
+
+            pass
+        else:
+            return update_status
 
 
 if __name__ == '__main__':
     # get_member_status_active()
     print('start')
-
-
-
-
