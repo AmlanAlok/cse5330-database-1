@@ -5,6 +5,7 @@ def display_menu():
     print('Choose one of the below numbers for corresponding actions')
     print('1. New Member')
     print('2. New Book')
+    print('0. EXIT')
 
     option = int(input('Choose Option'))
     return option
@@ -22,9 +23,8 @@ def new_member():
 
 
 def new_book():
-    book_fk_lists, book_category_dict = get_book_fk_list()
-    print(book_category_dict)
-    print(book_fk_lists)
+    book_fk_lists = get_book_fk_list()
+
     print('Enter new book information below')
     title = input('Book Title: ')
     description = input('Description: ')
@@ -39,12 +39,8 @@ def new_book():
     print(book_fk_lists['book_category_list'])
     book_category_id = int(input('Choose book category: '))
 
-    if book_category_id == book_category_dict['can be lent']:
-        pass
-    elif book_category_id == book_category_dict['interested to acquire']:
-        pass
-    else:
-        add_new_book(title, description, book_category_id, author_id, subject_area_id, binding_id, lang_id)
+    return add_new_book(title, description, book_category_id, author_id, subject_area_id, binding_id, lang_id,
+                        book_fk_lists)
 
 
 def main():
@@ -52,9 +48,18 @@ def main():
 
     option = 2
     if option == 1:
-        output = new_member()
+        output, member_id = new_member()
+        print('--------------------')
+        print('Member ID:', member_id)
+        print('--------------------')
     elif option == 2:
-        output = new_book()
+        output, isbn = new_book()
+        print('--------------------')
+        print('Book ISBN:', isbn)
+        print('--------------------')
+    elif option == 0:
+        print('Exiting program')
+        exit(0)
 
     print(output)
 

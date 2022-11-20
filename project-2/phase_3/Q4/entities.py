@@ -20,12 +20,30 @@ def save_book(db_record):
     return connect_db_save_data(sql_query, db_record)
 
 
+def save_book_for_lending(db_record):
+    sql_query = "insert into book_for_lending (`loan_count`,`available_count`,`book_isbn`) values (%s, %s, %s)"
+    return connect_db_save_data(sql_query, db_record)
+
+
+def save_interest_to_acquire(db_record):
+    sql_query = "insert into interested_to_acquire (`book_isbn`,`reason_id`) values (%s, %s)"
+    return connect_db_save_data(sql_query, db_record)
+
+
 def get_all(table_name):
     sql_query = "select * from " + table_name
     return connect_db_fetch_all(sql_query)
 
 
+def x():
+    sql_query = "select LAST_INSERT_ID()"
+    q = connect_db_fetch_data(sql_query)
+    print(q)
+
+
+
 if __name__ == '__main__':
     # get_member_status_fk('active')
     print('start')
-    print(type(x('lang')))
+    # print(type(x('lang')))
+    x()

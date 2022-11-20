@@ -52,9 +52,14 @@ def connect_db_save_data(sql_query, db_record):
 
         cursor.execute(sql_query, db_record)
         connection.commit()
+
+        last_inserted_id_query = "select LAST_INSERT_ID()"
+        cursor.execute(last_inserted_id_query)
+        output = cursor.fetchone()
+
         connection.close()
 
-        return 'Success'
+        return 'Success', output[0]
     except Exception as e:
         print('Exception -> ', e)
-        return 'Failed'
+        return 'Failed', -1
