@@ -36,9 +36,15 @@ def save_loan(db_record):
     return connect_db_save_data(sql_query, db_record)
 
 
+def update_book_return(member_id, isbn, date_of_return):
+    sql_query = "update book_member set date_of_return ='" + date_of_return + "' where member_id = '" + \
+                member_id + "' and book_isbn = '" + isbn + "'"
+    return connect_db_update_data(sql_query)
+
+
 def update_book_for_lending(loan_count, available_count, pk):
-    sql_query = "update book_for_lending set loan_count ='" + loan_count + "', available_count ='" + available_count + "' " \
-                                                                                                                       "where id = '" + pk + "'"
+    sql_query = "update book_for_lending set loan_count ='" + loan_count + "', available_count ='" \
+                + available_count + "' where id = '" + pk + "'"
     return connect_db_update_data(sql_query)
 
 
@@ -54,6 +60,11 @@ def get_all(table_name):
 
 def get_record(table_name, col_name, field_value):
     sql_query = "select * from " + table_name + " where " + col_name + " = '" + str(field_value) + "'"
+    return connect_db_fetch_record(sql_query)
+
+
+def get_book_member(member_id, isbn):
+    sql_query = "select * from book_member where member_id = '" + member_id + "' and book_isbn = '" + isbn + "'"
     return connect_db_fetch_record(sql_query)
 
 

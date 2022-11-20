@@ -1,6 +1,7 @@
 from service_book import *
 from service_member import *
 from service_loan import *
+from service_return import *
 
 
 def display_menu():
@@ -46,18 +47,24 @@ def new_book():
 
 
 def loan_book():
-    print('Enter your Member ID and Book ISBN')
+    print('Enter your Member ID and Book ISBN to loan')
     member_id = input('Member Id: ')
     isbn = input('Book ISBN: ')
     # return get_book_loan(str(1), str(1))
     return get_book_loan(member_id, isbn)
 
 
+def return_book():
+    print('Enter your Member ID and Book ISBN to return')
+    member_id = input('Member Id: ')
+    isbn = input('Book ISBN: ')
+    return init_book_return(member_id, isbn)
+
 
 def main():
     # option = display_menu()
 
-    option = 3
+    option = 4
     if option == 1:
         output, member_id = new_member()
         print('--------------------')
@@ -70,6 +77,11 @@ def main():
         print('--------------------')
     elif option == 3:
         output = loan_book()
+        print('--------------------')
+        print(output)
+        print('--------------------')
+    elif option == 4:
+        output = return_book()
         print('--------------------')
         print(output)
         print('--------------------')
