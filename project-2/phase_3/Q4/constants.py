@@ -13,7 +13,7 @@ LOCAL_DB = {
 OMEGA_DB = {
     HOSTNAME: '10.208.63.68',
     USERNAME: 'axa5861',
-    PASSWORD: 'ArlingtonTexas',
+    PASSWORD: '',
     DATABASE: 'axa5861'
 }
 
