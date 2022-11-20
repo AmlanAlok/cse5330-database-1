@@ -19,13 +19,16 @@ OMEGA_DB = {
 
 TABLE_NAME = 'table_name'
 COL_NAME = 'col_name'
+PK = 'pk'
+
 
 ACTIVE = 'active'
 INACTIVE = 'inactive'
 MEMBER_STATUS = 'member_status'
 MEMBER_STATUS_DICT = {
     TABLE_NAME: MEMBER_STATUS,
-    COL_NAME: MEMBER_STATUS
+    COL_NAME: MEMBER_STATUS,
+    PK: 'id'
 }
 
 STANDARD = 'standard'
@@ -33,7 +36,8 @@ PROFESSOR = 'professor'
 MEMBER_TYPE = 'member_type'
 MEMBER_TYPE_DICT = {
     TABLE_NAME: MEMBER_TYPE,
-    COL_NAME: MEMBER_TYPE
+    COL_NAME: MEMBER_TYPE,
+    PK: 'id'
 }
 
 MEMBERSHIP_LENGTH = 4

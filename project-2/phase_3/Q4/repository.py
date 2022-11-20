@@ -30,9 +30,20 @@ def save_interest_to_acquire(db_record):
     return connect_db_save_data(sql_query, db_record)
 
 
+def save_loan(db_record):
+    sql_query = "insert into book_member (`book_isbn`,`member_id`,`date_of_borrowing`,`last_date_to_return`) " \
+                "values (%s, %s, %s, %s)"
+    return connect_db_save_data(sql_query, db_record)
+
+
 def update_book_for_lending(loan_count, available_count, pk):
     sql_query = "update book_for_lending set loan_count ='" + loan_count + "', available_count ='" + available_count + "' " \
                                                                                                                        "where id = '" + pk + "'"
+    return connect_db_update_data(sql_query)
+
+
+def update_member_borrow_count(member_id, borrow_count):
+    sql_query = "update member set borrowed_count = '" + borrow_count + "' where id = '" + member_id + "'"
     return connect_db_update_data(sql_query)
 
 
@@ -42,7 +53,7 @@ def get_all(table_name):
 
 
 def get_record(table_name, col_name, field_value):
-    sql_query = "select * from " + table_name + " where " + col_name + " = '" + field_value + "'"
+    sql_query = "select * from " + table_name + " where " + col_name + " = '" + str(field_value) + "'"
     return connect_db_fetch_record(sql_query)
 
 

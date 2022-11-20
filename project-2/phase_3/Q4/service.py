@@ -4,7 +4,8 @@ from repository import *
 
 
 def get_member_status(member_status_id):
-    member_status_record = get_record(table_name=MEMBER_STATUS_DICT[TABLE_NAME], col_name=MEMBER_STATUS_DICT[COL_NAME],
+    print('get_member_status =', member_status_id)
+    member_status_record = get_record(table_name=MEMBER_STATUS_DICT[TABLE_NAME], col_name=MEMBER_STATUS_DICT[PK],
                                       field_value=member_status_id)
     return member_status_record[1]
 

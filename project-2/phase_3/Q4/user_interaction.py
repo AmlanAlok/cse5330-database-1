@@ -47,10 +47,11 @@ def new_book():
 
 def loan_book():
     print('Enter your Member ID and Book ISBN')
-    # member_id = int(input('Member Id: '))
-    # isbn = int(input('Book ISBN: '))
-    # get_book_loan(member_id, isbn)
-    get_book_loan(str(3), str(1))
+    member_id = input('Member Id: ')
+    isbn = input('Book ISBN: ')
+    # return get_book_loan(str(1), str(1))
+    return get_book_loan(member_id, isbn)
+
 
 
 def main():
@@ -69,6 +70,9 @@ def main():
         print('--------------------')
     elif option == 3:
         output = loan_book()
+        print('--------------------')
+        print(output)
+        print('--------------------')
     elif option == 0:
         print('Exiting program')
         exit(0)
