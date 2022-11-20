@@ -1,4 +1,3 @@
-
 HOSTNAME = 'hostname'
 USERNAME = 'username'
 PASSWORD = 'password'
@@ -56,5 +55,3 @@ MEMBER_DICT = {
     TABLE_NAME: 'member',
     COL_NAME: 'id'
 }
-
-

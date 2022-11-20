@@ -5,7 +5,6 @@ DB = LOCAL_DB
 
 
 def connect_db_fetch_data(sql_query):
-
     try:
         print('Start DB connection')
         connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],
@@ -24,7 +23,6 @@ def connect_db_fetch_data(sql_query):
 
 
 def connect_db_fetch_record(sql_query):
-
     try:
         print('Start DB connection')
         connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],
@@ -43,7 +41,6 @@ def connect_db_fetch_record(sql_query):
 
 
 def connect_db_fetch_all(sql_query):
-
     try:
         print('Start DB connection')
         connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],
@@ -62,7 +59,6 @@ def connect_db_fetch_all(sql_query):
 
 
 def connect_db_save_data(sql_query, db_record):
-
     try:
         print('Start DB connection')
         connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],
@@ -85,7 +81,6 @@ def connect_db_save_data(sql_query, db_record):
 
 
 def connect_db_update_data(sql_query):
-
     try:
         print('Start DB connection')
         connection = pymysql.connect(host=DB[HOSTNAME], user=DB[USERNAME], password=DB[PASSWORD], database=DB[DATABASE],

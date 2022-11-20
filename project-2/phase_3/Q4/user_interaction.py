@@ -1,4 +1,6 @@
-from service import *
+from service_book import *
+from service_member import *
+from service_loan import *
 
 
 def display_menu():
@@ -44,7 +46,6 @@ def new_book():
 
 
 def loan_book():
-
     print('Enter your Member ID and Book ISBN')
     # member_id = int(input('Member Id: '))
     # isbn = int(input('Book ISBN: '))
@@ -73,8 +74,6 @@ def main():
         exit(0)
 
     print(output)
-
-
 
 
 if __name__ == '__main__':

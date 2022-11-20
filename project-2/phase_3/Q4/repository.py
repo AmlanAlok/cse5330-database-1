@@ -31,8 +31,8 @@ def save_interest_to_acquire(db_record):
 
 
 def update_book_for_lending(loan_count, available_count, pk):
-    sql_query = "update book_for_lending set loan_count ='"+loan_count+"', available_count ='"+available_count+"' " \
-                "where id = '"+pk+"'"
+    sql_query = "update book_for_lending set loan_count ='" + loan_count + "', available_count ='" + available_count + "' " \
+                                                                                                                       "where id = '" + pk + "'"
     return connect_db_update_data(sql_query)
 
 
@@ -45,11 +45,11 @@ def get_record(table_name, col_name, field_value):
     sql_query = "select * from " + table_name + " where " + col_name + " = '" + field_value + "'"
     return connect_db_fetch_record(sql_query)
 
+
 def x():
     sql_query = "select LAST_INSERT_ID()"
     q = connect_db_fetch_data(sql_query)
     print(q)
-
 
 
 if __name__ == '__main__':
