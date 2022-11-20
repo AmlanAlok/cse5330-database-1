@@ -132,7 +132,7 @@ def get_book_loan(member_id, isbn):
 
             pass
         else:
-            return update_status
+            return validate_loan
 
 
 if __name__ == '__main__':
