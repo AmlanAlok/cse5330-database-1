@@ -1,4 +1,4 @@
-use library;
+use axa5861;
 
 insert into book_category values (1,'can be lent'), (2,'do not lend'), (3,'interested to acquire');
 

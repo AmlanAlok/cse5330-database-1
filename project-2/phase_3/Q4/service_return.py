@@ -33,8 +33,9 @@ def init_book_return(member_id, isbn):
                     book_rec = get_record(table_name='book', col_name='isbn', field_value=isbn)
                     title = book_rec[1]
 
-                    return 'Book returned successfully.\n Book Returned = ' + title + '\n Date of Borrowing = ' + \
-                           str(date_of_borrowing) + '\nDate of Return = ' + str(date_of_return)
+                    return 'Book returned successfully.\nRETURN RECEIPT\n---------------\nBook Returned = ' \
+                           + title + '\nDate of Borrowing = ' + \
+                           str(date_of_borrowing) + '\nDate of Return = ' + str(date_of_return) + '\n---------------'
                 else:
                     return 'Failed to update borrow count in member table'
             else:
