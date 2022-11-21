@@ -36,14 +36,14 @@ values (4,1), (5,3);
 
 insert into book_for_lending values (1, 0, 10, 1), (2, 0, 20, 2), (3, 0, 30, 3);
 
-insert into member values (1, 'Jon', '123456789','Arbor Oaks','Irving','123456789','2022-11-10','2026-11-10', 0, 1, 1),
-(2, 'Arya', '123456780','Meadow Run','Dallas','123456789','2022-11-04','2026-11-04', 0, 1, 1),
-(3, 'Sansa', '123456781','Meadow Run','Frisco','123456789','2018-11-06','2022-11-06', 0, 1, 2);
+insert into member values (1, 'Jon', '123456789','Arbor Oaks','Irving','123456789','2022-11-10','2026-11-10', 0, 1, 1, 0),
+(2, 'Arya', '123456780','Meadow Run','Dallas','123456789','2022-11-04','2026-11-04', 0, 1, 1, 0),
+(3, 'Sansa', '123456781','Meadow Run','Frisco','123456789','2018-11-06','2022-11-06', 0, 1, 2, 0);
 
 insert into employee values (1, 'Jennifer', '987654321', 'library', 'Grapevine', '1112223334','2022-11-11', 1),
 (2, 'James', '987654322', 'library', 'Grapevine', '1112223335','2022-11-11', 5);
 
 insert into employee values (3, 'Mike', '987654323', 'library', 'Grapevine', '1112223336','2022-11-11', 6);
 
-insert into book_member values (1,1,'2022-11-10','2022-12-01',NULL),
-(2,4,'2022-11-10','2023-02-10',NULL);
+insert into book_member values (1,1,1,'2022-11-10','2022-12-01',NULL),
+(2,2,4,'2022-11-10','2023-02-10',NULL);
