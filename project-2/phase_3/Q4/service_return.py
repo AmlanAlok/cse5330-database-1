@@ -3,7 +3,7 @@ import datetime
 
 
 def init_book_return(member_id, isbn):
-    print('inside init_book_return')
+    # print('inside init_book_return')
     member_record = get_record(table_name=MEMBER_DICT[TABLE_NAME], col_name=MEMBER_DICT[COL_NAME],
                                field_value=member_id)
 

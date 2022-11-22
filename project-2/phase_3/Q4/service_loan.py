@@ -4,18 +4,18 @@ import datetime
 
 
 def get_book_loan(member_id, isbn):
-    print('inside get_book_loan')
+    # print('inside get_book_loan')
     member_record = get_record(table_name=MEMBER_DICT[TABLE_NAME], col_name=MEMBER_DICT[COL_NAME],
                                field_value=member_id)
     if member_record:
         validate_member = validate_member_for_loan(member_record)
 
         if validate_member == 'Success':
-            print('member validation done')
+            # print('member validation done')
             validate_loan = validate_lending_for_loan(isbn)
 
             if validate_loan == "Success":
-                print('lending validation done')
+                # print('lending validation done')
                 date_today = datetime.date.today()
                 date_of_borrowing = date_today.strftime('%Y-%m-%d')
 

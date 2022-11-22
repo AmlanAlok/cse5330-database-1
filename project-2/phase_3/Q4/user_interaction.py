@@ -8,9 +8,12 @@ def display_menu():
     print('Choose one of the below numbers for corresponding actions')
     print('1. New Member')
     print('2. New Book')
+    print('3. Loan book')
+    print('4. Return book')
+    print('5. Renew membership')
     print('0. EXIT')
 
-    option = int(input('Choose Option'))
+    option = int(input('Choose Option: '))
     return option
 
 
@@ -50,7 +53,6 @@ def loan_book():
     print('Enter your Member ID and Book ISBN to loan')
     member_id = input('Member Id: ')
     isbn = input('Book ISBN: ')
-    # return get_book_loan(str(1), str(1))
     return get_book_loan(member_id, isbn)
 
 
@@ -64,14 +66,12 @@ def return_book():
 def renew_membership():
     print('Enter your Member ID to renew membership')
     member_id = input('Member Id: ')
-    # member_id = str(1)
     return renew_member(member_id)
 
 
 def main():
-    # option = display_menu()
+    option = display_menu()
 
-    option = 5
     if option == 1:
         output, member_id = new_member()
         print('--------------------')

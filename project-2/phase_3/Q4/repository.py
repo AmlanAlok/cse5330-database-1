@@ -54,7 +54,6 @@ def update_member_borrow_count(member_id, borrow_count):
 
 
 def update_member_renewal(member_id, card_issue_date, card_expiry_date, renewed_flag, member_status_id):
-    print(member_id, card_issue_date, card_expiry_date, renewed_flag, member_status_id)
     sql_query = "update member set card_issue_date ='" + card_issue_date + "', card_expiry_date = '" + \
                 card_expiry_date + "', renewed = '" + renewed_flag + \
                 "', member_status_id = '" + member_status_id + \
