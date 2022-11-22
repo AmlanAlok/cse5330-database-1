@@ -1,6 +1,6 @@
 use axa5861;
 
-insert into book_category values (1,'can be lent'), (2,'do not lend'), (3,'interested to acquire');
+--insert into book_category values (1,'can be lent'), (2,'do not lend'), (3,'interested to acquire');
 
 insert into reason values (1, 'rare'), (2, 'out of print'),(3, 'lost'),(4, 'destroyed');
 
