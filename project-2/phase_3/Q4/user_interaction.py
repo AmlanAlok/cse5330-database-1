@@ -61,10 +61,17 @@ def return_book():
     return init_book_return(member_id, isbn)
 
 
+def renew_membership():
+    print('Enter your Member ID to renew membership')
+    # member_id = input('Member Id: ')
+    member_id = str(1)
+    return renew_member(member_id)
+
+
 def main():
     # option = display_menu()
 
-    option = 4
+    option = 2
     if option == 1:
         output, member_id = new_member()
         print('--------------------')
@@ -85,11 +92,14 @@ def main():
         print('--------------------')
         print(output)
         print('--------------------')
+    elif option == 5:
+        output = renew_membership()
+        print('--------------------')
+        print(output)
+        print('--------------------')
     elif option == 0:
         print('Exiting program')
         exit(0)
-
-    print(output)
 
 
 if __name__ == '__main__':
