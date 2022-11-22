@@ -63,15 +63,15 @@ def return_book():
 
 def renew_membership():
     print('Enter your Member ID to renew membership')
-    # member_id = input('Member Id: ')
-    member_id = str(1)
+    member_id = input('Member Id: ')
+    # member_id = str(1)
     return renew_member(member_id)
 
 
 def main():
     # option = display_menu()
 
-    option = 2
+    option = 5
     if option == 1:
         output, member_id = new_member()
         print('--------------------')
