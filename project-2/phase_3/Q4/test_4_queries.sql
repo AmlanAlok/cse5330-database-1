@@ -27,3 +27,11 @@ select * from member;
 
 -- 4.5
 select * from member;
+
+-- 5.1
+select * from book_member;
+select * from notification;
+
+-- 5.2
+select * from notification;
+select * from member;
