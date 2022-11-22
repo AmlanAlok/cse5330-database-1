@@ -76,16 +76,3 @@ def get_record(table_name, col_name, field_value):
 def get_book_member(member_id, isbn):
     sql_query = "select * from book_member where member_id = '" + member_id + "' and book_isbn = '" + isbn + "'"
     return connect_db_fetch_record(sql_query)
-
-
-def x():
-    sql_query = "select LAST_INSERT_ID()"
-    q = connect_db_fetch_data(sql_query)
-    print(q)
-
-
-if __name__ == '__main__':
-    # get_member_status_fk('active')
-    print('start')
-    # print(type(x('lang')))
-    x()
