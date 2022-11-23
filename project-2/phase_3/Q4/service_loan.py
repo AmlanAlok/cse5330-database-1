@@ -41,6 +41,8 @@ def get_book_loan(member_id, isbn):
                 pass
             else:
                 return validate_loan
+        else:
+            return validate_member
     else:
         return 'Member with member_id = ' + str(member_id) + ' does not exist'
 
