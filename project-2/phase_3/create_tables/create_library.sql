@@ -1,76 +1,42 @@
--- MySQL Workbench Forward Engineering
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
-
--- -----------------------------------------------------
--- Schema axa5861
--- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema axa5861
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `axa5861` DEFAULT CHARACTER SET utf8 ;
 USE `axa5861` ;
 
--- -----------------------------------------------------
--- Table `axa5861`.`book_category`
--- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `axa5861`.`book_category` (
   `id` INT NOT NULL,
   `book_category` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`book_category` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`book_category` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`author`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`author` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `author_name` VARCHAR(45) NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
+  PRIMARY KEY (`id`));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`subject_area`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`subject_area` (
   `id` INT NOT NULL,
   `subject_area` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`subject_area` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`subject_area` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`binding`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`binding` (
   `id` INT NOT NULL,
   `bind_type` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`bind_type` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`bind_type` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`lang`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`lang` (
   `id` INT NOT NULL,
   `language_name` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`language_name` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`language_name` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`book`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`book` (
   `isbn` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NOT NULL,
@@ -110,13 +76,9 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`book` (
     FOREIGN KEY (`lang_id`)
     REFERENCES `axa5861`.`lang` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`book_for_lending`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`book_for_lending` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `loan_count` INT NULL,
@@ -128,13 +90,9 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`book_for_lending` (
     FOREIGN KEY (`book_isbn`)
     REFERENCES `axa5861`.`book` (`isbn`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`member_type`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`member_type` (
   `id` INT NOT NULL,
   `member_type` VARCHAR(45) NULL,
@@ -142,24 +100,16 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`member_type` (
   `grace_period` TINYINT NULL,
   `book_limit` TINYINT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`member_type` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`member_type` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`member_status`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`member_status` (
   `id` INT NOT NULL,
   `member_status` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`member_status` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`member_status` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`member`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`member` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `member_name` VARCHAR(45) NULL,
@@ -186,24 +136,16 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`member` (
     FOREIGN KEY (`member_status_id`)
     REFERENCES `axa5861`.`member_status` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`reason`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`reason` (
   `id` INT NOT NULL,
   `reason` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`reason` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`reason` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`interested_to_acquire`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`interested_to_acquire` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `book_isbn` INT NOT NULL,
@@ -220,13 +162,9 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`interested_to_acquire` (
     FOREIGN KEY (`reason_id`)
     REFERENCES `axa5861`.`reason` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`book_member`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`book_member` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `book_isbn` INT NOT NULL,
@@ -246,24 +184,16 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`book_member` (
     FOREIGN KEY (`member_id`)
     REFERENCES `axa5861`.`member` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`staff_position`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`staff_position` (
   `id` INT NOT NULL,
   `staff_position` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `name_UNIQUE` (`staff_position` ASC))
-ENGINE = InnoDB;
+  UNIQUE INDEX `name_UNIQUE` (`staff_position` ASC));
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`employee`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`employee` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
@@ -280,24 +210,9 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`employee` (
     FOREIGN KEY (`staff_position_id`)
     REFERENCES `axa5861`.`staff_position` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
 
 
--- -----------------------------------------------------
--- Table `axa5861`.`notify`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `axa5861`.`notify` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `type` VARCHAR(45) NULL,
-  `datetime` DATETIME NULL,
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `axa5861`.`notification`
--- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `axa5861`.`notification` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `type` VARCHAR(45) NULL,
@@ -309,8 +224,8 @@ CREATE TABLE IF NOT EXISTS `axa5861`.`notification` (
     FOREIGN KEY (`member_id`)
     REFERENCES `axa5861`.`member` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    ON UPDATE NO ACTION);
+
 
 USE `axa5861`;
 
@@ -357,6 +272,3 @@ END$$
 
 DELIMITER ;
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
