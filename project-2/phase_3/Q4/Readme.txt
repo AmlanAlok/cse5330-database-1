@@ -1,11 +1,15 @@
 
+Team Members:
+Amlan Alok
+Aniket Yamle
 
 
-4.3
+We have used the command line interface to interact with the user to implement Q4.
 
-1. Update book_for_lending table
-2. check if member is active
-3. check member book limit
-4. check if borrow_count < book_limit
-5. Add record to book_member with dates
-6. Add 1 to borrow count
+Please go to Q4 directory in terminal and run the below command to start the program.
+
+python3 user_interaction.py
+
+5 options will be displayed and you can choose your action.
+
+Screenshots have been provided from when we tested our code.
