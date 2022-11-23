@@ -1,8 +1,8 @@
 import pymysql
 from constants import *
 
-DB = LOCAL_DB
-# DB = OMEGA_DB     # Enable this for demo
+#DB = LOCAL_DB
+DB = OMEGA_DB     # Enable this for demo
 
 
 def connect_db_fetch_data(sql_query):
