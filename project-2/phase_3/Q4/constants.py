@@ -7,14 +7,14 @@ LOCAL_DB = {
     HOSTNAME: 'localhost',
     USERNAME: 'root',
     PASSWORD: '',
-    DATABASE: 'axa5861'
+    DATABASE: 'axy9230'
 }
 
 OMEGA_DB = {
     HOSTNAME: '10.208.63.68',
-    USERNAME: 'axa5861',
-    PASSWORD: 'ArlingtonTexas',
-    DATABASE: 'axa5861'
+    USERNAME: 'axy9230',
+    PASSWORD: 'ANIYAM25$$',
+    DATABASE: 'axy9230'
 }
 
 TABLE_NAME = 'table_name'
