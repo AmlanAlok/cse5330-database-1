@@ -27,4 +27,3 @@ cursor.execute("select b.title,b.description, m.date_of_borrowing ,m.date_of_ret
 #transaction is to renew the membership
 cursor.execute("update member set member_status=1 where id=5 and member_status=2")
 
-
