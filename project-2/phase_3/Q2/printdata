@@ -1,0 +1,183 @@
+
+
+mysql> select b.isbn,a.author_name,b.title,s.subject_area,b.description from  author a join book b  on a.id=b.author_id join subject_area s on s.id=b.subject_area_id;
++------+-----------------+-----------------------------+------------------+--------------------------------------------------+
+| isbn | author_name     | title                       | subject_area     | description                                      |
++------+-----------------+-----------------------------+------------------+--------------------------------------------------+
+|   17 | Eric Dier       | Flying Machine              | Aerospace        | Fly High                                         |
+|    2 | Alan Heeger     | Introduction to Chemistry   | Chemistry        | Learn Chemistry                                  |
+|   19 | Eric Dier       | Ikigai                      | Chemistry        | Learn Chemistry                                  |
+|    6 | Charles Lewin   | Introduction to Algorithms  | Computer Science | Knowledge about Algorithms                       |
+|    7 | Charles Lewin   | Introduction to Algorithms  | Computer Science | Knowledge about Algorithms                       |
+|    8 | Charles Lewin   | Introduction to Algorithms  | Computer Science | Knowledge about Algorithms                       |
+|    9 | Charles Lewin   | Introduction to Algorithms  | Computer Science | Knowledge about Algorithms                       |
+|   14 | Antony Adams    | Python Programming          | Computer Science | Intermediate level to develop code               |
+|   15 | Antony Adams    | Python Expert               | Computer Science | Intermediate level to develop code               |
+|   16 | Elnasri         | Database Systems            | Computer Science | easy  to write sql query                         |
+|    4 | Cleopatra       | Secrets of Egypt            | History          | Know what is in the Pyramids                     |
+|    5 | Amit            | Ashoka Empire               | History          | Know who is Ashoka and what he accomplished      |
+|   24 | Amit            | Immortals of Meluha         | History          | Fantasy of Mythology Drama                       |
+|   25 | Amish Tripathi  | Immortals of Meluha         | History          | Fantasy of Mythology Drama                       |
+|   30 | George RR       | House of Dragons            | History          | House Targeryen                                  |
+|   10 | George RR       | Game of thrones             | Literature       | Best Series of all time with all life experience |
+|   11 | George RR       | Game of thrones             | Literature       | Best Series of all time with all life experience |
+|   12 | Shakespeare     | Hamlet                      | Literature       | Drama of love and passion                        |
+|   13 | Shakespeare     | Julius Caeser               | Literature       | Violence                                         |
+|   32 | Amit            | Love of my life             | Literature       | intense love and promise to keep it.             |
+|    3 | Eddie Woo       | Introduction to Mathematics | Mathematics      | Learn Mathematics                                |
+|   20 | Alan Heeger     | Algebra Expressions         | Mathematics      | xyz+abc+pqrs                                     |
+|   21 | Alan Heeger     | Algebra Expressions         | Mathematics      | xyz+abc+pqrs                                     |
+|   22 | Eddie Woo       | Integral Expressions        | Mathematics      | Integration Stuff                                |
+|   23 | Eddie Woo       | Integral Expressions        | Mathematics      | Integration Stuff                                |
+|   18 | Eric Dier       | Machine to Machine          | Mechanical       | fix the bolts instructions                       |
+|   27 | Eric Dier       | Football Mechanics          | Mechanical       | Think about dynamics                             |
+|   28 | Eric Dier       | Football Mechanics          | Mechanical       | Think about dynamics                             |
+|   29 | Eric Dier       | Football Mechanics          | Mechanical       | Think about dynamics                             |
+|    1 | Richard Feynman | Introduction to Physics     | Physics          | Learn Physics                                    |
+|   26 | Richard Feynman | Concepts of Physics         | Physics          | Learn Experimental Knowledge                     |
+|   31 | Richard Feynman | Concepts of Physics         | Physics          | Learn Experimental Knowledge                     |
++------+-----------------+-----------------------------+------------------+--------------------------------------------------+
+32 rows in set (0.01 sec)
+
+mysql> select * from author;
++----+-----------------+
+| id | author_name     |
++----+-----------------+
+|  1 | Richard Feynman |
+|  2 | Alan Heeger     |
+|  3 | Eddie Woo       |
+|  4 | Cleopatra       |
+|  5 | Amit            |
+|  6 | Shakespeare     |
+|  7 | Charles Lewin   |
+|  8 | George RR       |
+|  9 | Elnasri         |
+| 10 | Antony Adams    |
+| 11 | Eric Dier       |
+| 12 | Amish Tripathi  |
++----+-----------------+
+12 rows in set (0.01 sec)
+
+mysql> select * from member;
++----+-------------+------------+----------------+--------------+------------+-----------------+------------------+----------------+----------------+------------------+---------+
+| id | member_name | ssn        | campus_address | home_address | phone_no   | card_issue_date | card_expiry_date | borrowed_count | member_type_id | member_status_id | renewed |
++----+-------------+------------+----------------+--------------+------------+-----------------+------------------+----------------+----------------+------------------+---------+
+|  1 | Jon         | 123456789  | Arbor Oaks     | Irving       | 123456789  | 2022-11-10      | 2026-11-10       |              2 |              1 |                1 |       0 |
+|  2 | Arya        | 123456780  | Meadow Run     | Dallas       | 123456789  | 2022-11-04      | 2026-11-04       |              0 |              1 |                1 |       0 |
+|  3 | Sansa       | 123456781  | Meadow Run     | Frisco       | 123456789  | 2022-11-22      | 2026-11-22       |              0 |              1 |                1 |       1 |
+|  4 | Ned         | 1234126781 | Arbor Run      | Waco         | 123456789  | 2022-11-22      | 2026-11-22       |              0 |              2 |                1 |       1 |
+|  5 | Rob         | 1234526781 | Benge Run      | Irving       | 123456789  | 2018-11-05      | 2022-11-05       |              0 |              1 |                2 |       0 |
+|  6 | Daemon      | 123456881  | Queen Run      | Frisco       | 123456789  | 2022-11-16      | 2026-11-16       |              0 |              2 |                1 |       0 |
+|  7 | Tyrion      | 123456981  | Cooper Street  | Waco         | 6852345689 | 2022-11-06      | 2026-11-06       |             15 |              2 |                1 |       0 |
+|  8 | Cersei      | 153456781  | Mead Street    | Frisco       | 6843456789 | 2022-10-02      | 2026-10-02       |              0 |              2 |                1 |       0 |
+|  9 | Aegon       | 113456781  | Cooper Street  | Waco         | 9823456789 | 2022-09-18      | 2026-09-18       |              5 |              1 |                1 |       0 |
+| 10 | Jamie       | 123356781  | Cooper Street  | Potter       | 8823456789 | 2022-11-26      | 2026-11-26       |              1 |              1 |                1 |       0 |
+| 11 | Alok        | 123451781  | Randol Street  | Irving       | 223456789  | 2022-11-06      | 2026-11-06       |              1 |              1 |                1 |       0 |
+| 12 | Aniket      | 123456788  | Fielder Street | Irving       | 1293456789 | 2021-11-09      | 2025-11-09       |              3 |              1 |                1 |       0 |
+| 13 | Mike        | 987654323  | library        | Grapevine    | 1112223336 | 2022-11-11      | 2026-11-11       |              0 |              2 |                1 |       0 |
+| 14 | karan       | 245676543  | austin         | India        | 9898789887 | 2022-11-22      | 2026-11-22       |              0 |              1 |                1 |       0 |
++----+-------------+------------+----------------+--------------+------------+-----------------+------------------+----------------+----------------+------------------+---------+
+14 rows in set (0.01 sec)
+
+mysql>
+mysql> select b.isbn, b.title, m.member_name, bm.date_of_borrowing,  date(now()) - bm.date_of_borrowing as `Days Since Borrowed`, mt.borrowing_period_limit as `Number of Days Loaned`,
+    -> a.author_name, sa.subject_area
+    -> from book_member as bm
+    -> join book as b on b.isbn = bm.book_isbn
+    -> join author as a on a.id = b.author_id
+    -> join subject_area as sa on sa.id = b.subject_area_id
+    -> join member as m on m.id = bm.member_id
+    -> join member_type as mt on mt.id = m.member_type_id
+    -> where bm.date_of_borrowing >= (select Date(now()-interval 7 day))
+    -> order by sa.subject_area, a.author_name, mt.borrowing_period_limit;
++------+-----------------------------+-------------+-------------------+---------------------+-----------------------+-----------------+------------------+
+| isbn | title                       | member_name | date_of_borrowing | Days Since Borrowed | Number of Days Loaned | author_name     | subject_area     |
++------+-----------------------------+-------------+-------------------+---------------------+-----------------------+-----------------+------------------+
+|   19 | Ikigai                      | Aniket      | 2022-11-21        |                   1 |                    21 | Eric Dier       | Chemistry        |
+|   19 | Ikigai                      | Alok        | 2022-11-21        |                   1 |                    21 | Eric Dier       | Chemistry        |
+|    6 | Introduction to Algorithms  | Aniket      | 2022-11-22        |                   0 |                    21 | Charles Lewin   | Computer Science |
+|    6 | Introduction to Algorithms  | Daemon      | 2022-11-21        |                   1 |                    90 | Charles Lewin   | Computer Science |
+|   10 | Game of thrones             | Tyrion      | 2022-11-22        |                   0 |                    90 | George RR       | Literature       |
+|    3 | Introduction to Mathematics | Jon         | 2022-11-22        |                   0 |                    21 | Eddie Woo       | Mathematics      |
+|   26 | Concepts of Physics         | Tyrion      | 2022-11-15        |                   7 |                    90 | Richard Feynman | Physics          |
++------+-----------------------------+-------------+-------------------+---------------------+-----------------------+-----------------+------------------+
+7 rows in set (0.02 sec)
+
+mysql> select b.isbn, b.title, bc.book_category, a.author_name, sa.subject_area, bnd.bind_type, l.language_name
+    -> from book as b
+    -> join interested_to_acquire as ia on b.isbn = ia.book_isbn
+    -> join book_category as bc on bc.id = b.book_category_id
+    -> join author as a on a.id = b.author_id
+    -> join subject_area as sa on sa.id = b.subject_area_id
+    -> join binding as bnd on bnd.id = b.binding_id
+    -> join lang as l on l.id = b.lang_id
+    -> join reason as r on r.id = ia.reason_id;
++------+----------------------+-----------------------+----------------+--------------+-----------+---------------+
+| isbn | title                | book_category         | author_name    | subject_area | bind_type | language_name |
++------+----------------------+-----------------------+----------------+--------------+-----------+---------------+
+|   30 | House of Dragons     | do not lend           | George RR      | History      | Hardcover | English       |
+|   25 | Immortals of Meluha  | do not lend           | Amish Tripathi | History      | Hardcover | English       |
+|   22 | Integral Expressions | do not lend           | Eddie Woo      | Mathematics  | Hardcover | English       |
+|    4 | Secrets of Egypt     | interested to acquire | Cleopatra      | History      | Hardcover | English       |
+|   24 | Immortals of Meluha  | do not lend           | Amit           | History      | Hardcover | Hindi         |
+|   20 | Algebra Expressions  | interested to acquire | Alan Heeger    | Mathematics  | Hardcover | English       |
+|   12 | Hamlet               | interested to acquire | Shakespeare    | Literature   | Hardcover | Hindi         |
+|   23 | Integral Expressions | interested to acquire | Eddie Woo      | Mathematics  | Hardcover | English       |
+|    5 | Ashoka Empire        | interested to acquire | Amit           | History      | Hardcover | Hindi         |
+|   13 | Julius Caeser        | do not lend           | Shakespeare    | Literature   | Softcover | Italian       |
+|   18 | Machine to Machine   | interested to acquire | Eric Dier      | Mechanical   | Softcover | Hindi         |
+|   17 | Flying Machine       | interested to acquire | Eric Dier      | Aerospace    | Softcover | English       |
++------+----------------------+-----------------------+----------------+--------------+-----------+---------------+
+12 rows in set (0.01 sec)
+
+mysql>
+mysql>
+mysql> select b.isbn, b.title, bc.book_category, a.author_name, sa.subject_area, bnd.bind_type, l.language_name
+    -> from book as b
+    -> join book_category as bc on bc.id = b.book_category_id
+    -> join author as a on a.id = b.author_id
+    -> join subject_area as sa on sa.id = b.subject_area_id
+    -> join binding as bnd on bnd.id = b.binding_id
+    -> join lang as l on l.id = b.lang_id;
++------+-----------------------------+-----------------------+-----------------+------------------+-----------+---------------+
+| isbn | title                       | book_category         | author_name     | subject_area     | bind_type | language_name |
++------+-----------------------------+-----------------------+-----------------+------------------+-----------+---------------+
+|    6 | Introduction to Algorithms  | can be lent           | Charles Lewin   | Computer Science | Softcover | English       |
+|   27 | Football Mechanics          | can be lent           | Eric Dier       | Mechanical       | Softcover | English       |
+|   28 | Football Mechanics          | can be lent           | Eric Dier       | Mechanical       | Softcover | Hindi         |
+|   32 | Love of my life             | can be lent           | Amit            | Literature       | Softcover | English       |
+|    1 | Introduction to Physics     | can be lent           | Richard Feynman | Physics          | Hardcover | English       |
+|    2 | Introduction to Chemistry   | can be lent           | Alan Heeger     | Chemistry        | Hardcover | English       |
+|    3 | Introduction to Mathematics | can be lent           | Eddie Woo       | Mathematics      | Hardcover | English       |
+|    7 | Introduction to Algorithms  | can be lent           | Charles Lewin   | Computer Science | Hardcover | English       |
+|    8 | Introduction to Algorithms  | can be lent           | Charles Lewin   | Computer Science | Hardcover | Italian       |
+|    9 | Introduction to Algorithms  | can be lent           | Charles Lewin   | Computer Science | Hardcover | Russian       |
+|   10 | Game of thrones             | can be lent           | George RR       | Literature       | Hardcover | English       |
+|   11 | Game of thrones             | can be lent           | George RR       | Literature       | Hardcover | Spanish       |
+|   14 | Python Programming          | can be lent           | Antony Adams    | Computer Science | Hardcover | English       |
+|   15 | Python Expert               | can be lent           | Antony Adams    | Computer Science | Hardcover | English       |
+|   16 | Database Systems            | can be lent           | Elnasri         | Computer Science | Hardcover | English       |
+|   19 | Ikigai                      | can be lent           | Eric Dier       | Chemistry        | Hardcover | Hindi         |
+|   21 | Algebra Expressions         | can be lent           | Alan Heeger     | Mathematics      | Hardcover | English       |
+|   26 | Concepts of Physics         | can be lent           | Richard Feynman | Physics          | Hardcover | Hindi         |
+|   29 | Football Mechanics          | can be lent           | Eric Dier       | Mechanical       | Hardcover | English       |
+|   31 | Concepts of Physics         | can be lent           | Richard Feynman | Physics          | Hardcover | English       |
+|   13 | Julius Caeser               | do not lend           | Shakespeare     | Literature       | Softcover | Italian       |
+|   22 | Integral Expressions        | do not lend           | Eddie Woo       | Mathematics      | Hardcover | English       |
+|   24 | Immortals of Meluha         | do not lend           | Amit            | History          | Hardcover | Hindi         |
+|   25 | Immortals of Meluha         | do not lend           | Amish Tripathi  | History          | Hardcover | English       |
+|   30 | House of Dragons            | do not lend           | George RR       | History          | Hardcover | English       |
+|   17 | Flying Machine              | interested to acquire | Eric Dier       | Aerospace        | Softcover | English       |
+|   18 | Machine to Machine          | interested to acquire | Eric Dier       | Mechanical       | Softcover | Hindi         |
+|    4 | Secrets of Egypt            | interested to acquire | Cleopatra       | History          | Hardcover | English       |
+|    5 | Ashoka Empire               | interested to acquire | Amit            | History          | Hardcover | Hindi         |
+|   12 | Hamlet                      | interested to acquire | Shakespeare     | Literature       | Hardcover | Hindi         |
+|   20 | Algebra Expressions         | interested to acquire | Alan Heeger     | Mathematics      | Hardcover | English       |
+|   23 | Integral Expressions        | interested to acquire | Eddie Woo       | Mathematics      | Hardcover | English       |
++------+-----------------------------+-----------------------+-----------------+------------------+-----------+---------------+
+32 rows in set (0.01 sec)
+
+mysql>
+mysql> \t
+
+

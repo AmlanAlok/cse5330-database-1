@@ -9,8 +9,8 @@ def get_fk(table_name, col_name, field_value):
 
 def save_member(db_record):
     sql_query = "insert into member (`member_name`,`ssn`,`campus_address`,`home_address`,`phone_no`," \
-                "`card_issue_date`,`card_expiry_date`,`borrowed_count`,`member_type_id`,`member_status_id`) " \
-                "values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+                "`card_issue_date`,`card_expiry_date`,`borrowed_count`,`member_type_id`,`member_status_id`,`renewed`)" \
+                "values (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
     return connect_db_save_data(sql_query, db_record)
 
 
@@ -53,6 +53,15 @@ def update_member_borrow_count(member_id, borrow_count):
     return connect_db_update_data(sql_query)
 
 
+def update_member_renewal(member_id, card_issue_date, card_expiry_date, renewed_flag, member_status_id):
+    sql_query = "update member set card_issue_date ='" + card_issue_date + "', card_expiry_date = '" + \
+                card_expiry_date + "', renewed = '" + renewed_flag + \
+                "', member_status_id = '" + member_status_id + \
+                "' where id = '" + member_id + "'"
+
+    return connect_db_update_data(sql_query)
+
+
 def get_all(table_name):
     sql_query = "select * from " + table_name
     return connect_db_fetch_all(sql_query)
@@ -66,16 +75,3 @@ def get_record(table_name, col_name, field_value):
 def get_book_member(member_id, isbn):
     sql_query = "select * from book_member where member_id = '" + member_id + "' and book_isbn = '" + isbn + "'"
     return connect_db_fetch_record(sql_query)
-
-
-def x():
-    sql_query = "select LAST_INSERT_ID()"
-    q = connect_db_fetch_data(sql_query)
-    print(q)
-
-
-if __name__ == '__main__':
-    # get_member_status_fk('active')
-    print('start')
-    # print(type(x('lang')))
-    x()
